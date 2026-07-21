@@ -1,0 +1,13 @@
+{
+  "name": "FlagCraft",
+  "short_name": "FlagCraft",
+  "description": "A bilingual flag and capital quiz with XP, ranks, achievements, and unlockable themes.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#160f05",
+  "theme_color": "#2b1b07",
+  "icons": [
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,4802 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#171006" />
+  <meta name="description" content="FlagCraft — bayrak ve başkent bilme oyunu." data-i18n-content="appDescription" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://flagcdn.com https://minecraft.wiki; media-src 'self' https://www.myinstants.com; connect-src 'self' https://*.supabase.co; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <title>FlagCraft</title>
+  <link rel="icon" href="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" type="image/png" />
+  <link rel="apple-touch-icon" href="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" />
+  <style>
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --bg: #130d05;
+  --bg-2: #211606;
+  --panel: rgba(38, 26, 8, .84);
+  --panel-strong: rgba(51, 34, 9, .96);
+  --panel-soft: rgba(255, 225, 108, .075);
+  --text: #fff8d6;
+  --muted: #baa984;
+  --accent: #ffd84d;
+  --accent-2: #f29e23;
+  --accent-3: #79c84a;
+  --accent-ink: #2b1900;
+  --danger: #ff6b5f;
+  --success: #a7eb66;
+  --border: rgba(255, 218, 87, .18);
+  --border-strong: rgba(255, 218, 87, .38);
+  --shadow: 0 24px 80px rgba(0, 0, 0, .42);
+  --glow: rgba(255, 203, 46, .25);
+  --grid: rgba(255, 218, 87, .035);
+  --choice-bg: rgba(5, 6, 5, .88);
+  --choice-bg-strong: rgba(10, 11, 9, .97);
+  --choice-border: rgba(255,255,255,.16);
+  --choice-text: #fffdf4;
+  --choice-muted: #bdbdb4;
+  --radius-xl: 30px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+}
+
+body[data-theme="dark"] {
+  --bg: #07090d; --bg-2: #111722; --panel: rgba(17, 23, 34, .88); --panel-strong: #141b27;
+  --panel-soft: rgba(99, 219, 255, .07); --text: #eef8ff; --muted: #9baabc; --accent: #69dcff;
+  --accent-2: #6d8dff; --accent-3: #8fffd2; --accent-ink: #04131a; --border: rgba(105, 220, 255, .16);
+  --border-strong: rgba(105, 220, 255, .38); --glow: rgba(105, 220, 255, .18); --grid: rgba(105, 220, 255, .028);
+}
+
+body[data-theme="sakura"] {
+  --bg: #160910; --bg-2: #30101d; --panel: rgba(48, 16, 29, .86); --panel-strong: #411426;
+  --panel-soft: rgba(255, 155, 190, .09); --text: #fff2f7; --muted: #d5a6b6; --accent: #ff8fbc;
+  --accent-2: #ff5b86; --accent-3: #ffd3e3; --accent-ink: #3a071c; --border: rgba(255, 143, 188, .18);
+  --border-strong: rgba(255, 143, 188, .4); --glow: rgba(255, 95, 145, .22); --grid: rgba(255, 155, 190, .03);
+}
+
+body[data-theme="japan"] {
+  --bg: #120e0c; --bg-2: #271c18; --panel: rgba(35, 25, 22, .88); --panel-strong: #3a2922;
+  --panel-soft: rgba(247, 238, 214, .07); --text: #fff8e8; --muted: #c4b29f; --accent: #f1e4c8;
+  --accent-2: #e14940; --accent-3: #ff7669; --accent-ink: #31110e; --border: rgba(241, 228, 200, .17);
+  --border-strong: rgba(225, 73, 64, .42); --glow: rgba(225, 73, 64, .18); --grid: rgba(241, 228, 200, .027);
+}
+
+body[data-theme="space"] {
+  --bg: #08061a; --bg-2: #15103a; --panel: rgba(20, 16, 55, .88); --panel-strong: #211a55;
+  --panel-soft: rgba(166, 125, 255, .08); --text: #f7f3ff; --muted: #aaa3cf; --accent: #b28cff;
+  --accent-2: #5ed7ff; --accent-3: #ff84d8; --accent-ink: #10062b; --border: rgba(178, 140, 255, .18);
+  --border-strong: rgba(94, 215, 255, .38); --glow: rgba(126, 93, 255, .24); --grid: rgba(178, 140, 255, .03);
+}
+
+body[data-theme="minecraft"] {
+  --bg: #10150d; --bg-2: #1d2817; --panel: rgba(28, 40, 22, .89); --panel-strong: #304128;
+  --panel-soft: rgba(120, 190, 74, .09); --text: #f5f5dd; --muted: #b7c5a4; --accent: #78be4a;
+  --accent-2: #98704c; --accent-3: #f0cf62; --accent-ink: #12210a; --border: rgba(120, 190, 74, .2);
+  --border-strong: rgba(120, 190, 74, .45); --glow: rgba(120, 190, 74, .22); --grid: rgba(120, 190, 74, .04);
+  --radius-xl: 12px; --radius-lg: 8px; --radius-md: 6px; --radius-sm: 4px;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; background: var(--bg); }
+body { margin: 0; min-height: 100vh; color: var(--text); background:
+  radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--accent) 13%, transparent), transparent 36%),
+  radial-gradient(circle at 85% 25%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 32%),
+  linear-gradient(145deg, var(--bg), var(--bg-2)); overflow-x: hidden; transition: background .2s ease, color .2s ease; }
+button, input { font: inherit; }
+button { color: inherit; }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 75%, white); outline-offset: 3px; }
+button { -webkit-tap-highlight-color: transparent; }
+img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+
+.ambient { position: fixed; width: 40vw; height: 40vw; border-radius: 999px; filter: blur(100px); pointer-events: none; opacity: .075; z-index: -2; }
+.ambient-one { background: var(--accent); top: -18vw; left: -10vw; }
+.ambient-two { background: var(--accent-2); bottom: -22vw; right: -10vw; }
+.pixel-grid { position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: .7; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 40px 40px; mask-image: linear-gradient(to bottom, black, transparent 88%); }
+
+.topbar { width: min(1240px, calc(100% - 36px)); margin: 0 auto; min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 20px; position: relative; z-index: 10; }
+.brand { display: inline-flex; align-items: center; gap: 12px; border: 0; background: transparent; padding: 8px; cursor: pointer; }
+.brand-mark { width: 42px; height: 42px; display: grid; place-items: center; filter: drop-shadow(0 8px 18px var(--glow)); }
+.brand-mark img { width: 100%; height: 100%; }
+.brand-name { font-size: 1.35rem; font-weight: 900; letter-spacing: -.04em; }
+.brand-name span { color: var(--accent); }
+.top-actions { display: flex; align-items: center; gap: 9px; }
+.user-chip, .text-toggle, .icon-button { border: 1px solid var(--border); background: color-mix(in srgb, var(--panel) 84%, transparent); backdrop-filter: blur(18px); cursor: pointer; transition: transform .12s ease, border-color .12s ease, background .12s ease; }
+.user-chip:hover, .text-toggle:hover, .icon-button:hover { transform: translateY(-1px); border-color: var(--border-strong); }
+.user-chip { min-height: 42px; border-radius: 999px; padding: 7px 13px; display: inline-flex; align-items: center; gap: 8px; font-weight: 800; }
+.user-chip small { font-size: .68rem; color: var(--accent); border-left: 1px solid var(--border); padding-left: 8px; }
+.user-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-3); box-shadow: 0 0 12px var(--accent-3); }
+.text-toggle { min-height: 42px; border-radius: 999px; padding: 0 16px; font-weight: 800; }
+.icon-button { width: 42px; height: 42px; border-radius: 50%; font-size: 1.1rem; }
+
+.app-shell { width: min(1180px, calc(100% - 36px)); margin: 0 auto; padding: 52px 0 80px; }
+.view { display: none; }
+.view.active { display: block; animation: view-in .22s ease-out; }
+@keyframes view-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.glass-panel { background: linear-gradient(145deg, color-mix(in srgb, var(--panel-strong) 76%, transparent), var(--panel)); border: 1px solid var(--border); box-shadow: var(--shadow); backdrop-filter: blur(22px); }
+.hero-copy { max-width: 840px; margin: 16px auto 52px; text-align: center; }
+.eyebrow, .section-kicker { color: var(--accent); font-size: .72rem; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+.hero-copy h1 { margin: 18px 0 22px; font-size: clamp(3rem, 8vw, 6.7rem); line-height: .91; letter-spacing: -.075em; font-weight: 950; }
+.hero-copy h1 span { display: inline-block; color: var(--accent); text-shadow: 0 0 42px var(--glow); margin-top: .08em; }
+.hero-copy p { max-width: 680px; margin: 0 auto; color: var(--muted); line-height: 1.75; font-size: 1.02rem; }
+.home-grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 22px; align-items: start; }
+.play-panel { border-radius: var(--radius-xl); padding: clamp(24px, 4vw, 42px); }
+.panel-heading h2 { margin: 10px 0 0; font-size: clamp(1.65rem, 3vw, 2.2rem); letter-spacing: -.04em; }
+.control-block { margin-top: 30px; }
+.control-label { display: block; margin-bottom: 12px; color: var(--muted); font-size: .76rem; letter-spacing: .1em; font-weight: 850; text-transform: uppercase; }
+.quiz-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.quiz-type-button, .mode-card { position: relative; border: 1px solid var(--choice-border); background: linear-gradient(145deg, var(--choice-bg-strong), var(--choice-bg)); color: var(--choice-text); border-radius: var(--radius-md); cursor: pointer; text-align: left; transition: transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease; }
+.quiz-type-button:hover, .mode-card:hover { transform: translateY(-1px); border-color: var(--border-strong); }
+.quiz-type-button.selected, .mode-card.selected { border-color: var(--accent); background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 12%, var(--choice-bg-strong)), var(--choice-bg)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent), 0 12px 28px color-mix(in srgb, var(--glow) 80%, transparent); }
+.quiz-type-button { min-height: 100px; padding: 17px; display: grid; grid-template-columns: 44px 1fr 20px; gap: 12px; align-items: center; }
+.quiz-type-button b { opacity: 0; color: var(--accent); transition: opacity .2s ease; }
+.quiz-type-button.selected b { opacity: 1; }
+.quiz-symbol { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); font-size: 1.3rem; font-weight: 900; }
+.quiz-type-button strong, .mode-copy strong { display: block; font-size: .98rem; }
+.quiz-type-button small, .mode-copy small { display: block; color: var(--choice-muted); margin-top: 4px; line-height: 1.35; }
+.segmented-control { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; padding: 6px; border: 1px solid var(--choice-border); border-radius: var(--radius-md); background: var(--choice-bg); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+.difficulty-button { min-height: 44px; border: 0; border-radius: calc(var(--radius-md) - 5px); background: transparent; color: var(--choice-muted); font-weight: 850; cursor: pointer; }
+.difficulty-button.selected { color: var(--accent-ink); background: var(--accent); box-shadow: 0 7px 22px var(--glow); }
+.difficulty-description { color: var(--muted); margin: 10px 4px 0; font-size: .86rem; line-height: 1.5; }
+.mode-grid { display: grid; gap: 10px; }
+.mode-card { width: 100%; min-height: 76px; display: grid; grid-template-columns: 50px 1fr 22px; align-items: center; gap: 14px; padding: 13px 15px; }
+.mode-icon { width: 50px; height: 50px; display: grid; place-items: center; border-radius: 15px; background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 950; }
+.mode-check { color: var(--accent); opacity: 0; font-weight: 900; }
+.mode-card.selected .mode-check { opacity: 1; }
+.primary-button, .secondary-button { min-height: 54px; border-radius: var(--radius-md); padding: 0 20px; font-weight: 900; cursor: pointer; transition: transform .18s ease, filter .18s ease, border-color .18s ease; }
+.primary-button { border: 0; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-ink); display: flex; align-items: center; justify-content: center; gap: 14px; box-shadow: 0 18px 36px var(--glow); }
+.primary-button:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.play-panel > .primary-button { width: 100%; margin-top: 30px; }
+.secondary-button { border: 1px solid var(--border); background: linear-gradient(145deg, var(--choice-bg-strong), var(--choice-bg)); color: var(--choice-text); }
+.secondary-button:hover { transform: translateY(-1px); border-color: var(--border-strong); }
+.inline-credit, .modal-credit { color: var(--muted); text-align: center; font-size: .76rem; margin: 15px 0 0; }
+.inline-credit strong, .modal-credit strong { color: var(--accent); }
+.side-column { display: grid; gap: 14px; }
+.mini-card, .leaderboard-card, .smart-card { border-radius: var(--radius-lg); padding: 19px; }
+.profile-card { display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 13px; }
+.avatar { width: 52px; height: 52px; border-radius: 17px; display: grid; place-items: center; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-ink); font-weight: 950; font-size: 1.25rem; box-shadow: 0 10px 26px var(--glow); }
+.profile-copy small, .mini-card small { color: var(--muted); display: block; }
+.profile-copy strong { display: block; margin: 3px 0 5px; }
+.rank-chip { display: inline-flex; padding: 3px 8px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); font-size: .68rem; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; }
+.small-link { border: 0; background: transparent; color: var(--accent); font-size: .78rem; cursor: pointer; font-weight: 850; padding: 4px; }
+.xp-card { display: block; }
+.xp-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.xp-heading span:last-child { text-align: right; }
+.xp-heading strong { display: block; font-size: 1.15rem; margin-top: 2px; }
+.xp-track, .progress-track, .timer-track { overflow: hidden; background: rgba(0, 0, 0, .24); border: 1px solid var(--border); }
+.xp-track { height: 9px; border-radius: 999px; margin-top: 14px; }
+.xp-fill, .progress-fill, .timer-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent-2), var(--accent), var(--accent-3)); transition: width .35s ease; }
+.xp-card p { color: var(--muted); font-size: .75rem; margin: 8px 0 0; text-align: right; }
+.best-card { display: flex; justify-content: space-between; align-items: center; }
+.best-card strong { display: block; font-size: 1.6rem; margin-top: 4px; }
+.trophy { width: 48px; height: 48px; display: grid; place-items: center; color: var(--accent); font-size: 1.55rem; filter: drop-shadow(0 0 12px var(--glow)); }
+.leaderboard-card, .smart-card { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 14px; color: inherit; text-align: left; cursor: pointer; }
+.leaderboard-card strong, .smart-card strong { display: block; margin-top: 7px; }
+.arrow-circle { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--border); color: var(--accent); }
+.smart-card { border: 1px solid var(--border); }
+.smart-icon { color: var(--accent); font-size: 1.3rem; }
+.smart-card small { color: var(--muted); display: block; margin-top: 3px; }
+
+.game-view { max-width: 980px; margin: 0 auto; }
+.game-topline { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+.back-button { min-height: 44px; padding: 0 15px; border: 1px solid var(--border); background: var(--panel-soft); border-radius: 999px; cursor: pointer; font-weight: 850; }
+.game-stats { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.stat-pill { min-width: 84px; padding: 9px 12px; border: 1px solid var(--border); background: var(--panel); border-radius: 15px; text-align: center; }
+.stat-pill small { color: var(--muted); display: block; font-size: .65rem; text-transform: uppercase; letter-spacing: .08em; }
+.stat-pill strong { display: block; margin-top: 2px; font-size: 1.03rem; }
+.streak-pill strong, .xp-pill strong { color: var(--accent); }
+.question-progress { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 14px; margin-bottom: 14px; color: var(--muted); font-weight: 800; font-size: .82rem; }
+.progress-track { height: 7px; border-radius: 999px; }
+.timer-panel { border: 1px solid var(--border); background: var(--panel); border-radius: var(--radius-lg); padding: 17px 20px; margin-bottom: 16px; box-shadow: 0 14px 45px rgba(0,0,0,.22); }
+.timer-copy { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
+.timer-copy > span { color: var(--muted); font-size: .7rem; font-weight: 900; letter-spacing: .14em; }
+.timer-copy strong { font-size: clamp(2.2rem, 6vw, 4.2rem); line-height: .85; letter-spacing: -.055em; color: var(--accent); font-variant-numeric: tabular-nums; }
+.timer-copy strong small { font-size: .74rem; color: var(--muted); margin-left: 6px; letter-spacing: normal; }
+.timer-track { height: 12px; border-radius: 999px; }
+.timer-fill { width: 100%; transition: width .06s linear, background .25s ease; }
+.timer-panel.danger { border-color: color-mix(in srgb, var(--danger) 50%, transparent); }
+.timer-panel.danger .timer-copy strong { color: var(--danger); }
+.timer-panel.danger .timer-fill { background: var(--danger); }
+@keyframes timer-pulse { to { box-shadow: 0 0 30px color-mix(in srgb, var(--danger) 20%, transparent); } }
+.question-card { border-radius: var(--radius-xl); padding: clamp(18px, 3vw, 30px); }
+.prompt-stage { min-height: 330px; position: relative; display: grid; place-items: center; border-radius: calc(var(--radius-xl) - 8px); overflow: hidden; background:
+  linear-gradient(145deg, rgba(255,255,255,.035), rgba(0,0,0,.2)),
+  repeating-linear-gradient(0deg, transparent, transparent 18px, var(--grid) 19px),
+  repeating-linear-gradient(90deg, transparent, transparent 18px, var(--grid) 19px); border: 1px solid var(--border); }
+#flagImage { width: min(620px, 86%); max-height: 275px; object-fit: contain; border-radius: 12px; opacity: 0; transform: scale(.96); filter: drop-shadow(0 20px 28px rgba(0,0,0,.35)); transition: opacity .22s ease, transform .22s ease; }
+#flagImage.loaded { opacity: 1; transform: scale(1); }
+.flag-loader { position: absolute; width: 52px; height: 52px; border: 4px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
+.flag-loader.hidden { display: none; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.capital-prompt { width: 100%; min-height: 330px; display: grid; place-items: center; align-content: center; gap: 15px; position: relative; isolation: isolate; text-align: center; padding: 30px; }
+.capital-prompt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .085; filter: saturate(.7) blur(1px); z-index: -1; }
+.capital-prompt::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, transparent, color-mix(in srgb, var(--bg) 82%, transparent)); z-index: -1; }
+.capital-prompt small { color: var(--accent); font-size: .75rem; font-weight: 950; letter-spacing: .22em; }
+.capital-prompt strong { max-width: 720px; font-size: clamp(2.5rem, 8vw, 6.5rem); line-height: .95; letter-spacing: -.065em; text-shadow: 0 16px 40px rgba(0,0,0,.5); }
+.answer-flash { position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+.prompt-stage.correct .answer-flash { animation: flash-success .28s ease; }
+.prompt-stage.wrong .answer-flash { animation: flash-wrong .28s ease; }
+@keyframes flash-success { 0%,100% { opacity: 0; } 35% { opacity: .28; background: var(--success); } }
+@keyframes flash-wrong { 0%,100% { opacity: 0; } 35% { opacity: .14; background: var(--danger); } }
+.combo-pop { position: absolute; z-index: 4; left: 50%; top: 50%; transform: translate(-50%,-50%) scale(.6); opacity: 0; color: var(--accent); font-weight: 950; font-size: clamp(2rem, 7vw, 4.8rem); letter-spacing: -.07em; text-shadow: 0 8px 0 var(--accent-ink), 0 18px 50px var(--glow); pointer-events: none; }
+.combo-pop.show { animation: combo-pop .48s ease-out; }
+@keyframes combo-pop { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.84); } 25%,70% { opacity: .92; transform: translate(-50%,-50%) scale(1); } 100% { opacity: 0; transform: translate(-50%,-56%) scale(1.04); } }
+.question-copy { text-align: center; padding: 25px 10px 18px; }
+.question-number { color: var(--accent); font-size: .7rem; font-weight: 950; letter-spacing: .16em; }
+.question-copy h2 { margin: 8px 0 0; font-size: clamp(1.4rem, 4vw, 2.15rem); letter-spacing: -.035em; }
+.answer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.answer-button { min-height: 74px; border: 1px solid var(--border); border-radius: var(--radius-md); background: linear-gradient(145deg, var(--choice-bg-strong), var(--choice-bg)); color: var(--choice-text); display: grid; grid-template-columns: 38px 1fr auto; align-items: center; gap: 12px; padding: 13px 16px; text-align: left; cursor: pointer; transition: transform .16s ease, border-color .16s ease, background .16s ease; }
+.answer-button:hover:not(:disabled) { transform: translateY(-1px); border-color: var(--border-strong); background: color-mix(in srgb, var(--accent) 7%, var(--panel-soft)); }
+.answer-button:disabled { cursor: default; }
+.answer-index { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 11px; background: rgba(0,0,0,.2); color: var(--muted); font-weight: 950; }
+.answer-label { font-weight: 850; line-height: 1.25; }
+.answer-similarity { color: var(--muted); font-size: .68rem; opacity: 0; }
+.answer-button.correct { border-color: var(--success); background: color-mix(in srgb, var(--success) 14%, var(--panel-soft)); }
+.answer-button.correct .answer-index { background: var(--success); color: #142008; }
+.answer-button.wrong { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 13%, var(--panel-soft)); }
+.answer-button.wrong .answer-index { background: var(--danger); color: #2b0704; }
+.answer-button.dimmed { opacity: .48; }
+.keyboard-hint { color: var(--muted); text-align: center; font-size: .74rem; margin-top: 15px; }
+
+.results-view { max-width: 800px; margin: 0 auto; }
+.results-card { border-radius: var(--radius-xl); padding: clamp(25px, 5vw, 52px); text-align: center; }
+.result-orbit { width: 90px; height: 90px; border: 1px solid var(--border-strong); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 22px; background: var(--panel-soft); box-shadow: 0 0 40px var(--glow); }
+.result-orbit img { width: 62px; }
+.results-card > h1 { margin: 12px 0 8px; font-size: clamp(2rem, 7vw, 4.2rem); letter-spacing: -.06em; }
+.results-card > p { color: var(--muted); margin: 0 auto 24px; line-height: 1.6; }
+.final-score-block { display: grid; gap: 5px; padding: 22px; border-radius: var(--radius-lg); background: color-mix(in srgb, var(--accent) 10%, transparent); border: 1px solid var(--border-strong); }
+.final-score-block small { color: var(--muted); letter-spacing: .14em; font-size: .7rem; font-weight: 900; }
+.final-score-block strong { color: var(--accent); font-size: clamp(3rem, 10vw, 6rem); line-height: 1; letter-spacing: -.07em; }
+.xp-earned-result { margin: 12px 0 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; background: var(--panel-soft); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--muted); }
+.xp-earned-result strong { color: var(--accent-3); }
+.result-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+.result-stats div { padding: 15px 9px; border-radius: var(--radius-md); border: 1px solid var(--border); background: var(--panel-soft); }
+.result-stats small { color: var(--muted); display: block; font-size: .7rem; }
+.result-stats strong { display: block; margin-top: 5px; font-size: 1.15rem; }
+.result-level-card { margin-top: 14px; padding: 17px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--panel-soft); text-align: left; }
+.result-level-card > div:first-child { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; color: var(--muted); font-size: .78rem; }
+.result-level-card span strong { display: inline; color: var(--text); margin-left: 6px; font-size: 1.2rem; }
+.review-panel { text-align: left; margin-top: 18px; border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; background: rgba(0,0,0,.1); }
+.review-panel summary { padding: 16px 18px; cursor: pointer; font-weight: 850; color: var(--accent); }
+.review-list { padding: 0 12px 12px; display: grid; gap: 8px; }
+.review-item { min-height: 64px; display: grid; grid-template-columns: 58px 1fr; gap: 12px; align-items: center; padding: 9px; background: var(--panel-soft); border-radius: var(--radius-sm); }
+.review-item img { width: 58px; height: 40px; object-fit: contain; border-radius: 5px; }
+.review-item strong, .review-item small { display: block; }
+.review-item small { color: var(--muted); margin-top: 3px; line-height: 1.35; }
+.result-actions { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 10px; margin-top: 22px; }
+
+.modal { border: 0; padding: 22px; max-width: 100%; max-height: 100%; background: transparent; color: var(--text); }
+.modal::backdrop { background: rgba(4, 3, 1, .72); backdrop-filter: blur(8px); }
+.modal-card { width: min(520px, calc(100vw - 30px)); max-height: calc(100vh - 36px); overflow: auto; border-radius: var(--radius-xl); padding: 28px; animation: modal-in .25s ease; }
+@keyframes modal-in { from { opacity: 0; transform: translateY(15px) scale(.98); } }
+.modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
+.modal-header h2 { margin: 7px 0 0; font-size: 1.9rem; letter-spacing: -.045em; }
+.close-button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--panel-soft); cursor: pointer; font-size: 1.4rem; }
+.username-modal .modal-card { text-align: center; width: min(460px, calc(100vw - 30px)); }
+.modal-logo { width: 86px; height: 86px; margin: 0 auto 20px; }
+.username-modal h2 { font-size: 2rem; margin: 10px 0; }
+.username-modal p:not(.modal-credit) { color: var(--muted); line-height: 1.55; }
+.input-label { display: block; text-align: left; color: var(--muted); font-size: .76rem; font-weight: 850; margin: 23px 0 8px; }
+.username-modal input { width: 100%; height: 54px; border-radius: var(--radius-md); border: 1px solid var(--border); background: rgba(0,0,0,.22); color: var(--text); padding: 0 16px; font-weight: 800; }
+.username-modal input:focus { border-color: var(--accent); }
+.input-note { text-align: left; color: var(--muted); font-size: .72rem; margin-top: 7px; }
+.input-note.error { color: var(--danger); }
+.username-modal .primary-button { width: 100%; margin-top: 20px; }
+.leaderboard-panel { width: min(760px, calc(100vw - 30px)); }
+.filter-stack { display: grid; gap: 9px; }
+.leaderboard-tabs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 5px; border: 1px solid var(--border); background: var(--choice-bg); border-radius: var(--radius-md); }
+.leaderboard-tabs.compact { grid-template-columns: repeat(3, 1fr); }
+.leaderboard-tabs.difficulty-tabs { grid-template-columns: repeat(2, 1fr); }
+.leaderboard-tabs button { min-height: 42px; border: 0; border-radius: calc(var(--radius-md) - 5px); background: transparent; color: var(--muted); cursor: pointer; font-weight: 850; }
+.leaderboard-tabs button.active { background: var(--accent); color: var(--accent-ink); }
+.leaderboard-status { min-height: 30px; display: grid; place-items: center; color: var(--muted); }
+.leaderboard-list { display: grid; gap: 7px; max-height: 420px; overflow: auto; padding-right: 4px; }
+.leader-row { display: grid; grid-template-columns: 40px 1fr auto; gap: 11px; align-items: center; padding: 11px; border: 1px solid var(--border); background: var(--panel-soft); border-radius: var(--radius-sm); }
+.leader-row.me { border-color: var(--accent); }
+.rank-badge { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 11px; background: rgba(0,0,0,.2); color: var(--accent); font-weight: 950; }
+.leader-name strong, .leader-name small, .leader-score strong, .leader-score small { display: block; }
+.leader-name small, .leader-score small { color: var(--muted); margin-top: 2px; font-size: .68rem; }
+.leader-score { text-align: right; }
+.empty-state { padding: 32px; text-align: center; color: var(--muted); border: 1px dashed var(--border); border-radius: var(--radius-md); }
+.backend-note, .legal-note { color: var(--muted); font-size: .7rem; line-height: 1.5; margin: 13px 0 0; text-align: center; }
+.settings-panel { width: min(650px, calc(100vw - 30px)); }
+.setting-row { min-height: 68px; display: grid; grid-template-columns: 1fr auto auto; gap: 13px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+.setting-row strong, .setting-row small { display: block; }
+.setting-row small { color: var(--muted); margin-top: 4px; }
+.switch-input { position: absolute; opacity: 0; pointer-events: none; }
+.switch-ui { width: 50px; height: 28px; border-radius: 999px; background: rgba(0,0,0,.3); border: 1px solid var(--border); position: relative; transition: background .2s ease; }
+.switch-ui::after { content: ""; width: 20px; height: 20px; position: absolute; left: 3px; top: 3px; border-radius: 50%; background: var(--muted); transition: transform .2s ease, background .2s ease; }
+.switch-input:checked + .switch-ui { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+.switch-input:checked + .switch-ui::after { transform: translateX(22px); background: var(--accent); }
+.theme-section { margin-top: 22px; }
+.theme-heading strong, .theme-heading small { display: block; }
+.theme-heading small { color: var(--muted); margin-top: 4px; }
+.theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 14px; }
+.theme-button { min-height: 92px; border: 1px solid var(--border); border-radius: var(--radius-md); background: linear-gradient(145deg, var(--choice-bg-strong), var(--choice-bg)); color: var(--choice-text); padding: 10px; cursor: pointer; text-align: left; position: relative; overflow: hidden; }
+.theme-button.selected { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.theme-button.locked { opacity: .55; cursor: not-allowed; }
+.theme-swatch { height: 38px; border-radius: 9px; margin-bottom: 8px; background: var(--swatch); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+.theme-button strong { font-size: .8rem; }
+.theme-button small { color: var(--choice-muted); font-size: .66rem; display: block; margin-top: 2px; }
+.theme-lock { position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: rgba(0,0,0,.55); font-size: .7rem; }
+.settings-danger-zone { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; justify-content: center; }
+.danger-link { border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent); background: color-mix(in srgb, var(--danger) 8%, transparent); color: var(--danger); border-radius: 999px; padding: 9px 13px; cursor: pointer; font-size: .75rem; font-weight: 800; }
+.achievements-panel { width: min(680px, calc(100vw - 30px)); }
+.achievement-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.achievement-item { min-height: 100px; padding: 15px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--panel-soft); display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: center; }
+.achievement-item.locked { filter: grayscale(.7); opacity: .55; }
+.achievement-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-size: 1.2rem; }
+.achievement-item strong, .achievement-item small { display: block; }
+.achievement-item small { color: var(--muted); margin-top: 4px; line-height: 1.35; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 25px); opacity: 0; z-index: 50; max-width: calc(100vw - 30px); padding: 12px 18px; border-radius: 999px; background: var(--panel-strong); border: 1px solid var(--border-strong); color: var(--text); box-shadow: var(--shadow); pointer-events: none; transition: opacity .14s ease, transform .14s ease; text-align: center; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.achievement-toast { position: fixed; top: 96px; right: 22px; z-index: 60; min-width: 320px; max-width: calc(100vw - 44px); display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; padding: 13px 15px; border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--panel-strong); box-shadow: var(--shadow); transform: translateX(calc(100% + 40px)); opacity: 0; transition: transform .2s ease-out, opacity .16s ease; }
+.achievement-toast.show { transform: translateX(0); opacity: 1; }
+.achievement-toast > span { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: var(--accent); color: var(--accent-ink); font-size: 1.25rem; }
+.achievement-toast small, .achievement-toast strong { display: block; }
+.achievement-toast small { color: var(--accent); font-size: .62rem; font-weight: 900; letter-spacing: .12em; }
+.achievement-toast b { color: var(--accent-3); font-size: .78rem; }
+
+.no-motion *, .no-motion *::before, .no-motion *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+
+@media (max-width: 900px) {
+  .home-grid { grid-template-columns: 1fr; }
+  .side-column { grid-template-columns: 1fr 1fr; }
+  .profile-card, .xp-card { grid-column: span 2; }
+  .game-topline { align-items: flex-start; }
+  .game-stats { max-width: 70%; }
+}
+
+@media (max-width: 650px) {
+  .topbar { width: min(100% - 22px, 1240px); min-height: 70px; }
+  .app-shell { width: min(100% - 22px, 1180px); padding-top: 30px; }
+  .user-chip small, .user-dot { display: none; }
+  .text-toggle { padding: 0 12px; }
+  .hero-copy { margin-bottom: 34px; }
+  .hero-copy h1 { font-size: clamp(2.75rem, 16vw, 4.3rem); }
+  .quiz-type-grid, .answer-grid { grid-template-columns: 1fr; }
+  .side-column { grid-template-columns: 1fr; }
+  .profile-card, .xp-card { grid-column: auto; }
+  .game-topline { display: grid; }
+  .game-stats { max-width: none; justify-content: flex-start; }
+  .stat-pill { min-width: 72px; flex: 1 1 72px; }
+  .prompt-stage, .capital-prompt { min-height: 250px; }
+  #flagImage { max-height: 205px; }
+  .timer-copy strong { font-size: 3.1rem; }
+  .result-stats { grid-template-columns: 1fr 1fr; }
+  .result-actions { grid-template-columns: 1fr; }
+  .theme-grid { grid-template-columns: 1fr 1fr; }
+  .achievement-list { grid-template-columns: 1fr; }
+  .achievement-toast { left: 14px; right: 14px; top: 80px; min-width: 0; }
+}
+
+@media (max-width: 430px) {
+  .brand-name { display: none; }
+  .play-panel, .modal-card { padding: 20px; }
+  .profile-card { grid-template-columns: 48px 1fr; }
+  .profile-card .small-link { grid-column: 2; justify-self: start; }
+  .mode-card { grid-template-columns: 44px 1fr 18px; padding: 11px; }
+  .mode-icon { width: 44px; height: 44px; }
+  .theme-grid { grid-template-columns: 1fr; }
+}
+
+/* v2.2: clearer achievements icon and reliable in-game exit dialog */
+.smart-icon-diamond {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: color-mix(in srgb, #63e8f1 14%, var(--choice-bg-strong));
+  border: 1px solid color-mix(in srgb, #8ff7ff 42%, var(--choice-border));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.smart-icon-diamond img { width: 34px; height: 34px; object-fit: contain; image-rendering: pixelated; }
+.quit-panel { width: min(470px, calc(100vw - 30px)); text-align: center; }
+.quit-symbol { width: 62px; height: 62px; margin: 0 auto 18px; display: grid; place-items: center; border-radius: 18px; background: color-mix(in srgb, var(--danger) 12%, var(--panel-soft)); border: 1px solid color-mix(in srgb, var(--danger) 28%, var(--border)); color: var(--danger); font-size: 1.75rem; font-weight: 950; }
+.quit-panel h2 { margin: 10px 0 8px; font-size: clamp(1.6rem, 5vw, 2rem); letter-spacing: -.04em; }
+.quit-panel p { color: var(--muted); line-height: 1.55; margin: 0 auto; max-width: 380px; }
+.quit-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+.danger-button { min-height: 50px; border-radius: var(--radius-md); border: 1px solid color-mix(in srgb, var(--danger) 48%, transparent); background: color-mix(in srgb, var(--danger) 16%, var(--choice-bg-strong)); color: #fff4f1; cursor: pointer; font-weight: 900; }
+.danger-button:hover { background: color-mix(in srgb, var(--danger) 24%, var(--choice-bg-strong)); }
+@media (max-width: 480px) { .quit-actions { grid-template-columns: 1fr; } }
+
+</style>
+</head>
+<body data-theme="golden">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="pixel-grid"></div>
+
+  <header class="topbar">
+    <button class="brand sound-click" id="homeButton" type="button" data-i18n-aria="homeAria" aria-label="Ana sayfa">
+      <span class="brand-mark" aria-hidden="true"><img class="golden-apple asset-golden-apple" src="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" data-fallback="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20shape-rendering%3D%22crispEdges%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%2310231c%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%235d3b15%22%20d%3D%22M35%205h8v8h-8z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%2355a947%22%20d%3D%22M43%207h11v7H43zM48%2014h7v5h-7z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23ffed74%22%20d%3D%22M17%2017h30v6h6v24h-6v7H17v-7h-6V23h6z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23f6b92f%22%20d%3D%22M17%2023h30v6h6v18h-6v7H23v-6h-6z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23d77a16%22%20d%3D%22M11%2029h6v18h6v7h-6v-7h-6zM47%2023h6v24h-6z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23fff7ae%22%20d%3D%22M22%2018h13v6H22zM17%2024h7v7h-7z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%239d5311%22%20d%3D%22M29%2048h18v6H29z%22%2F%3E%0A%3C%2Fsvg%3E%0A" alt="" referrerpolicy="no-referrer" /></span>
+      <span class="brand-name">Flag<span>Craft</span></span>
+    </button>
+
+    <div class="top-actions">
+      <button class="user-chip sound-click" id="userButton" type="button">
+        <span class="user-dot"></span>
+        <span id="headerUsername">Player</span>
+        <small id="headerLevel">Lv. 1</small>
+      </button>
+      <button class="text-toggle sound-click" id="languageButton" type="button" data-i18n-aria="languageAria" aria-label="Dili değiştir">
+        <span id="languageLabel">Türkçe</span>
+      </button>
+      <button class="icon-button sound-click" id="settingsButton" type="button" data-i18n-aria="settingsAria" aria-label="Ayarlar">⚙</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="view active" id="homeView">
+      <div class="hero-copy">
+        <div class="eyebrow" data-i18n="eyebrow">BİLGİNİ İŞLE · SERİNİ BÜYÜT</div>
+        <h1 data-i18n-html="heroTitle">Dünyayı tanı.<br><span>Efsaneni inşa et.</span></h1>
+        <p data-i18n="heroSubtitle">Bayrakları ve başkentleri çöz, XP kazan, temaları aç ve FlagCraft sıralamasında yüksel.</p>
+      </div>
+
+      <div class="home-grid">
+        <section class="play-panel glass-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="section-kicker" data-i18n="buildGame">OYUNUNU KUR</span>
+              <h2 data-i18n="chooseChallenge">Meydan okumanı seç.</h2>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label" data-i18n="quizType">Oyun türü</span>
+            <div class="quiz-type-grid" id="quizTypeControl" role="group" data-i18n-aria="quizTypeAria" aria-label="Oyun türü">
+              <button class="quiz-type-button selected sound-click" data-quiz="flags" type="button">
+                <span class="quiz-symbol">⚑</span>
+                <span><strong data-i18n="flags">Bayraklar</strong><small data-i18n="flagsDesc">Bayrağı gör, ülkeyi bul</small></span>
+                <b>✓</b>
+              </button>
+              <button class="quiz-type-button sound-click" data-quiz="capitals" type="button">
+                <span class="quiz-symbol">⌂</span>
+                <span><strong data-i18n="capitals">Başkentler</strong><small data-i18n="capitalsDesc">Ülkeyi gör, başkenti bul</small></span>
+                <b>✓</b>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label" data-i18n="difficulty">Zorluk</span>
+            <div class="segmented-control" id="difficultyControl" role="group" data-i18n-aria="difficultyAria" aria-label="Zorluk">
+              <button class="difficulty-button selected sound-click" data-difficulty="easy" type="button" data-i18n="easy">Kolay</button>
+              <button class="difficulty-button sound-click" data-difficulty="hard" type="button" data-i18n="hard">Zor</button>
+            </div>
+            <p class="difficulty-description" id="difficultyDescription"></p>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label" data-i18n="gameMode">Oyun modu</span>
+            <div class="mode-grid" id="modeGrid">
+              <button class="mode-card selected sound-click" data-mode="classic" type="button">
+                <span class="mode-icon">20</span>
+                <span class="mode-copy"><strong data-i18n="classic">Klasik</strong><small data-i18n="classicDesc">20 soru · soru başına 20 saniye</small></span>
+                <span class="mode-check">✓</span>
+              </button>
+              <button class="mode-card sound-click" data-mode="survival" type="button">
+                <span class="mode-icon">♥</span>
+                <span class="mode-copy"><strong data-i18n="survival">Hayatta Kalma</strong><small data-i18n="survivalDesc">3 can · dayanabildiğin kadar</small></span>
+                <span class="mode-check">✓</span>
+              </button>
+              <button class="mode-card sound-click" data-mode="blitz" type="button">
+                <span class="mode-icon">60</span>
+                <span class="mode-copy"><strong data-i18n="blitz">Zamana Karşı</strong><small data-i18n="blitzDesc">60 saniyede en yüksek skor</small></span>
+                <span class="mode-check">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <button class="primary-button sound-click" id="startButton" type="button">
+            <span data-i18n="startGame">Oyuna Başla</span><span aria-hidden="true">→</span>
+          </button>
+          <p class="inline-credit">Made and developed by <strong>“whoisyuripa”</strong></p>
+        </section>
+
+        <aside class="side-column">
+          <section class="mini-card glass-panel profile-card">
+            <div class="avatar" id="avatarInitial">P</div>
+            <div class="profile-copy">
+              <small data-i18n="playingAs">Oyuncu</small>
+              <strong id="profileUsername">Player</strong>
+              <span class="rank-chip" id="rankChip">Bronze</span>
+            </div>
+            <button class="small-link sound-click" id="editUsernameButton" type="button" data-i18n="edit">Düzenle</button>
+          </section>
+
+          <section class="mini-card glass-panel xp-card">
+            <div class="xp-heading">
+              <span><small data-i18n="level">Seviye</small><strong id="levelValue">1</strong></span>
+              <span><small data-i18n="totalXp">Toplam XP</small><strong id="totalXpValue">0</strong></span>
+            </div>
+            <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+            <p id="xpProgressText">0 / 1125 XP</p>
+          </section>
+
+          <section class="mini-card glass-panel best-card">
+            <div><small data-i18n="personalBest">Kişisel Rekor</small><strong id="personalBest">0</strong></div>
+            <span class="trophy">◆</span>
+          </section>
+
+          <button class="leaderboard-card glass-panel sound-click" id="leaderboardButton" type="button">
+            <div><span class="section-kicker" data-i18n="leaderboardLabel">LİDERLİK TABLOSU</span><strong data-i18n="seeTopPlayers">En iyi oyuncuları gör</strong></div>
+            <span class="arrow-circle">↗</span>
+          </button>
+
+          <button class="smart-card glass-panel sound-click" id="achievementsButton" type="button">
+            <span class="smart-icon smart-icon-diamond" aria-hidden="true"><img class="asset-diamond" src="https://minecraft.wiki/images/Diamond_JE3_BE3.png?99d00&amp;format=original" data-fallback="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20shape-rendering%3D%22crispEdges%22%3E%0A%20%20%3Cpath%20fill%3D%22%23d9ffff%22%20d%3D%22M16%208h32v8h8v16h-8v8h-8v8h-8v8h-8v-8h-8v-8H8v-8H0V16h8V8z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%235de5f0%22%20d%3D%22M16%208h32v8h8v8H8v-8h8zm-8%2016h48v8H8zm8%208h32v8H16zm8%208h16v8H24z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23159aa8%22%20d%3D%22M0%2016h8v16H0zm56%200h8v16h-8zM8%2032h8v8H8zm40%200h8v8h-8zM16%2040h8v8h-8zm24%200h8v8h-8zM24%2048h16v8H24z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M16%208h16v8H16zM8%2016h8v8H8z%22%2F%3E%0A%3C%2Fsvg%3E%0A" alt="" referrerpolicy="no-referrer" /></span>
+            <div><strong data-i18n="achievements">Başarımlar</strong><small id="achievementSummary">0 / 8</small></div>
+            <span class="arrow-circle">→</span>
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view game-view" id="gameView" aria-live="polite">
+      <div class="game-topline">
+        <button class="back-button sound-click" id="quitButton" type="button">← <span data-i18n="quit">Çık</span></button>
+        <div class="game-stats">
+          <div class="stat-pill"><small data-i18n="score">Puan</small><strong id="scoreValue">0</strong></div>
+          <div class="stat-pill streak-pill"><small data-i18n="combo">Kombo</small><strong><span id="streakValue">0</span>×</strong></div>
+          <div class="stat-pill xp-pill"><small data-i18n="earnedXp">XP</small><strong>+<span id="gameXpValue">0</span></strong></div>
+          <div class="stat-pill" id="livesPill"><small data-i18n="lives">Can</small><strong id="livesValue">♥♥♥</strong></div>
+          <div class="stat-pill" id="overallPill"><small data-i18n="overallTime">Toplam</small><strong id="overallValue">60</strong></div>
+        </div>
+      </div>
+
+      <div class="question-progress">
+        <span id="progressText">1 / 20</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <section class="timer-panel" id="timerPanel">
+        <div class="timer-copy">
+          <span data-i18n="timeLeft">KALAN SÜRE</span>
+          <strong><span id="timerValue">20.0</span><small data-i18n="secondsShort">sn</small></strong>
+        </div>
+        <div class="timer-track" aria-hidden="true"><div class="timer-fill" id="timerFill"></div></div>
+      </section>
+
+      <section class="question-card glass-panel">
+        <div class="prompt-stage flag-prompt" id="promptStage">
+          <div class="flag-loader" id="flagLoader"></div>
+          <img id="flagImage" alt="" draggable="false" referrerpolicy="no-referrer" />
+          <div class="capital-prompt" id="capitalPrompt" hidden>
+            <img id="capitalFlag" alt="" draggable="false" referrerpolicy="no-referrer" />
+            <small data-i18n="findCapital">BAŞKENTİ BUL</small>
+            <strong id="capitalCountryName">Türkiye</strong>
+          </div>
+          <div class="answer-flash" id="answerFlash"></div>
+          <div class="combo-pop" id="comboPop" aria-live="assertive"></div>
+        </div>
+
+        <div class="question-copy">
+          <span class="question-number" id="questionNumber">SORU 01</span>
+          <h2 id="questionTitle">Bu bayrak hangi ülkeye ait?</h2>
+        </div>
+
+        <div class="answer-grid" id="answerGrid"></div>
+        <div class="keyboard-hint" data-i18n="keyboardHint">1–4 tuşlarıyla da cevaplayabilirsin.</div>
+      </section>
+    </section>
+
+    <section class="view results-view" id="resultsView">
+      <section class="results-card glass-panel">
+        <div class="result-orbit"><img class="golden-apple asset-golden-apple" src="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" data-fallback="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20shape-rendering%3D%22crispEdges%22%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%2310231c%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%235d3b15%22%20d%3D%22M35%205h8v8h-8z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%2355a947%22%20d%3D%22M43%207h11v7H43zM48%2014h7v5h-7z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23ffed74%22%20d%3D%22M17%2017h30v6h6v24h-6v7H17v-7h-6V23h6z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23f6b92f%22%20d%3D%22M17%2023h30v6h6v18h-6v7H23v-6h-6z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23d77a16%22%20d%3D%22M11%2029h6v18h6v7h-6v-7h-6zM47%2023h6v24h-6z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%23fff7ae%22%20d%3D%22M22%2018h13v6H22zM17%2024h7v7h-7z%22%2F%3E%0A%20%20%3Cpath%20fill%3D%22%239d5311%22%20d%3D%22M29%2048h18v6H29z%22%2F%3E%0A%3C%2Fsvg%3E%0A" alt="" referrerpolicy="no-referrer" /></div>
+        <span class="section-kicker" data-i18n="gameComplete">OYUN TAMAMLANDI</span>
+        <h1 id="resultHeadline">Efsane seri!</h1>
+        <p id="resultSubline"></p>
+
+        <div class="final-score-block"><small data-i18n="totalScore">TOPLAM PUAN</small><strong id="finalScore">0</strong></div>
+        <div class="xp-earned-result"><span data-i18n="xpEarnedResult">Bu tur kazanılan XP</span><strong>+<span id="finalXp">0</span> XP</strong></div>
+
+        <div class="result-stats">
+          <div><small data-i18n="correct">Doğru</small><strong id="correctStat">0/20</strong></div>
+          <div><small data-i18n="accuracy">Başarı</small><strong id="accuracyStat">0%</strong></div>
+          <div><small data-i18n="bestCombo">En İyi Kombo</small><strong id="bestStreakStat">0×</strong></div>
+          <div><small data-i18n="rank">Rank</small><strong id="resultRank">Bronze</strong></div>
+        </div>
+
+        <div class="result-level-card">
+          <div><span><small data-i18n="level">Seviye</small><strong id="resultLevel">1</strong></span><span id="resultXpText">0 / 1125 XP</span></div>
+          <div class="xp-track"><div class="xp-fill" id="resultXpFill"></div></div>
+        </div>
+
+        <details class="review-panel" id="reviewPanel">
+          <summary data-i18n="reviewMistakes">Kaçırdıklarını incele</summary>
+          <div class="review-list" id="reviewList"></div>
+        </details>
+
+        <div class="result-actions">
+          <button class="primary-button sound-click" id="playAgainButton" type="button"><span data-i18n="playAgain">Tekrar Oyna</span><span>↻</span></button>
+          <button class="secondary-button sound-click" id="homeResultButton" type="button" data-i18n="mainMenu">Ana Menü</button>
+          <button class="secondary-button sound-click" id="resultLeaderboardButton" type="button" data-i18n="leaderboard">Liderlik Tablosu</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="modal username-modal" id="usernameModal">
+    <form method="dialog" class="modal-card glass-panel" id="usernameForm">
+      <div class="modal-logo"><img src="./favicon.svg" alt="" /></div>
+      <span class="section-kicker" data-i18n="welcome">FLAGCRAFT'A HOŞ GELDİN</span>
+      <h2 data-i18n="chooseUsername">Oyuncu adını seç.</h2>
+      <p data-i18n="usernameInfo">Skorun bu isimle liderlik tablosuna kaydedilecek.</p>
+      <label class="input-label" for="usernameInput" data-i18n="username">Kullanıcı adı</label>
+      <input id="usernameInput" name="username" maxlength="16" minlength="2" autocomplete="nickname" placeholder="whoisyuripa" required />
+      <div class="input-note" id="usernameNote" data-i18n="usernameRules">2–16 karakter; harf, rakam, boşluk, _ ve - kullanabilirsin.</div>
+      <button class="primary-button sound-click" value="default" type="submit"><span data-i18n="continue">Devam Et</span><span>→</span></button>
+      <p class="modal-credit">Made and developed by <strong>“whoisyuripa”</strong></p>
+    </form>
+  </dialog>
+
+  <dialog class="modal leaderboard-modal" id="leaderboardModal">
+    <section class="modal-card leaderboard-panel glass-panel">
+      <div class="modal-header">
+        <div><span class="section-kicker" data-i18n="worldRanking">DÜNYA SIRALAMASI</span><h2 data-i18n="leaderboard">Liderlik Tablosu</h2></div>
+        <button class="close-button sound-click" id="closeLeaderboardButton" type="button" data-i18n-aria="closeAria" aria-label="Kapat">×</button>
+      </div>
+      <div class="filter-stack">
+        <div class="leaderboard-tabs" id="leaderboardQuizTabs">
+          <button class="active sound-click" data-quiz="flags" type="button" data-i18n="flags">Bayraklar</button>
+          <button class="sound-click" data-quiz="capitals" type="button" data-i18n="capitals">Başkentler</button>
+        </div>
+        <div class="leaderboard-tabs compact" id="leaderboardModeTabs">
+          <button class="active sound-click" data-mode="classic" type="button" data-i18n="classic">Klasik</button>
+          <button class="sound-click" data-mode="survival" type="button" data-i18n="survival">Hayatta Kalma</button>
+          <button class="sound-click" data-mode="blitz" type="button" data-i18n="blitz">Zamana Karşı</button>
+        </div>
+        <div class="leaderboard-tabs difficulty-tabs" id="leaderboardDifficultyTabs">
+          <button class="active sound-click" data-difficulty="easy" type="button" data-i18n="easy">Kolay</button>
+          <button class="sound-click" data-difficulty="hard" type="button" data-i18n="hard">Zor</button>
+        </div>
+      </div>
+      <div class="leaderboard-status" id="leaderboardStatus"></div>
+      <div class="leaderboard-list" id="leaderboardList"></div>
+      <p class="backend-note" id="backendNote" data-i18n="localLeaderboard">Şu anda bu cihazdaki skorlar gösteriliyor.</p>
+    </section>
+  </dialog>
+
+  <dialog class="modal settings-modal" id="settingsModal">
+    <section class="modal-card settings-panel glass-panel">
+      <div class="modal-header">
+        <div><span class="section-kicker" data-i18n="preferences">TERCİHLER</span><h2 data-i18n="settings">Ayarlar</h2></div>
+        <button class="close-button sound-click" id="closeSettingsButton" type="button" data-i18n-aria="closeAria" aria-label="Kapat">×</button>
+      </div>
+      <label class="setting-row">
+        <span><strong data-i18n="sound">Ses efektleri</strong><small data-i18n="soundDesc">Sade arayüz tıklamaları ve seviye atlama sesi</small></span>
+        <input class="switch-input" id="soundToggle" type="checkbox" checked /><span class="switch-ui"></span>
+      </label>
+      <label class="setting-row">
+        <span><strong data-i18n="motion">Animasyonlar</strong><small data-i18n="motionDesc">Hafif geçişler ve geri bildirimler</small></span>
+        <input class="switch-input" id="motionToggle" type="checkbox" checked /><span class="switch-ui"></span>
+      </label>
+
+      <div class="theme-section">
+        <div class="theme-heading"><strong data-i18n="themes">Temalar</strong><small data-i18n="themesDesc">Seviye atlayarak yeni renk paletlerini aç.</small></div>
+        <div class="theme-grid" id="themeGrid"></div>
+      </div>
+
+      <div class="settings-danger-zone">
+        <button class="danger-link sound-click" id="resetScoresButton" type="button" data-i18n="resetScores">Yerel skorları sıfırla</button>
+        <button class="danger-link sound-click" id="resetProgressButton" type="button" data-i18n="resetProgress">XP ve ilerlemeyi sıfırla</button>
+      </div>
+      <p class="legal-note" data-i18n="fanDisclaimer">FlagCraft bağımsız bir hayran projesidir; Mojang veya Microsoft ile bağlantılı değildir.</p>
+    </section>
+  </dialog>
+
+
+  <dialog class="modal quit-modal" id="quitModal">
+    <section class="modal-card quit-panel glass-panel">
+      <div class="quit-symbol" aria-hidden="true">↩</div>
+      <span class="section-kicker" data-i18n="leaveGameLabel">OYUNDAN ÇIK</span>
+      <h2 data-i18n="quitGameTitle">Ana menüye dönmek istiyor musun?</h2>
+      <p data-i18n="quitGameBody">Bu turdaki puanın ve ilerlemen kaydedilmeyecek.</p>
+      <div class="quit-actions">
+        <button class="secondary-button sound-click" id="cancelQuitButton" type="button" data-i18n="stayInGame">Oyuna Devam Et</button>
+        <button class="danger-button sound-click" id="confirmQuitButton" type="button" data-i18n="leaveGame">Oyundan Çık</button>
+      </div>
+    </section>
+  </dialog>
+
+  <dialog class="modal achievements-modal" id="achievementsModal">
+    <section class="modal-card achievements-panel glass-panel">
+      <div class="modal-header">
+        <div><span class="section-kicker" data-i18n="progress">İLERLEME</span><h2 data-i18n="achievements">Başarımlar</h2></div>
+        <button class="close-button sound-click" id="closeAchievementsButton" type="button" data-i18n-aria="closeAria" aria-label="Kapat">×</button>
+      </div>
+      <div class="achievement-list" id="achievementList"></div>
+    </section>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <div class="achievement-toast" id="achievementToast" role="status">
+    <span>✦</span><div><small data-i18n="achievementUnlocked">BAŞARIM AÇILDI</small><strong id="achievementToastTitle"></strong></div><b>+100 XP</b>
+  </div>
+
+  <script>
+
+/* storage.js */
+function storageGet(key, fallback = null) {
+  try {
+    const value = window.localStorage.getItem(key);
+    return value === null ? fallback : value;
+  } catch {
+    return fallback;
+  }
+}
+
+function storageSet(key, value) {
+  try {
+    window.localStorage.setItem(key, String(value));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function storageRemove(key) {
+  try {
+    window.localStorage.removeItem(key);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+
+/* countries.js */
+const COUNTRIES = [
+  {
+    "code": "af",
+    "tr": "Afganistan",
+    "en": "Afghanistan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "al",
+    "tr": "Arnavutluk",
+    "en": "Albania",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "dz",
+    "tr": "Cezayir",
+    "en": "Algeria",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "ad",
+    "tr": "Andorra",
+    "en": "Andorra",
+    "region": "europe",
+    "obscure": true
+  },
+  {
+    "code": "ao",
+    "tr": "Angola",
+    "en": "Angola",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "ag",
+    "tr": "Antigua ve Barbuda",
+    "en": "Antigua & Barbuda",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "ar",
+    "tr": "Arjantin",
+    "en": "Argentina",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "am",
+    "tr": "Ermenistan",
+    "en": "Armenia",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "au",
+    "tr": "Avustralya",
+    "en": "Australia",
+    "region": "oceania",
+    "obscure": false
+  },
+  {
+    "code": "at",
+    "tr": "Avusturya",
+    "en": "Austria",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "az",
+    "tr": "Azerbaycan",
+    "en": "Azerbaijan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "bs",
+    "tr": "Bahamalar",
+    "en": "Bahamas",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "bh",
+    "tr": "Bahreyn",
+    "en": "Bahrain",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "bd",
+    "tr": "Bangladeş",
+    "en": "Bangladesh",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "bb",
+    "tr": "Barbados",
+    "en": "Barbados",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "by",
+    "tr": "Belarus",
+    "en": "Belarus",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "be",
+    "tr": "Belçika",
+    "en": "Belgium",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "bz",
+    "tr": "Belize",
+    "en": "Belize",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "bj",
+    "tr": "Benin",
+    "en": "Benin",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "bt",
+    "tr": "Butan",
+    "en": "Bhutan",
+    "region": "asia",
+    "obscure": true
+  },
+  {
+    "code": "bo",
+    "tr": "Bolivya",
+    "en": "Bolivia",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "ba",
+    "tr": "Bosna-Hersek",
+    "en": "Bosnia & Herzegovina",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "bw",
+    "tr": "Botsvana",
+    "en": "Botswana",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "br",
+    "tr": "Brezilya",
+    "en": "Brazil",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "bn",
+    "tr": "Brunei",
+    "en": "Brunei",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "bg",
+    "tr": "Bulgaristan",
+    "en": "Bulgaria",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "bf",
+    "tr": "Burkina Faso",
+    "en": "Burkina Faso",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "bi",
+    "tr": "Burundi",
+    "en": "Burundi",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "cv",
+    "tr": "Yeşil Burun Adaları",
+    "en": "Cabo Verde",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "kh",
+    "tr": "Kamboçya",
+    "en": "Cambodia",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "cm",
+    "tr": "Kamerun",
+    "en": "Cameroon",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "ca",
+    "tr": "Kanada",
+    "en": "Canada",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "cf",
+    "tr": "Orta Afrika Cumhuriyeti",
+    "en": "Central African Republic",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "td",
+    "tr": "Çad",
+    "en": "Chad",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "cl",
+    "tr": "Şili",
+    "en": "Chile",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "cn",
+    "tr": "Çin",
+    "en": "China",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "co",
+    "tr": "Kolombiya",
+    "en": "Colombia",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "km",
+    "tr": "Komorlar",
+    "en": "Comoros",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "cd",
+    "tr": "Kongo Demokratik Cumhuriyeti",
+    "en": "Democratic Republic of the Congo",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "cg",
+    "tr": "Kongo Cumhuriyeti",
+    "en": "Republic of the Congo",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "cr",
+    "tr": "Kosta Rika",
+    "en": "Costa Rica",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "ci",
+    "tr": "Fildişi Sahili",
+    "en": "Côte d’Ivoire",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "hr",
+    "tr": "Hırvatistan",
+    "en": "Croatia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "cu",
+    "tr": "Küba",
+    "en": "Cuba",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "cy",
+    "tr": "Kıbrıs",
+    "en": "Cyprus",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "cz",
+    "tr": "Çekya",
+    "en": "Czechia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "dk",
+    "tr": "Danimarka",
+    "en": "Denmark",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "dj",
+    "tr": "Cibuti",
+    "en": "Djibouti",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "dm",
+    "tr": "Dominika",
+    "en": "Dominica",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "do",
+    "tr": "Dominik Cumhuriyeti",
+    "en": "Dominican Republic",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "ec",
+    "tr": "Ekvador",
+    "en": "Ecuador",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "eg",
+    "tr": "Mısır",
+    "en": "Egypt",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "sv",
+    "tr": "El Salvador",
+    "en": "El Salvador",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "gq",
+    "tr": "Ekvator Ginesi",
+    "en": "Equatorial Guinea",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "er",
+    "tr": "Eritre",
+    "en": "Eritrea",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "ee",
+    "tr": "Estonya",
+    "en": "Estonia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "sz",
+    "tr": "Esvatini",
+    "en": "Eswatini",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "et",
+    "tr": "Etiyopya",
+    "en": "Ethiopia",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "fj",
+    "tr": "Fiji",
+    "en": "Fiji",
+    "region": "oceania",
+    "obscure": false
+  },
+  {
+    "code": "fi",
+    "tr": "Finlandiya",
+    "en": "Finland",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "fr",
+    "tr": "Fransa",
+    "en": "France",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "ga",
+    "tr": "Gabon",
+    "en": "Gabon",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "gm",
+    "tr": "Gambiya",
+    "en": "Gambia",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "ge",
+    "tr": "Gürcistan",
+    "en": "Georgia",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "de",
+    "tr": "Almanya",
+    "en": "Germany",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "gh",
+    "tr": "Gana",
+    "en": "Ghana",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "gr",
+    "tr": "Yunanistan",
+    "en": "Greece",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "gd",
+    "tr": "Grenada",
+    "en": "Grenada",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "gt",
+    "tr": "Guatemala",
+    "en": "Guatemala",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "gn",
+    "tr": "Gine",
+    "en": "Guinea",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "gw",
+    "tr": "Gine-Bissau",
+    "en": "Guinea-Bissau",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "gy",
+    "tr": "Guyana",
+    "en": "Guyana",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "ht",
+    "tr": "Haiti",
+    "en": "Haiti",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "hn",
+    "tr": "Honduras",
+    "en": "Honduras",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "hu",
+    "tr": "Macaristan",
+    "en": "Hungary",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "is",
+    "tr": "İzlanda",
+    "en": "Iceland",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "in",
+    "tr": "Hindistan",
+    "en": "India",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "id",
+    "tr": "Endonezya",
+    "en": "Indonesia",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "ir",
+    "tr": "İran",
+    "en": "Iran",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "iq",
+    "tr": "Irak",
+    "en": "Iraq",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "ie",
+    "tr": "İrlanda",
+    "en": "Ireland",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "il",
+    "tr": "İsrail",
+    "en": "Israel",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "it",
+    "tr": "İtalya",
+    "en": "Italy",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "jm",
+    "tr": "Jamaika",
+    "en": "Jamaica",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "jp",
+    "tr": "Japonya",
+    "en": "Japan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "jo",
+    "tr": "Ürdün",
+    "en": "Jordan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "kz",
+    "tr": "Kazakistan",
+    "en": "Kazakhstan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "ke",
+    "tr": "Kenya",
+    "en": "Kenya",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "ki",
+    "tr": "Kiribati",
+    "en": "Kiribati",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "kp",
+    "tr": "Kuzey Kore",
+    "en": "North Korea",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "kr",
+    "tr": "Güney Kore",
+    "en": "South Korea",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "kw",
+    "tr": "Kuveyt",
+    "en": "Kuwait",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "kg",
+    "tr": "Kırgızistan",
+    "en": "Kyrgyzstan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "la",
+    "tr": "Laos",
+    "en": "Laos",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "lv",
+    "tr": "Letonya",
+    "en": "Latvia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "lb",
+    "tr": "Lübnan",
+    "en": "Lebanon",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "ls",
+    "tr": "Lesotho",
+    "en": "Lesotho",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "lr",
+    "tr": "Liberya",
+    "en": "Liberia",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "ly",
+    "tr": "Libya",
+    "en": "Libya",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "li",
+    "tr": "Liechtenstein",
+    "en": "Liechtenstein",
+    "region": "europe",
+    "obscure": true
+  },
+  {
+    "code": "lt",
+    "tr": "Litvanya",
+    "en": "Lithuania",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "lu",
+    "tr": "Lüksemburg",
+    "en": "Luxembourg",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "mg",
+    "tr": "Madagaskar",
+    "en": "Madagascar",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "mw",
+    "tr": "Malavi",
+    "en": "Malawi",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "my",
+    "tr": "Malezya",
+    "en": "Malaysia",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "mv",
+    "tr": "Maldivler",
+    "en": "Maldives",
+    "region": "asia",
+    "obscure": true
+  },
+  {
+    "code": "ml",
+    "tr": "Mali",
+    "en": "Mali",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "mt",
+    "tr": "Malta",
+    "en": "Malta",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "mh",
+    "tr": "Marshall Adaları",
+    "en": "Marshall Islands",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "mr",
+    "tr": "Moritanya",
+    "en": "Mauritania",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "mu",
+    "tr": "Mauritius",
+    "en": "Mauritius",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "mx",
+    "tr": "Meksika",
+    "en": "Mexico",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "fm",
+    "tr": "Mikronezya",
+    "en": "Micronesia",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "md",
+    "tr": "Moldova",
+    "en": "Moldova",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "mc",
+    "tr": "Monako",
+    "en": "Monaco",
+    "region": "europe",
+    "obscure": true
+  },
+  {
+    "code": "mn",
+    "tr": "Moğolistan",
+    "en": "Mongolia",
+    "region": "asia",
+    "obscure": true
+  },
+  {
+    "code": "me",
+    "tr": "Karadağ",
+    "en": "Montenegro",
+    "region": "europe",
+    "obscure": true
+  },
+  {
+    "code": "ma",
+    "tr": "Fas",
+    "en": "Morocco",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "mz",
+    "tr": "Mozambik",
+    "en": "Mozambique",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "mm",
+    "tr": "Myanmar (Burma)",
+    "en": "Myanmar (Burma)",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "na",
+    "tr": "Namibya",
+    "en": "Namibia",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "nr",
+    "tr": "Nauru",
+    "en": "Nauru",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "np",
+    "tr": "Nepal",
+    "en": "Nepal",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "nl",
+    "tr": "Hollanda",
+    "en": "Netherlands",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "nz",
+    "tr": "Yeni Zelanda",
+    "en": "New Zealand",
+    "region": "oceania",
+    "obscure": false
+  },
+  {
+    "code": "ni",
+    "tr": "Nikaragua",
+    "en": "Nicaragua",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "ne",
+    "tr": "Nijer",
+    "en": "Niger",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "ng",
+    "tr": "Nijerya",
+    "en": "Nigeria",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "mk",
+    "tr": "Kuzey Makedonya",
+    "en": "North Macedonia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "no",
+    "tr": "Norveç",
+    "en": "Norway",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "om",
+    "tr": "Umman",
+    "en": "Oman",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "pk",
+    "tr": "Pakistan",
+    "en": "Pakistan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "pw",
+    "tr": "Palau",
+    "en": "Palau",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "pa",
+    "tr": "Panama",
+    "en": "Panama",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "pg",
+    "tr": "Papua Yeni Gine",
+    "en": "Papua New Guinea",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "py",
+    "tr": "Paraguay",
+    "en": "Paraguay",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "pe",
+    "tr": "Peru",
+    "en": "Peru",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "ph",
+    "tr": "Filipinler",
+    "en": "Philippines",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "pl",
+    "tr": "Polonya",
+    "en": "Poland",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "pt",
+    "tr": "Portekiz",
+    "en": "Portugal",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "qa",
+    "tr": "Katar",
+    "en": "Qatar",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "ro",
+    "tr": "Romanya",
+    "en": "Romania",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "ru",
+    "tr": "Rusya",
+    "en": "Russia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "rw",
+    "tr": "Ruanda",
+    "en": "Rwanda",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "kn",
+    "tr": "Saint Kitts ve Nevis",
+    "en": "St. Kitts & Nevis",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "lc",
+    "tr": "Saint Lucia",
+    "en": "St. Lucia",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "vc",
+    "tr": "Saint Vincent ve Grenadinler",
+    "en": "St. Vincent & Grenadines",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "ws",
+    "tr": "Samoa",
+    "en": "Samoa",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "sm",
+    "tr": "San Marino",
+    "en": "San Marino",
+    "region": "europe",
+    "obscure": true
+  },
+  {
+    "code": "st",
+    "tr": "São Tomé ve Príncipe",
+    "en": "São Tomé & Príncipe",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "sa",
+    "tr": "Suudi Arabistan",
+    "en": "Saudi Arabia",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "sn",
+    "tr": "Senegal",
+    "en": "Senegal",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "rs",
+    "tr": "Sırbistan",
+    "en": "Serbia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "sc",
+    "tr": "Seyşeller",
+    "en": "Seychelles",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "sl",
+    "tr": "Sierra Leone",
+    "en": "Sierra Leone",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "sg",
+    "tr": "Singapur",
+    "en": "Singapore",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "sk",
+    "tr": "Slovakya",
+    "en": "Slovakia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "si",
+    "tr": "Slovenya",
+    "en": "Slovenia",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "sb",
+    "tr": "Solomon Adaları",
+    "en": "Solomon Islands",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "so",
+    "tr": "Somali",
+    "en": "Somalia",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "za",
+    "tr": "Güney Afrika",
+    "en": "South Africa",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "ss",
+    "tr": "Güney Sudan",
+    "en": "South Sudan",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "es",
+    "tr": "İspanya",
+    "en": "Spain",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "lk",
+    "tr": "Sri Lanka",
+    "en": "Sri Lanka",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "sd",
+    "tr": "Sudan",
+    "en": "Sudan",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "sr",
+    "tr": "Surinam",
+    "en": "Suriname",
+    "region": "americas",
+    "obscure": true
+  },
+  {
+    "code": "se",
+    "tr": "İsveç",
+    "en": "Sweden",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "ch",
+    "tr": "İsviçre",
+    "en": "Switzerland",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "sy",
+    "tr": "Suriye",
+    "en": "Syria",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "tw",
+    "tr": "Tayvan",
+    "en": "Taiwan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "tj",
+    "tr": "Tacikistan",
+    "en": "Tajikistan",
+    "region": "asia",
+    "obscure": true
+  },
+  {
+    "code": "tz",
+    "tr": "Tanzanya",
+    "en": "Tanzania",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "th",
+    "tr": "Tayland",
+    "en": "Thailand",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "tl",
+    "tr": "Doğu Timor",
+    "en": "Timor-Leste",
+    "region": "asia",
+    "obscure": true
+  },
+  {
+    "code": "tg",
+    "tr": "Togo",
+    "en": "Togo",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "to",
+    "tr": "Tonga",
+    "en": "Tonga",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "tt",
+    "tr": "Trinidad ve Tobago",
+    "en": "Trinidad & Tobago",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "tn",
+    "tr": "Tunus",
+    "en": "Tunisia",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "tr",
+    "tr": "Türkiye",
+    "en": "Türkiye",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "tm",
+    "tr": "Türkmenistan",
+    "en": "Turkmenistan",
+    "region": "asia",
+    "obscure": true
+  },
+  {
+    "code": "tv",
+    "tr": "Tuvalu",
+    "en": "Tuvalu",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "ug",
+    "tr": "Uganda",
+    "en": "Uganda",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "ua",
+    "tr": "Ukrayna",
+    "en": "Ukraine",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "ae",
+    "tr": "Birleşik Arap Emirlikleri",
+    "en": "United Arab Emirates",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "gb",
+    "tr": "Birleşik Krallık",
+    "en": "United Kingdom",
+    "region": "europe",
+    "obscure": false
+  },
+  {
+    "code": "us",
+    "tr": "Amerika Birleşik Devletleri",
+    "en": "United States",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "uy",
+    "tr": "Uruguay",
+    "en": "Uruguay",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "uz",
+    "tr": "Özbekistan",
+    "en": "Uzbekistan",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "vu",
+    "tr": "Vanuatu",
+    "en": "Vanuatu",
+    "region": "oceania",
+    "obscure": true
+  },
+  {
+    "code": "va",
+    "tr": "Vatikan",
+    "en": "Vatican City",
+    "region": "europe",
+    "obscure": true
+  },
+  {
+    "code": "ve",
+    "tr": "Venezuela",
+    "en": "Venezuela",
+    "region": "americas",
+    "obscure": false
+  },
+  {
+    "code": "vn",
+    "tr": "Vietnam",
+    "en": "Vietnam",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "ye",
+    "tr": "Yemen",
+    "en": "Yemen",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "zm",
+    "tr": "Zambiya",
+    "en": "Zambia",
+    "region": "africa",
+    "obscure": true
+  },
+  {
+    "code": "zw",
+    "tr": "Zimbabve",
+    "en": "Zimbabwe",
+    "region": "africa",
+    "obscure": false
+  },
+  {
+    "code": "ps",
+    "tr": "Filistin",
+    "en": "Palestine",
+    "region": "asia",
+    "obscure": false
+  },
+  {
+    "code": "xk",
+    "tr": "Kosova",
+    "en": "Kosovo",
+    "region": "europe",
+    "obscure": false
+  }
+];
+
+
+/* capitals.js */
+const CAPITALS = [
+  {
+    "code": "af",
+    "tr": "Kabil",
+    "en": "Kabul"
+  },
+  {
+    "code": "al",
+    "tr": "Tiran",
+    "en": "Tirana"
+  },
+  {
+    "code": "dz",
+    "tr": "Cezayir",
+    "en": "Algiers"
+  },
+  {
+    "code": "ad",
+    "tr": "Andorra la Vella",
+    "en": "Andorra la Vella"
+  },
+  {
+    "code": "ao",
+    "tr": "Luanda",
+    "en": "Luanda"
+  },
+  {
+    "code": "ag",
+    "tr": "Saint John's",
+    "en": "Saint John's"
+  },
+  {
+    "code": "ar",
+    "tr": "Buenos Aires",
+    "en": "Buenos Aires"
+  },
+  {
+    "code": "am",
+    "tr": "Erivan",
+    "en": "Yerevan"
+  },
+  {
+    "code": "au",
+    "tr": "Kanberra",
+    "en": "Canberra"
+  },
+  {
+    "code": "at",
+    "tr": "Viyana",
+    "en": "Vienna"
+  },
+  {
+    "code": "az",
+    "tr": "Bakü",
+    "en": "Baku"
+  },
+  {
+    "code": "bs",
+    "tr": "Nassau",
+    "en": "Nassau"
+  },
+  {
+    "code": "bh",
+    "tr": "Manama",
+    "en": "Manama"
+  },
+  {
+    "code": "bd",
+    "tr": "Dakka",
+    "en": "Dhaka"
+  },
+  {
+    "code": "bb",
+    "tr": "Bridgetown",
+    "en": "Bridgetown"
+  },
+  {
+    "code": "by",
+    "tr": "Minsk",
+    "en": "Minsk"
+  },
+  {
+    "code": "be",
+    "tr": "Brüksel",
+    "en": "Brussels"
+  },
+  {
+    "code": "bz",
+    "tr": "Belmopan",
+    "en": "Belmopan"
+  },
+  {
+    "code": "bj",
+    "tr": "Porto-Novo",
+    "en": "Porto-Novo"
+  },
+  {
+    "code": "bt",
+    "tr": "Thimphu",
+    "en": "Thimphu"
+  },
+  {
+    "code": "bo",
+    "tr": "Sucre",
+    "en": "Sucre"
+  },
+  {
+    "code": "ba",
+    "tr": "Saraybosna",
+    "en": "Sarajevo"
+  },
+  {
+    "code": "bw",
+    "tr": "Gaborone",
+    "en": "Gaborone"
+  },
+  {
+    "code": "br",
+    "tr": "Brasília",
+    "en": "Brasília"
+  },
+  {
+    "code": "bn",
+    "tr": "Bandar Seri Begawan",
+    "en": "Bandar Seri Begawan"
+  },
+  {
+    "code": "bg",
+    "tr": "Sofya",
+    "en": "Sofia"
+  },
+  {
+    "code": "bf",
+    "tr": "Vagadugu",
+    "en": "Ouagadougou"
+  },
+  {
+    "code": "bi",
+    "tr": "Gitega",
+    "en": "Gitega"
+  },
+  {
+    "code": "cv",
+    "tr": "Praia",
+    "en": "Praia"
+  },
+  {
+    "code": "kh",
+    "tr": "Phnom Penh",
+    "en": "Phnom Penh"
+  },
+  {
+    "code": "cm",
+    "tr": "Yaoundé",
+    "en": "Yaoundé"
+  },
+  {
+    "code": "ca",
+    "tr": "Ottawa",
+    "en": "Ottawa"
+  },
+  {
+    "code": "cf",
+    "tr": "Bangui",
+    "en": "Bangui"
+  },
+  {
+    "code": "td",
+    "tr": "Encemine",
+    "en": "N'Djamena"
+  },
+  {
+    "code": "cl",
+    "tr": "Santiago",
+    "en": "Santiago"
+  },
+  {
+    "code": "cn",
+    "tr": "Pekin",
+    "en": "Beijing"
+  },
+  {
+    "code": "co",
+    "tr": "Bogotá",
+    "en": "Bogotá"
+  },
+  {
+    "code": "km",
+    "tr": "Moroni",
+    "en": "Moroni"
+  },
+  {
+    "code": "cd",
+    "tr": "Kinşasa",
+    "en": "Kinshasa"
+  },
+  {
+    "code": "cg",
+    "tr": "Brazzaville",
+    "en": "Brazzaville"
+  },
+  {
+    "code": "cr",
+    "tr": "San José",
+    "en": "San José"
+  },
+  {
+    "code": "ci",
+    "tr": "Yamoussoukro",
+    "en": "Yamoussoukro"
+  },
+  {
+    "code": "hr",
+    "tr": "Zagreb",
+    "en": "Zagreb"
+  },
+  {
+    "code": "cu",
+    "tr": "Havana",
+    "en": "Havana"
+  },
+  {
+    "code": "cy",
+    "tr": "Lefkoşa",
+    "en": "Nicosia"
+  },
+  {
+    "code": "cz",
+    "tr": "Prag",
+    "en": "Prague"
+  },
+  {
+    "code": "dk",
+    "tr": "Kopenhag",
+    "en": "Copenhagen"
+  },
+  {
+    "code": "dj",
+    "tr": "Cibuti",
+    "en": "Djibouti"
+  },
+  {
+    "code": "dm",
+    "tr": "Roseau",
+    "en": "Roseau"
+  },
+  {
+    "code": "do",
+    "tr": "Santo Domingo",
+    "en": "Santo Domingo"
+  },
+  {
+    "code": "ec",
+    "tr": "Quito",
+    "en": "Quito"
+  },
+  {
+    "code": "eg",
+    "tr": "Kahire",
+    "en": "Cairo"
+  },
+  {
+    "code": "sv",
+    "tr": "San Salvador",
+    "en": "San Salvador"
+  },
+  {
+    "code": "gq",
+    "tr": "Malabo",
+    "en": "Malabo"
+  },
+  {
+    "code": "er",
+    "tr": "Asmara",
+    "en": "Asmara"
+  },
+  {
+    "code": "ee",
+    "tr": "Tallinn",
+    "en": "Tallinn"
+  },
+  {
+    "code": "sz",
+    "tr": "Mbabane",
+    "en": "Mbabane"
+  },
+  {
+    "code": "et",
+    "tr": "Addis Ababa",
+    "en": "Addis Ababa"
+  },
+  {
+    "code": "fj",
+    "tr": "Suva",
+    "en": "Suva"
+  },
+  {
+    "code": "fi",
+    "tr": "Helsinki",
+    "en": "Helsinki"
+  },
+  {
+    "code": "fr",
+    "tr": "Paris",
+    "en": "Paris"
+  },
+  {
+    "code": "ga",
+    "tr": "Libreville",
+    "en": "Libreville"
+  },
+  {
+    "code": "gm",
+    "tr": "Banjul",
+    "en": "Banjul"
+  },
+  {
+    "code": "ge",
+    "tr": "Tiflis",
+    "en": "Tbilisi"
+  },
+  {
+    "code": "de",
+    "tr": "Berlin",
+    "en": "Berlin"
+  },
+  {
+    "code": "gh",
+    "tr": "Akra",
+    "en": "Accra"
+  },
+  {
+    "code": "gr",
+    "tr": "Atina",
+    "en": "Athens"
+  },
+  {
+    "code": "gd",
+    "tr": "St. George's",
+    "en": "St. George's"
+  },
+  {
+    "code": "gt",
+    "tr": "Guatemala",
+    "en": "Guatemala City"
+  },
+  {
+    "code": "gn",
+    "tr": "Konakri",
+    "en": "Conakry"
+  },
+  {
+    "code": "gw",
+    "tr": "Bissau",
+    "en": "Bissau"
+  },
+  {
+    "code": "gy",
+    "tr": "Georgetown",
+    "en": "Georgetown"
+  },
+  {
+    "code": "ht",
+    "tr": "Port-au-Prince",
+    "en": "Port-au-Prince"
+  },
+  {
+    "code": "hn",
+    "tr": "Tegucigalpa",
+    "en": "Tegucigalpa"
+  },
+  {
+    "code": "hu",
+    "tr": "Budapeşte",
+    "en": "Budapest"
+  },
+  {
+    "code": "is",
+    "tr": "Reykjavik",
+    "en": "Reykjavik"
+  },
+  {
+    "code": "in",
+    "tr": "Yeni Delhi",
+    "en": "New Delhi"
+  },
+  {
+    "code": "id",
+    "tr": "Cakarta",
+    "en": "Jakarta"
+  },
+  {
+    "code": "ir",
+    "tr": "Tahran",
+    "en": "Tehran"
+  },
+  {
+    "code": "iq",
+    "tr": "Bağdat",
+    "en": "Baghdad"
+  },
+  {
+    "code": "ie",
+    "tr": "Dublin",
+    "en": "Dublin"
+  },
+  {
+    "code": "il",
+    "tr": "Kudüs",
+    "en": "Jerusalem"
+  },
+  {
+    "code": "it",
+    "tr": "Roma",
+    "en": "Rome"
+  },
+  {
+    "code": "jm",
+    "tr": "Kingston",
+    "en": "Kingston"
+  },
+  {
+    "code": "jp",
+    "tr": "Tokyo",
+    "en": "Tokyo"
+  },
+  {
+    "code": "jo",
+    "tr": "Amman",
+    "en": "Amman"
+  },
+  {
+    "code": "kz",
+    "tr": "Astana",
+    "en": "Astana"
+  },
+  {
+    "code": "ke",
+    "tr": "Nairobi",
+    "en": "Nairobi"
+  },
+  {
+    "code": "ki",
+    "tr": "Güney Tarawa",
+    "en": "South Tarawa"
+  },
+  {
+    "code": "kp",
+    "tr": "Pyongyang",
+    "en": "Pyongyang"
+  },
+  {
+    "code": "kr",
+    "tr": "Seul",
+    "en": "Seoul"
+  },
+  {
+    "code": "kw",
+    "tr": "Kuveyt",
+    "en": "Kuwait City"
+  },
+  {
+    "code": "kg",
+    "tr": "Bişkek",
+    "en": "Bishkek"
+  },
+  {
+    "code": "la",
+    "tr": "Vientiane",
+    "en": "Vientiane"
+  },
+  {
+    "code": "lv",
+    "tr": "Riga",
+    "en": "Riga"
+  },
+  {
+    "code": "lb",
+    "tr": "Beyrut",
+    "en": "Beirut"
+  },
+  {
+    "code": "ls",
+    "tr": "Maseru",
+    "en": "Maseru"
+  },
+  {
+    "code": "lr",
+    "tr": "Monrovia",
+    "en": "Monrovia"
+  },
+  {
+    "code": "ly",
+    "tr": "Trablus",
+    "en": "Tripoli"
+  },
+  {
+    "code": "li",
+    "tr": "Vaduz",
+    "en": "Vaduz"
+  },
+  {
+    "code": "lt",
+    "tr": "Vilnius",
+    "en": "Vilnius"
+  },
+  {
+    "code": "lu",
+    "tr": "Lüksemburg",
+    "en": "Luxembourg"
+  },
+  {
+    "code": "mg",
+    "tr": "Antananarivo",
+    "en": "Antananarivo"
+  },
+  {
+    "code": "mw",
+    "tr": "Lilongwe",
+    "en": "Lilongwe"
+  },
+  {
+    "code": "my",
+    "tr": "Kuala Lumpur",
+    "en": "Kuala Lumpur"
+  },
+  {
+    "code": "mv",
+    "tr": "Malé",
+    "en": "Malé"
+  },
+  {
+    "code": "ml",
+    "tr": "Bamako",
+    "en": "Bamako"
+  },
+  {
+    "code": "mt",
+    "tr": "Valletta",
+    "en": "Valletta"
+  },
+  {
+    "code": "mh",
+    "tr": "Majuro",
+    "en": "Majuro"
+  },
+  {
+    "code": "mr",
+    "tr": "Nuakşot",
+    "en": "Nouakchott"
+  },
+  {
+    "code": "mu",
+    "tr": "Port Louis",
+    "en": "Port Louis"
+  },
+  {
+    "code": "mx",
+    "tr": "Meksiko",
+    "en": "Mexico City"
+  },
+  {
+    "code": "fm",
+    "tr": "Palikir",
+    "en": "Palikir"
+  },
+  {
+    "code": "md",
+    "tr": "Kişinev",
+    "en": "Chișinău"
+  },
+  {
+    "code": "mc",
+    "tr": "Monako",
+    "en": "Monaco"
+  },
+  {
+    "code": "mn",
+    "tr": "Ulan Batur",
+    "en": "Ulaanbaatar"
+  },
+  {
+    "code": "me",
+    "tr": "Podgoritsa",
+    "en": "Podgorica"
+  },
+  {
+    "code": "ma",
+    "tr": "Rabat",
+    "en": "Rabat"
+  },
+  {
+    "code": "mz",
+    "tr": "Maputo",
+    "en": "Maputo"
+  },
+  {
+    "code": "mm",
+    "tr": "Nepido",
+    "en": "Naypyidaw"
+  },
+  {
+    "code": "na",
+    "tr": "Windhoek",
+    "en": "Windhoek"
+  },
+  {
+    "code": "nr",
+    "tr": "Yaren",
+    "en": "Yaren"
+  },
+  {
+    "code": "np",
+    "tr": "Katmandu",
+    "en": "Kathmandu"
+  },
+  {
+    "code": "nl",
+    "tr": "Amsterdam",
+    "en": "Amsterdam"
+  },
+  {
+    "code": "nz",
+    "tr": "Wellington",
+    "en": "Wellington"
+  },
+  {
+    "code": "ni",
+    "tr": "Managua",
+    "en": "Managua"
+  },
+  {
+    "code": "ne",
+    "tr": "Niamey",
+    "en": "Niamey"
+  },
+  {
+    "code": "ng",
+    "tr": "Abuja",
+    "en": "Abuja"
+  },
+  {
+    "code": "mk",
+    "tr": "Üsküp",
+    "en": "Skopje"
+  },
+  {
+    "code": "no",
+    "tr": "Oslo",
+    "en": "Oslo"
+  },
+  {
+    "code": "om",
+    "tr": "Maskat",
+    "en": "Muscat"
+  },
+  {
+    "code": "pk",
+    "tr": "İslamabad",
+    "en": "Islamabad"
+  },
+  {
+    "code": "pw",
+    "tr": "Ngerulmud",
+    "en": "Ngerulmud"
+  },
+  {
+    "code": "pa",
+    "tr": "Panama",
+    "en": "Panama City"
+  },
+  {
+    "code": "pg",
+    "tr": "Port Moresby",
+    "en": "Port Moresby"
+  },
+  {
+    "code": "py",
+    "tr": "Asunción",
+    "en": "Asunción"
+  },
+  {
+    "code": "pe",
+    "tr": "Lima",
+    "en": "Lima"
+  },
+  {
+    "code": "ph",
+    "tr": "Manila",
+    "en": "Manila"
+  },
+  {
+    "code": "pl",
+    "tr": "Varşova",
+    "en": "Warsaw"
+  },
+  {
+    "code": "pt",
+    "tr": "Lizbon",
+    "en": "Lisbon"
+  },
+  {
+    "code": "qa",
+    "tr": "Doha",
+    "en": "Doha"
+  },
+  {
+    "code": "ro",
+    "tr": "Bükreş",
+    "en": "Bucharest"
+  },
+  {
+    "code": "ru",
+    "tr": "Moskova",
+    "en": "Moscow"
+  },
+  {
+    "code": "rw",
+    "tr": "Kigali",
+    "en": "Kigali"
+  },
+  {
+    "code": "kn",
+    "tr": "Basseterre",
+    "en": "Basseterre"
+  },
+  {
+    "code": "lc",
+    "tr": "Castries",
+    "en": "Castries"
+  },
+  {
+    "code": "vc",
+    "tr": "Kingstown",
+    "en": "Kingstown"
+  },
+  {
+    "code": "ws",
+    "tr": "Apia",
+    "en": "Apia"
+  },
+  {
+    "code": "sm",
+    "tr": "San Marino",
+    "en": "San Marino"
+  },
+  {
+    "code": "st",
+    "tr": "São Tomé",
+    "en": "São Tomé"
+  },
+  {
+    "code": "sa",
+    "tr": "Riyad",
+    "en": "Riyadh"
+  },
+  {
+    "code": "sn",
+    "tr": "Dakar",
+    "en": "Dakar"
+  },
+  {
+    "code": "rs",
+    "tr": "Belgrad",
+    "en": "Belgrade"
+  },
+  {
+    "code": "sc",
+    "tr": "Victoria",
+    "en": "Victoria"
+  },
+  {
+    "code": "sl",
+    "tr": "Freetown",
+    "en": "Freetown"
+  },
+  {
+    "code": "sg",
+    "tr": "Singapur",
+    "en": "Singapore"
+  },
+  {
+    "code": "sk",
+    "tr": "Bratislava",
+    "en": "Bratislava"
+  },
+  {
+    "code": "si",
+    "tr": "Ljubljana",
+    "en": "Ljubljana"
+  },
+  {
+    "code": "sb",
+    "tr": "Honiara",
+    "en": "Honiara"
+  },
+  {
+    "code": "so",
+    "tr": "Mogadişu",
+    "en": "Mogadishu"
+  },
+  {
+    "code": "za",
+    "tr": "Pretoria",
+    "en": "Pretoria"
+  },
+  {
+    "code": "ss",
+    "tr": "Juba",
+    "en": "Juba"
+  },
+  {
+    "code": "es",
+    "tr": "Madrid",
+    "en": "Madrid"
+  },
+  {
+    "code": "lk",
+    "tr": "Sri Jayawardenepura Kotte",
+    "en": "Sri Jayawardenepura Kotte"
+  },
+  {
+    "code": "sd",
+    "tr": "Hartum",
+    "en": "Khartoum"
+  },
+  {
+    "code": "sr",
+    "tr": "Paramaribo",
+    "en": "Paramaribo"
+  },
+  {
+    "code": "se",
+    "tr": "Stockholm",
+    "en": "Stockholm"
+  },
+  {
+    "code": "ch",
+    "tr": "Bern",
+    "en": "Bern"
+  },
+  {
+    "code": "sy",
+    "tr": "Şam",
+    "en": "Damascus"
+  },
+  {
+    "code": "tw",
+    "tr": "Taipei",
+    "en": "Taipei"
+  },
+  {
+    "code": "tj",
+    "tr": "Duşanbe",
+    "en": "Dushanbe"
+  },
+  {
+    "code": "tz",
+    "tr": "Dodoma",
+    "en": "Dodoma"
+  },
+  {
+    "code": "th",
+    "tr": "Bangkok",
+    "en": "Bangkok"
+  },
+  {
+    "code": "tl",
+    "tr": "Dili",
+    "en": "Dili"
+  },
+  {
+    "code": "tg",
+    "tr": "Lomé",
+    "en": "Lomé"
+  },
+  {
+    "code": "to",
+    "tr": "Nuku'alofa",
+    "en": "Nuku'alofa"
+  },
+  {
+    "code": "tt",
+    "tr": "Port of Spain",
+    "en": "Port of Spain"
+  },
+  {
+    "code": "tn",
+    "tr": "Tunus",
+    "en": "Tunis"
+  },
+  {
+    "code": "tr",
+    "tr": "Ankara",
+    "en": "Ankara"
+  },
+  {
+    "code": "tm",
+    "tr": "Aşkabat",
+    "en": "Ashgabat"
+  },
+  {
+    "code": "tv",
+    "tr": "Funafuti",
+    "en": "Funafuti"
+  },
+  {
+    "code": "ug",
+    "tr": "Kampala",
+    "en": "Kampala"
+  },
+  {
+    "code": "ua",
+    "tr": "Kıyiv",
+    "en": "Kyiv"
+  },
+  {
+    "code": "ae",
+    "tr": "Abu Dabi",
+    "en": "Abu Dhabi"
+  },
+  {
+    "code": "gb",
+    "tr": "Londra",
+    "en": "London"
+  },
+  {
+    "code": "us",
+    "tr": "Washington, D.C.",
+    "en": "Washington, D.C."
+  },
+  {
+    "code": "uy",
+    "tr": "Montevideo",
+    "en": "Montevideo"
+  },
+  {
+    "code": "uz",
+    "tr": "Taşkent",
+    "en": "Tashkent"
+  },
+  {
+    "code": "vu",
+    "tr": "Port Vila",
+    "en": "Port Vila"
+  },
+  {
+    "code": "va",
+    "tr": "Vatikan",
+    "en": "Vatican City"
+  },
+  {
+    "code": "ve",
+    "tr": "Karakas",
+    "en": "Caracas"
+  },
+  {
+    "code": "vn",
+    "tr": "Hanoi",
+    "en": "Hanoi"
+  },
+  {
+    "code": "ye",
+    "tr": "Sana",
+    "en": "Sana'a"
+  },
+  {
+    "code": "zm",
+    "tr": "Lusaka",
+    "en": "Lusaka"
+  },
+  {
+    "code": "zw",
+    "tr": "Harare",
+    "en": "Harare"
+  },
+  {
+    "code": "ps",
+    "tr": "Ramallah",
+    "en": "Ramallah"
+  },
+  {
+    "code": "xk",
+    "tr": "Priştine",
+    "en": "Pristina"
+  }
+];
+
+
+/* flag-similarity.js */
+const VISUAL_FAMILIES = [
+  ['dk', 'no', 'se', 'fi', 'is'],
+  ['id', 'mc', 'pl'],
+  ['ro', 'td', 'md', 'ad'],
+  ['nl', 'lu', 'ru', 'sk', 'si', 'hr', 'rs', 'py'],
+  ['fr', 'it', 'ie', 'be', 'ro', 'td', 'ml', 'gn', 'ci'],
+  ['ie', 'ci'],
+  ['ml', 'gn', 'sn'],
+  ['co', 'ec', 've'],
+  ['eg', 'iq', 'sy', 'ye', 'sd', 'jo', 'ps', 'ae', 'kw'],
+  ['ru', 'sk', 'si', 'hr', 'rs', 'cz'],
+  ['us', 'lr', 'my'],
+  ['au', 'nz', 'fj', 'tv', 'gb'],
+  ['au', 'nz', 'pg', 'ws'],
+  ['gt', 'hn', 'ni', 'sv', 'ar', 'uy'],
+  ['jp', 'bd', 'pw'],
+  ['tr', 'tn', 'pk', 'dz', 'az', 'sg', 'mr', 'ly'],
+  ['cn', 'vn', 'ma', 'tr', 'tn'],
+  ['ua', 'kz', 'ba', 'pw', 'se'],
+  ['ch', 'ge', 'dk', 'to'],
+  ['et', 'gh', 'sn', 'ml', 'gn', 'cm', 'bj', 'bf', 'tg', 'cg', 'gw', 'st', 'zw', 'bo'],
+  ['et', 'gh', 'bo'],
+  ['mw', 'ke', 'af', 'ly', 'sd'],
+  ['it', 'mx', 'ir', 'bg', 'hu', 'tj'],
+  ['hu', 'bg', 'ir', 'tj'],
+  ['cz', 'cu', 'pr', 'ph', 'bs', 'tl', 'za', 'gy', 'sd', 'jo', 'ps', 'kw', 'ae'],
+  ['ag', 'bs', 'kn', 'lc', 'vc', 'tt', 'gd', 'bb', 'dm'],
+  ['tt', 'tz', 'na', 'cg', 'sb', 'pg'],
+  ['ad', 'sm', 'va', 'li', 'mc', 'mt', 'cy', 'md'],
+  ['sa', 'mr', 'pk', 'bd', 'ng', 'tm', 'ly'],
+  ['om', 'kw', 'ae', 'jo', 'ps', 'sd'],
+  ['do', 'pa', 'ht', 'cu', 'cr'],
+  ['gm', 'sl', 'lr', 'gh', 'gw'],
+  ['bw', 'ls', 'sz', 'za', 'na'],
+  ['qa', 'bh', 'tn', 'tr', 'sg'],
+  ['kh', 'th', 'cr', 'kp', 'la'],
+  ['ee', 'bw', 'bs', 'bb'],
+  ['rw', 'sc', 'mu', 'ga', 'cf'],
+  ['bn', 'bt', 'lk', 'np', 'mv'],
+  ['uz', 'tj', 'tm', 'az', 'kz'],
+  ['am', 'lt', 'mm', 'bo', 'gh'],
+  ['cl', 'cu', 'pr', 'lr', 'us'],
+  ['gr', 'uy', 'hn', 'il', 'fi'],
+  ['mk', 'kg', 'jp', 'bd', 'ar'],
+  ['ng', 'ci', 'ie', 'mx', 'it'],
+  ['al', 'me', 'rs', 'mk', 'ba'],
+  ['at', 'lv', 'lb', 'pe', 'ca'],
+  ['be', 'de', 'ug', 'ao'],
+  ['so', 'vn', 'gh', 'cl', 'lr'],
+  ['ne', 'in', 'ie', 'ci'],
+  ['cm', 'sn', 'ml', 'gn'],
+  ['cr', 'kp', 'th', 'la', 'kh'],
+  ['sl', 'lr', 'my', 'us'],
+  ['jm', 'za', 'vu', 'sb'],
+  ['br', 'dm', 'gd', 'mz'],
+  ['cy', 'xk', 'ba', 'kz'],
+  ['pt', 'es', 'ad', 'sm'],
+  ['gb', 'no', 'is', 'au', 'nz'],
+];
+
+const CONFUSABLE_PAIRS = new Map([
+  ['id:mc', 100],
+  ['ro:td', 100],
+  ['nl:lu', 98],
+  ['ie:ci', 98],
+  ['au:nz', 96],
+  ['co:ec', 94],
+  ['co:ve', 93],
+  ['ec:ve', 92],
+  ['ml:gn', 94],
+  ['ru:sk', 91],
+  ['ru:si', 89],
+  ['sk:si', 92],
+  ['hr:rs', 88],
+  ['no:is', 91],
+  ['dk:no', 88],
+  ['fi:se', 88],
+  ['qa:bh', 93],
+  ['gt:hn', 91],
+  ['hn:ni', 94],
+  ['ni:sv', 92],
+  ['gt:sv', 89],
+  ['eg:ye', 91],
+  ['iq:sy', 88],
+  ['jo:ps', 98],
+  ['ae:kw', 86],
+  ['us:lr', 91],
+  ['my:us', 84],
+  ['nz:tv', 83],
+  ['au:fj', 82],
+  ['tr:tn', 91],
+  ['pk:mr', 84],
+  ['jp:bd', 83],
+  ['ar:uy', 86],
+  ['at:lv', 84],
+  ['ch:to', 78],
+  ['cz:ph', 76],
+  ['cu:pr', 92],
+  ['kn:ag', 78],
+  ['lc:vc', 80],
+  ['om:ae', 86],
+  ['om:kw', 82],
+  ['mx:it', 76],
+  ['mx:ir', 73],
+  ['hu:bg', 76],
+  ['hu:ir', 72],
+  ['gm:sl', 80],
+  ['bj:gn', 72],
+  ['sn:ml', 84],
+  ['gh:bo', 78],
+  ['bw:ls', 75],
+  ['xk:cy', 70],
+]);
+
+const FAMILY_SETS = VISUAL_FAMILIES.map((family) => new Set(family));
+
+function pairKey(codeA, codeB) {
+  return [codeA, codeB].sort().join(':');
+}
+
+function deterministicNoise(codeA, codeB) {
+  const source = `${codeA}:${codeB}`;
+  let hash = 0;
+  for (let index = 0; index < source.length; index += 1) {
+    hash = ((hash << 5) - hash + source.charCodeAt(index)) | 0;
+  }
+  return 5 + Math.abs(hash % 13);
+}
+
+function flagSimilarity(correct, candidate) {
+  if (!correct || !candidate || correct.code === candidate.code) return 100;
+
+  const explicit = CONFUSABLE_PAIRS.get(pairKey(correct.code, candidate.code));
+  if (explicit) return explicit;
+
+  let score = deterministicNoise(correct.code, candidate.code);
+  let sharedFamilies = 0;
+
+  for (const family of FAMILY_SETS) {
+    if (family.has(correct.code) && family.has(candidate.code)) sharedFamilies += 1;
+  }
+
+  if (sharedFamilies) score += Math.min(58, 24 + ((sharedFamilies - 1) * 17));
+  if (correct.region === candidate.region) score += 13;
+  if (correct.obscure && candidate.obscure) score += 3;
+
+  return Math.max(1, Math.min(97, score));
+}
+
+function pickUniqueByRank(ranked, preferredIndexes, usedCodes) {
+  for (const index of preferredIndexes) {
+    const candidate = ranked[Math.max(0, Math.min(ranked.length - 1, index))];
+    if (candidate && !usedCodes.has(candidate.country.code)) {
+      usedCodes.add(candidate.country.code);
+      return candidate.country;
+    }
+  }
+
+  const fallback = ranked.find((item) => !usedCodes.has(item.country.code));
+  if (!fallback) return null;
+  usedCodes.add(fallback.country.code);
+  return fallback.country;
+}
+
+function chooseSmartDistractors(correct, countries, difficulty, random = Math.random) {
+  const ranked = countries
+    .filter((country) => country.code !== correct.code)
+    .map((country) => ({ country, score: flagSimilarity(correct, country) }))
+    .sort((a, b) => b.score - a.score || a.country.code.localeCompare(b.country.code));
+
+  const maxIndex = Math.max(0, ranked.length - 1);
+  const jitter = (amount) => Math.floor(random() * amount);
+  const usedCodes = new Set();
+  const picks = [];
+
+  if (difficulty === 'hard') {
+    picks.push(pickUniqueByRank(ranked, [jitter(4), 4 + jitter(8), 12 + jitter(10)], usedCodes));
+    picks.push(pickUniqueByRank(ranked, [8 + jitter(16), 20 + jitter(20), 35 + jitter(20)], usedCodes));
+    picks.push(pickUniqueByRank(ranked, [Math.floor(maxIndex * 0.78) + jitter(Math.max(1, Math.floor(maxIndex * 0.2)))], usedCodes));
+  } else {
+    picks.push(pickUniqueByRank(ranked, [Math.floor(maxIndex * 0.32) + jitter(Math.max(1, Math.floor(maxIndex * 0.2)))], usedCodes));
+    picks.push(pickUniqueByRank(ranked, [Math.floor(maxIndex * 0.68) + jitter(Math.max(1, Math.floor(maxIndex * 0.16)))], usedCodes));
+    picks.push(pickUniqueByRank(ranked, [Math.floor(maxIndex * 0.84) + jitter(Math.max(1, Math.floor(maxIndex * 0.14)))], usedCodes));
+  }
+
+  return picks.filter(Boolean).slice(0, 3);
+}
+
+function normalizeText(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '');
+}
+
+function levenshtein(a, b) {
+  const left = normalizeText(a);
+  const right = normalizeText(b);
+  if (!left.length) return right.length;
+  if (!right.length) return left.length;
+  const row = Array.from({ length: right.length + 1 }, (_, index) => index);
+  for (let i = 1; i <= left.length; i += 1) {
+    let previous = row[0];
+    row[0] = i;
+    for (let j = 1; j <= right.length; j += 1) {
+      const saved = row[j];
+      const cost = left[i - 1] === right[j - 1] ? 0 : 1;
+      row[j] = Math.min(row[j] + 1, row[j - 1] + 1, previous + cost);
+      previous = saved;
+    }
+  }
+  return row[right.length];
+}
+
+function capitalSimilarity(correct, candidate, language = 'en') {
+  if (!correct || !candidate || correct.code === candidate.code) return 100;
+  const a = correct.capital?.[language] || correct.capital?.en || '';
+  const b = candidate.capital?.[language] || candidate.capital?.en || '';
+  const normalizedA = normalizeText(a);
+  const normalizedB = normalizeText(b);
+  const maxLength = Math.max(1, normalizedA.length, normalizedB.length);
+  const editScore = 1 - (levenshtein(a, b) / maxLength);
+  let score = Math.max(0, editScore * 55);
+  if (correct.region === candidate.region) score += 22;
+  if (normalizedA[0] && normalizedA[0] === normalizedB[0]) score += 8;
+  if (normalizedA.at(-1) && normalizedA.at(-1) === normalizedB.at(-1)) score += 5;
+  if (Math.abs(normalizedA.length - normalizedB.length) <= 2) score += 5;
+  if (correct.obscure && candidate.obscure) score += 3;
+  return Math.max(1, Math.min(97, Math.round(score)));
+}
+
+function chooseCapitalDistractors(correct, countries, difficulty, language = 'en', random = Math.random) {
+  const ranked = countries
+    .filter((country) => country.code !== correct.code && country.capital)
+    .map((country) => ({ country, score: capitalSimilarity(correct, country, language) }))
+    .sort((a, b) => b.score - a.score || a.country.code.localeCompare(b.country.code));
+
+  const maxIndex = Math.max(0, ranked.length - 1);
+  const jitter = (amount) => Math.floor(random() * Math.max(1, amount));
+  const used = new Set();
+  const picks = [];
+
+  const take = (indexes) => {
+    const selected = pickUniqueByRank(ranked, indexes, used);
+    if (selected) picks.push(selected);
+  };
+
+  if (difficulty === 'hard') {
+    take([jitter(6), 6 + jitter(10), 15 + jitter(12)]);
+    take([8 + jitter(18), 22 + jitter(24), 45 + jitter(20)]);
+    take([Math.floor(maxIndex * 0.72) + jitter(Math.max(1, Math.floor(maxIndex * 0.25)))]);
+  } else {
+    take([Math.floor(maxIndex * 0.38) + jitter(Math.max(1, Math.floor(maxIndex * 0.18)))]);
+    take([Math.floor(maxIndex * 0.68) + jitter(Math.max(1, Math.floor(maxIndex * 0.18)))]);
+    take([Math.floor(maxIndex * 0.86) + jitter(Math.max(1, Math.floor(maxIndex * 0.12)))]);
+  }
+
+  return picks.slice(0, 3);
+}
+
+
+/* answer-balance.js */
+function shuffleWith(array, random) {
+  const result = [...array];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(random() * (index + 1));
+    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+  }
+  return result;
+}
+
+/**
+ * Builds a 20-question correct-answer position plan.
+ * Every slot appears 4–6 times, but the exact totals vary by run so
+ * players cannot infer the final answers by counting positions.
+ */
+function createBalancedAnswerPlan(random = Math.random) {
+  const patterns = [
+    [6, 5, 5, 4],
+    [6, 6, 4, 4],
+  ];
+  const basePattern = patterns[Math.floor(random() * patterns.length)] || patterns[0];
+  const countsByPosition = shuffleWith(basePattern, random);
+  const plan = [];
+  countsByPosition.forEach((count, position) => {
+    for (let index = 0; index < count; index += 1) plan.push(position);
+  });
+  return shuffleWith(plan, random);
+}
+
+/**
+ * Removes and returns the next position. When possible, it avoids using
+ * the same correct-answer position for the same question in consecutive runs
+ * without changing the run-wide 4–6 distribution.
+ */
+function takeBalancedAnswerPosition(plan, previousPosition = null) {
+  if (!Array.isArray(plan) || plan.length === 0) return null;
+  if (Number.isInteger(previousPosition) && plan[0] === previousPosition) {
+    const swapIndex = plan.findIndex((position) => position !== previousPosition);
+    if (swapIndex > 0) [plan[0], plan[swapIndex]] = [plan[swapIndex], plan[0]];
+  }
+  return plan.shift();
+}
+
+
+/* config.js */
+// Optional global leaderboard configuration.
+// Leave both values empty to use FlagCraft's built-in local leaderboard.
+// Supabase anon keys are designed to be public, but Row Level Security must remain enabled.
+const SUPABASE_URL = '';
+const SUPABASE_ANON_KEY = '';
+
+
+/* profile-service.js */
+const PROFILE_KEY = 'flagcraft_profile_v1';
+
+const RANKS = [
+  { id: 'bronze', minXp: 0 },
+  { id: 'silver', minXp: 1_000 },
+  { id: 'gold', minXp: 2_500 },
+  { id: 'platinum', minXp: 5_000 },
+  { id: 'diamond', minXp: 9_000 },
+  { id: 'master', minXp: 14_000 },
+  { id: 'grandmaster', minXp: 22_000 },
+  { id: 'champion', minXp: 32_000 },
+  { id: 'legend', minXp: 50_000 },
+];
+
+const THEMES = [
+  { id: 'golden', unlockLevel: 1 },
+  { id: 'space', unlockLevel: 2 },
+  { id: 'minecraft', unlockLevel: 4 },
+  { id: 'dark', unlockLevel: 6 },
+  { id: 'sakura', unlockLevel: 8 },
+  { id: 'japan', unlockLevel: 10 },
+];
+
+const DEFAULT_PROFILE = Object.freeze({
+  level: 1,
+  levelXp: 0,
+  totalXp: 0,
+  theme: 'golden',
+  achievements: [],
+  stats: {
+    games: 0,
+    correct: 0,
+    flagsCorrect: 0,
+    capitalsCorrect: 0,
+    bestCombo: 0,
+    perfectGames: 0,
+  },
+});
+
+function int(value, min, max, fallback = min) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return fallback;
+  return Math.max(min, Math.min(max, Math.round(number)));
+}
+
+function normalize(raw) {
+  const source = raw && typeof raw === 'object' ? raw : {};
+  const level = int(source.level, 1, 999, 1);
+  const availableThemes = THEMES.filter((theme) => level >= theme.unlockLevel).map((theme) => theme.id);
+  const theme = availableThemes.includes(source.theme) ? source.theme : 'golden';
+  const stats = source.stats && typeof source.stats === 'object' ? source.stats : {};
+  const achievements = Array.isArray(source.achievements)
+    ? [...new Set(source.achievements.map(String).filter((item) => /^[a-z0-9_-]{1,40}$/i.test(item)))].slice(0, 100)
+    : [];
+
+  return {
+    level,
+    levelXp: int(source.levelXp, 0, xpRequired(level) - 1, 0),
+    totalXp: int(source.totalXp, 0, 100_000_000, 0),
+    theme,
+    achievements,
+    stats: {
+      games: int(stats.games, 0, 10_000_000, 0),
+      correct: int(stats.correct, 0, 100_000_000, 0),
+      flagsCorrect: int(stats.flagsCorrect, 0, 100_000_000, 0),
+      capitalsCorrect: int(stats.capitalsCorrect, 0, 100_000_000, 0),
+      bestCombo: int(stats.bestCombo, 0, 100_000, 0),
+      perfectGames: int(stats.perfectGames, 0, 1_000_000, 0),
+    },
+  };
+}
+
+function xpRequired(level) {
+  return Math.min(25_000, 1_000 + (Math.max(1, Number(level)) * 125));
+}
+
+function loadProfile() {
+  try {
+    return normalize(JSON.parse(storageGet(PROFILE_KEY, 'null') || 'null'));
+  } catch {
+    return structuredClone(DEFAULT_PROFILE);
+  }
+}
+
+function saveProfile(profile) {
+  const safe = normalize(profile);
+  try {
+    storageSet(PROFILE_KEY, JSON.stringify(safe));
+  } catch {
+    // Storage can be disabled; the active session still works.
+  }
+  return safe;
+}
+
+function getRank(totalXp) {
+  let current = RANKS[0];
+  for (const rank of RANKS) {
+    if (totalXp >= rank.minXp) current = rank;
+    else break;
+  }
+  return current;
+}
+
+function addXp(profile, amount) {
+  const next = normalize(profile);
+  let remaining = int(amount, 0, 1_000_000, 0);
+  const levelUps = [];
+  next.totalXp = int(next.totalXp + remaining, 0, 100_000_000, 0);
+
+  while (remaining > 0) {
+    const needed = xpRequired(next.level) - next.levelXp;
+    if (remaining < needed) {
+      next.levelXp += remaining;
+      remaining = 0;
+    } else {
+      remaining -= needed;
+      next.level += 1;
+      next.levelXp = 0;
+      levelUps.push(next.level);
+    }
+  }
+
+  return { profile: saveProfile(next), levelUps };
+}
+
+function unlockStoredAchievement(profile, achievementId) {
+  const next = normalize(profile);
+  if (next.achievements.includes(achievementId)) return { profile: next, unlocked: false };
+  next.achievements.push(achievementId);
+  return { profile: saveProfile(next), unlocked: true };
+}
+
+function setTheme(profile, themeId) {
+  const next = normalize(profile);
+  const theme = THEMES.find((item) => item.id === themeId);
+  if (!theme || next.level < theme.unlockLevel) return { profile: next, changed: false };
+  next.theme = theme.id;
+  return { profile: saveProfile(next), changed: true };
+}
+
+function updateStats(profile, result) {
+  const next = normalize(profile);
+  next.stats.games += 1;
+  next.stats.correct += int(result.correct, 0, 100_000, 0);
+  if (result.quizType === 'capitals') next.stats.capitalsCorrect += int(result.correct, 0, 100_000, 0);
+  else next.stats.flagsCorrect += int(result.correct, 0, 100_000, 0);
+  next.stats.bestCombo = Math.max(next.stats.bestCombo, int(result.bestStreak, 0, 100_000, 0));
+  if (result.perfect) next.stats.perfectGames += 1;
+  return saveProfile(next);
+}
+
+function resetProfile() {
+  storageRemove(PROFILE_KEY);
+  return structuredClone(DEFAULT_PROFILE);
+}
+
+
+/* leaderboard-service.js */
+const STORAGE_KEY = 'flagcraft_scores_v3';
+const LEGACY_KEYS = ['flagcraft_scores_v2', 'flagrush_scores_v1'];
+const MODES = new Set(['classic', 'survival', 'blitz']);
+const DIFFICULTIES = new Set(['easy', 'hard']);
+const QUIZ_TYPES = new Set(['flags', 'capitals']);
+
+function boundedInteger(value, min, max) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return min;
+  return Math.max(min, Math.min(max, Math.round(number)));
+}
+
+function validRemoteConfig() {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return false;
+  try {
+    const url = new URL(SUPABASE_URL);
+    return url.protocol === 'https:' && url.hostname.endsWith('.supabase.co');
+  } catch {
+    return false;
+  }
+}
+
+const hasRemote = validRemoteConfig();
+
+function normalizeEntry(entry) {
+  if (!entry || typeof entry !== 'object') return null;
+  const username = String(entry.username || '').trim().replace(/\s+/g, ' ').slice(0, 16);
+  const playerId = String(entry.playerId || entry.player_id || '').slice(0, 96);
+  const mode = MODES.has(entry.mode) ? entry.mode : 'classic';
+  const difficulty = entry.difficulty === 'hard' ? 'hard' : 'easy';
+  const quizType = QUIZ_TYPES.has(entry.quizType || entry.quiz_type) ? (entry.quizType || entry.quiz_type) : 'flags';
+  if (!username || !playerId) return null;
+
+  return {
+    playerId,
+    username,
+    score: boundedInteger(entry.score, 0, 50_000_000),
+    correct: boundedInteger(entry.correct, 0, 100_000),
+    total: boundedInteger(entry.total, 0, 100_000),
+    duration: boundedInteger(entry.duration, 0, 86_400),
+    mode,
+    difficulty,
+    quizType,
+    createdAt: typeof entry.createdAt === 'string'
+      ? entry.createdAt
+      : typeof entry.created_at === 'string'
+        ? entry.created_at
+        : new Date().toISOString(),
+  };
+}
+
+function readRaw(key) {
+  try {
+    const parsed = JSON.parse(storageGet(key, '[]') || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function readLocal() {
+  const current = readRaw(STORAGE_KEY);
+  const legacy = current.length ? [] : LEGACY_KEYS.flatMap(readRaw);
+  const normalized = [...current, ...legacy].map(normalizeEntry).filter(Boolean);
+  if (!current.length && normalized.length) writeLocal(normalized);
+  return normalized;
+}
+
+function writeLocal(scores) {
+  try {
+    storageSet(STORAGE_KEY, JSON.stringify(scores.slice(0, 600)));
+  } catch {
+    // Storage is optional; gameplay must never fail because of it.
+  }
+}
+
+function sortScores(scores) {
+  return [...scores].sort((a, b) => b.score - a.score || b.correct - a.correct || a.duration - b.duration);
+}
+
+function sameBoard(a, b) {
+  return a.playerId === b.playerId
+    && a.mode === b.mode
+    && a.difficulty === b.difficulty
+    && a.quizType === b.quizType;
+}
+
+function localUpsert(rawEntry) {
+  const entry = normalizeEntry(rawEntry);
+  if (!entry) return;
+  const scores = readLocal();
+  const index = scores.findIndex((item) => sameBoard(item, entry));
+  if (index === -1) scores.push(entry);
+  else if (entry.score > scores[index].score) scores[index] = entry;
+  writeLocal(sortScores(scores));
+}
+
+function authHeaders() {
+  return {
+    apikey: SUPABASE_ANON_KEY,
+    Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+  };
+}
+
+async function remoteFetch({ mode, difficulty, quizType }) {
+  const url = new URL('/rest/v1/flagcraft_scores', SUPABASE_URL);
+  url.searchParams.set('mode', `eq.${mode}`);
+  url.searchParams.set('difficulty', `eq.${difficulty}`);
+  url.searchParams.set('quiz_type', `eq.${quizType}`);
+  url.searchParams.set('select', 'username,score,correct,total,duration,mode,difficulty,quiz_type,created_at');
+  url.searchParams.set('order', 'score.desc,correct.desc,duration.asc');
+  url.searchParams.set('limit', '50');
+  const response = await fetch(url, { headers: authHeaders(), cache: 'no-store' });
+  if (!response.ok) throw new Error(`Leaderboard fetch failed: ${response.status}`);
+  const rows = await response.json();
+  return Array.isArray(rows) ? rows : [];
+}
+
+async function remoteUpsert(rawEntry) {
+  const entry = normalizeEntry(rawEntry);
+  if (!entry) throw new Error('Invalid score payload');
+
+  const existingUrl = new URL('/rest/v1/flagcraft_scores', SUPABASE_URL);
+  existingUrl.searchParams.set('player_id', `eq.${entry.playerId}`);
+  existingUrl.searchParams.set('mode', `eq.${entry.mode}`);
+  existingUrl.searchParams.set('difficulty', `eq.${entry.difficulty}`);
+  existingUrl.searchParams.set('quiz_type', `eq.${entry.quizType}`);
+  existingUrl.searchParams.set('select', 'score');
+  existingUrl.searchParams.set('limit', '1');
+  const existingResponse = await fetch(existingUrl, { headers: authHeaders(), cache: 'no-store' });
+  if (!existingResponse.ok) throw new Error(`Leaderboard check failed: ${existingResponse.status}`);
+  const existing = await existingResponse.json();
+  if (existing[0] && Number(existing[0].score) >= entry.score) return;
+
+  const payload = {
+    player_id: entry.playerId,
+    username: entry.username,
+    score: entry.score,
+    correct: entry.correct,
+    total: entry.total,
+    duration: entry.duration,
+    mode: entry.mode,
+    difficulty: entry.difficulty,
+    quiz_type: entry.quizType,
+    created_at: entry.createdAt,
+  };
+
+  const url = new URL('/rest/v1/flagcraft_scores', SUPABASE_URL);
+  url.searchParams.set('on_conflict', 'player_id,mode,difficulty,quiz_type');
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      ...authHeaders(),
+      'Content-Type': 'application/json',
+      Prefer: 'resolution=merge-duplicates,return=minimal',
+    },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) throw new Error(`Leaderboard save failed: ${response.status}`);
+}
+
+async function saveScore(entry) {
+  localUpsert(entry);
+  if (!hasRemote) return { remote: false };
+  try {
+    await remoteUpsert(entry);
+    return { remote: true };
+  } catch (error) {
+    console.warn(error);
+    return { remote: false, error };
+  }
+}
+
+async function getScores(filters = {}) {
+  const safe = {
+    mode: MODES.has(filters.mode) ? filters.mode : 'classic',
+    difficulty: filters.difficulty === 'hard' ? 'hard' : 'easy',
+    quizType: QUIZ_TYPES.has(filters.quizType) ? filters.quizType : 'flags',
+  };
+
+  if (hasRemote) {
+    try {
+      const rows = await remoteFetch(safe);
+      return {
+        scores: rows.map((row, index) => normalizeEntry({
+          ...row,
+          playerId: `remote-${index}-${row.username}-${row.created_at}`,
+        })).filter(Boolean),
+        remote: true,
+      };
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
+  return {
+    scores: sortScores(readLocal().filter((item) => (
+      item.mode === safe.mode
+      && item.difficulty === safe.difficulty
+      && item.quizType === safe.quizType
+    ))).slice(0, 50),
+    remote: false,
+  };
+}
+
+function getPersonalBest(filters = {}) {
+  const safe = {
+    mode: MODES.has(filters.mode) ? filters.mode : 'classic',
+    difficulty: filters.difficulty === 'hard' ? 'hard' : 'easy',
+    quizType: QUIZ_TYPES.has(filters.quizType) ? filters.quizType : 'flags',
+  };
+  const scores = readLocal().filter((item) => (
+    item.mode === safe.mode
+    && item.difficulty === safe.difficulty
+    && item.quizType === safe.quizType
+  ));
+  return scores.length ? Math.max(...scores.map((item) => item.score)) : 0;
+}
+
+function clearLocalScores() {
+  storageRemove(STORAGE_KEY);
+  LEGACY_KEYS.forEach((key) => storageRemove(key));
+}
+
+
+/* app.js */
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+const capitalMap = new Map(CAPITALS.map((capital) => [capital.code, capital]));
+const GAME_COUNTRIES = COUNTRIES.map((country) => ({ ...country, capital: capitalMap.get(country.code) })).filter((country) => country.capital);
+
+const els = {
+  body: document.body,
+  homeView: $('#homeView'), gameView: $('#gameView'), resultsView: $('#resultsView'),
+  homeButton: $('#homeButton'), userButton: $('#userButton'), settingsButton: $('#settingsButton'),
+  languageButton: $('#languageButton'), languageLabel: $('#languageLabel'), headerUsername: $('#headerUsername'), headerLevel: $('#headerLevel'),
+  quizTypeControl: $('#quizTypeControl'), difficultyControl: $('#difficultyControl'), difficultyDescription: $('#difficultyDescription'), modeGrid: $('#modeGrid'), startButton: $('#startButton'),
+  profileUsername: $('#profileUsername'), avatarInitial: $('#avatarInitial'), rankChip: $('#rankChip'), editUsernameButton: $('#editUsernameButton'),
+  levelValue: $('#levelValue'), totalXpValue: $('#totalXpValue'), xpFill: $('#xpFill'), xpProgressText: $('#xpProgressText'), personalBest: $('#personalBest'), achievementSummary: $('#achievementSummary'),
+  leaderboardButton: $('#leaderboardButton'), achievementsButton: $('#achievementsButton'),
+  quitButton: $('#quitButton'), scoreValue: $('#scoreValue'), streakValue: $('#streakValue'), gameXpValue: $('#gameXpValue'), livesPill: $('#livesPill'), livesValue: $('#livesValue'), overallPill: $('#overallPill'), overallValue: $('#overallValue'),
+  progressText: $('#progressText'), progressFill: $('#progressFill'), timerPanel: $('#timerPanel'), timerValue: $('#timerValue'), timerFill: $('#timerFill'),
+  promptStage: $('#promptStage'), flagLoader: $('#flagLoader'), flagImage: $('#flagImage'), capitalPrompt: $('#capitalPrompt'), capitalFlag: $('#capitalFlag'), capitalCountryName: $('#capitalCountryName'),
+  questionNumber: $('#questionNumber'), questionTitle: $('#questionTitle'), answerGrid: $('#answerGrid'), comboPop: $('#comboPop'),
+  resultHeadline: $('#resultHeadline'), resultSubline: $('#resultSubline'), finalScore: $('#finalScore'), finalXp: $('#finalXp'), correctStat: $('#correctStat'), accuracyStat: $('#accuracyStat'), bestStreakStat: $('#bestStreakStat'), resultRank: $('#resultRank'), resultLevel: $('#resultLevel'), resultXpText: $('#resultXpText'), resultXpFill: $('#resultXpFill'),
+  reviewPanel: $('#reviewPanel'), reviewList: $('#reviewList'), playAgainButton: $('#playAgainButton'), homeResultButton: $('#homeResultButton'), resultLeaderboardButton: $('#resultLeaderboardButton'),
+  usernameModal: $('#usernameModal'), usernameForm: $('#usernameForm'), usernameInput: $('#usernameInput'), usernameNote: $('#usernameNote'),
+  leaderboardModal: $('#leaderboardModal'), closeLeaderboardButton: $('#closeLeaderboardButton'), leaderboardQuizTabs: $('#leaderboardQuizTabs'), leaderboardModeTabs: $('#leaderboardModeTabs'), leaderboardDifficultyTabs: $('#leaderboardDifficultyTabs'), leaderboardStatus: $('#leaderboardStatus'), leaderboardList: $('#leaderboardList'), backendNote: $('#backendNote'),
+  settingsModal: $('#settingsModal'), closeSettingsButton: $('#closeSettingsButton'), soundToggle: $('#soundToggle'), motionToggle: $('#motionToggle'), themeGrid: $('#themeGrid'), resetScoresButton: $('#resetScoresButton'), resetProgressButton: $('#resetProgressButton'),
+  achievementsModal: $('#achievementsModal'), closeAchievementsButton: $('#closeAchievementsButton'), achievementList: $('#achievementList'),
+  quitModal: $('#quitModal'), cancelQuitButton: $('#cancelQuitButton'), confirmQuitButton: $('#confirmQuitButton'),
+  toast: $('#toast'), achievementToast: $('#achievementToast'), achievementToastTitle: $('#achievementToastTitle'),
+};
+
+const i18n = {
+  tr: {
+    appDescription: 'FlagCraft — bayrak ve başkent bilme oyunu.', homeAria: 'Ana sayfa', languageAria: 'Dili değiştir', settingsAria: 'Ayarlar', closeAria: 'Kapat', quizTypeAria: 'Oyun türü', difficultyAria: 'Zorluk',
+    eyebrow: 'BİLGİNİ İŞLE · SERİNİ BÜYÜT', heroTitle: 'Dünyayı tanı.<br><span>Efsaneni inşa et.</span>', heroSubtitle: 'Bayrakları ve başkentleri çöz, XP kazan, temaları aç ve FlagCraft sıralamasında yüksel.',
+    buildGame: 'OYUNUNU KUR', chooseChallenge: 'Meydan okumanı seç.', quizType: 'Oyun türü', flags: 'Bayraklar', flagsDesc: 'Bayrağı gör, ülkeyi bul', capitals: 'Başkentler', capitalsDesc: 'Ülkeyi gör, başkenti bul',
+    difficulty: 'Zorluk', easy: 'Kolay', hard: 'Zor',
+    flagsEasyDesc: 'Daha bilinen ülkeler ve rahat ayırt edilen seçenekler.', flagsHardDesc: 'Nadir ülkeler ve birbirine çok benzeyen bayraklar.',
+    capitalsEasyDesc: 'Bilinen ülkeler ve birbirinden uzak başkent seçenekleri.', capitalsHardDesc: 'Nadir ülkeler ve adı ya da bölgesi yakın güçlü çeldiriciler.',
+    gameMode: 'Oyun modu', classic: 'Klasik', classicDesc: '20 soru · soru başına 20 saniye', survival: 'Hayatta Kalma', survivalDesc: '3 can · dayanabildiğin kadar', blitz: 'Zamana Karşı', blitzDesc: '60 saniyede en yüksek skor',
+    startGame: 'Oyuna Başla', playingAs: 'Oyuncu', edit: 'Düzenle', level: 'Seviye', totalXp: 'Toplam XP', personalBest: 'Kişisel Rekor', leaderboardLabel: 'LİDERLİK TABLOSU', seeTopPlayers: 'En iyi oyuncuları gör', achievements: 'Başarımlar',
+    quit: 'Çık', leaveGameLabel: 'OYUNDAN ÇIK', quitGameTitle: 'Ana menüye dönmek istiyor musun?', quitGameBody: 'Bu turdaki puanın ve ilerlemen kaydedilmeyecek.', stayInGame: 'Oyuna Devam Et', leaveGame: 'Oyundan Çık', score: 'Puan', combo: 'Kombo', earnedXp: 'XP', lives: 'Can', overallTime: 'Toplam', timeLeft: 'KALAN SÜRE', secondsShort: 'sn', findCapital: 'BAŞKENTİ BUL', keyboardHint: '1–4 tuşlarıyla da cevaplayabilirsin.',
+    whichCountry: 'Bu bayrak hangi ülkeye ait?', capitalQuestion: '{country} ülkesinin başkenti hangisi?', question: 'SORU',
+    correctFeedback: 'Doğru!', wrongFeedback: 'Yanlış!', timeUp: 'Süre doldu!', comboLabel: '{count}× KOMBO',
+    gameComplete: 'OYUN TAMAMLANDI', totalScore: 'TOPLAM PUAN', xpEarnedResult: 'Bu tur kazanılan XP', correct: 'Doğru', accuracy: 'Başarı', bestCombo: 'En İyi Kombo', rank: 'Rütbe', reviewMistakes: 'Kaçırdıklarını incele', playAgain: 'Tekrar Oyna', mainMenu: 'Ana Menü', leaderboard: 'Liderlik Tablosu',
+    resultGreat: 'Efsane seri!', resultGood: 'Sağlam tur!', resultPractice: 'Bir tur daha?', resultGreatFlags: 'Bayrak bilgisini gerçekten iyi işlemişsin.', resultGoodFlags: 'Dünya haritasında zirveye yaklaşıyorsun.', resultPracticeFlags: 'Nadir bayraklar zorlayabilir; sonraki tur senin.', resultGreatCapitals: 'Başkent bilgisinde haritayı domine ettin.', resultGoodCapitals: 'Başkent ustalığına çok az kaldı.', resultPracticeCapitals: 'Bir tur daha ve şehirler yerine oturacak.',
+    yourAnswer: 'Senin cevabın', correctAnswer: 'Doğru cevap', timedOutLabel: 'Süre doldu',
+    welcome: "FLAGCRAFT'A HOŞ GELDİN", chooseUsername: 'Oyuncu adını seç.', usernameInfo: 'Skorun bu isimle liderlik tablosuna kaydedilecek.', username: 'Kullanıcı adı', usernameRules: '2–16 karakter; harf, rakam, boşluk, _ ve - kullanabilirsin.', continue: 'Devam Et', invalidUsername: '2–16 karakterlik geçerli bir kullanıcı adı gir.',
+    worldRanking: 'DÜNYA SIRALAMASI', localLeaderboard: 'Şu anda bu cihazdaki skorlar gösteriliyor.', globalLeaderboard: 'Global skorlar gösteriliyor.', loading: 'Skorlar yükleniyor…', noScores: 'Henüz skor yok. İlk sırayı sen alabilirsin.', questions: 'soru', seconds: 'sn',
+    preferences: 'TERCİHLER', settings: 'Ayarlar', sound: 'Ses efektleri', soundDesc: 'Sade arayüz tıklamaları ve seviye atlama sesi', motion: 'Animasyonlar', motionDesc: 'Hafif geçişler ve geri bildirimler', themes: 'Temalar', themesDesc: 'Seviye atlayarak yeni renk paletlerini aç.', unlockAt: 'Seviye {level} ile açılır', unlocked: 'Açık', selected: 'Seçili', resetScores: 'Yerel skorları sıfırla', resetProgress: 'XP ve ilerlemeyi sıfırla', fanDisclaimer: 'FlagCraft bağımsız bir hayran projesidir; Mojang veya Microsoft ile bağlantılı değildir.',
+    progress: 'İLERLEME', achievementUnlocked: 'BAŞARIM AÇILDI', locked: 'Kilitli',
+    flagAlt: 'Tahmin edilecek ülke bayrağı', levelShort: 'Sv.', scoreSaved: 'Skorun global sıralamaya kaydedildi.', scoreLocal: 'Skorun bu cihaza kaydedildi.', newHighScore: 'Yeni kişisel rekor!', levelUp: 'Seviye {level} oldun!', themeUnlocked: 'Yeni tema açıldı: {theme}', scoresResetConfirm: 'Bu cihazdaki tüm FlagCraft skorları silinsin mi?', scoresResetDone: 'Yerel skorlar silindi.', progressResetConfirm: 'XP, seviye, başarımlar ve temalar sıfırlansın mı?', progressResetDone: 'İlerlemen sıfırlandı.', quitConfirm: 'Mevcut oyundan çıkmak istediğine emin misin?',
+    themeGolden: 'Golden Apple', themeDark: 'Karanlık', themeSakura: 'Sakura', themeJapan: 'Japonya', themeSpace: 'Uzay', themeMinecraft: 'Minecraft',
+    rankBronze: 'Bronze', rankSilver: 'Silver', rankGold: 'Gold', rankPlatinum: 'Platinum', rankDiamond: 'Diamond', rankMaster: 'Master', rankGrandmaster: 'Grandmaster', rankChampion: 'Champion', rankLegend: 'Legend',
+    achievementFirstName: 'İlk Blok', achievementFirstDesc: 'İlk doğru cevabını ver.', achievementCombo5Name: 'Seri Üretim', achievementCombo5Desc: '5× kombo yap.', achievementCombo10Name: 'Nether Serisi', achievementCombo10Desc: '10× kombo yap.', achievementPerfectFlagsName: 'Bayrak Ustası', achievementPerfectFlagsDesc: 'Klasik bayrak turunu 20/20 bitir.', achievementPerfectCapitalsName: 'Başkent Ustası', achievementPerfectCapitalsDesc: 'Klasik başkent turunu 20/20 bitir.', achievementFlag100Name: 'Atlas Madencisi', achievementFlag100Desc: 'Toplam 100 bayrak bil.', achievementCapital100Name: 'Şehir Mimarı', achievementCapital100Desc: 'Toplam 100 başkent bil.', achievementSurvivalName: 'Son Kalp', achievementSurvivalDesc: 'Hayatta Kalma modunda 15 doğruya ulaş.',
+  },
+  en: {
+    appDescription: 'FlagCraft — a flag and capital quiz game.', homeAria: 'Home', languageAria: 'Change language', settingsAria: 'Settings', closeAria: 'Close', quizTypeAria: 'Quiz type', difficultyAria: 'Difficulty',
+    eyebrow: 'CRAFT KNOWLEDGE · BUILD YOUR STREAK', heroTitle: 'Know the world.<br><span>Build your legend.</span>', heroSubtitle: 'Solve flags and capitals, earn XP, unlock themes, and climb the FlagCraft rankings.',
+    buildGame: 'BUILD YOUR GAME', chooseChallenge: 'Choose your challenge.', quizType: 'Quiz type', flags: 'Flags', flagsDesc: 'See the flag, find the country', capitals: 'Capitals', capitalsDesc: 'See the country, find its capital',
+    difficulty: 'Difficulty', easy: 'Easy', hard: 'Hard',
+    flagsEasyDesc: 'Familiar countries with clearly different choices.', flagsHardDesc: 'Rare countries and highly similar flag distractors.',
+    capitalsEasyDesc: 'Familiar countries with clearly separated capital choices.', capitalsHardDesc: 'Rare countries with strong name- and region-based distractors.',
+    gameMode: 'Game mode', classic: 'Classic', classicDesc: '20 questions · 20 seconds each', survival: 'Survival', survivalDesc: '3 lives · last as long as possible', blitz: 'Time Attack', blitzDesc: 'Get the highest score in 60 seconds',
+    startGame: 'Start Game', playingAs: 'Playing as', edit: 'Edit', level: 'Level', totalXp: 'Total XP', personalBest: 'Personal Best', leaderboardLabel: 'LEADERBOARD', seeTopPlayers: 'See the top players', achievements: 'Achievements',
+    quit: 'Quit', leaveGameLabel: 'LEAVE GAME', quitGameTitle: 'Return to the main menu?', quitGameBody: 'Your score and progress from this run will not be saved.', stayInGame: 'Continue Playing', leaveGame: 'Leave Game', score: 'Score', combo: 'Combo', earnedXp: 'XP', lives: 'Lives', overallTime: 'Overall', timeLeft: 'TIME LEFT', secondsShort: 'sec', findCapital: 'FIND THE CAPITAL', keyboardHint: 'You can also answer with the 1–4 keys.',
+    whichCountry: 'Which country does this flag belong to?', capitalQuestion: 'What is the capital of {country}?', question: 'QUESTION',
+    correctFeedback: 'Correct!', wrongFeedback: 'Wrong!', timeUp: "Time's up!", comboLabel: '{count}× COMBO',
+    gameComplete: 'GAME COMPLETE', totalScore: 'TOTAL SCORE', xpEarnedResult: 'XP earned this run', correct: 'Correct', accuracy: 'Accuracy', bestCombo: 'Best Combo', rank: 'Rank', reviewMistakes: 'Review your misses', playAgain: 'Play Again', mainMenu: 'Main Menu', leaderboard: 'Leaderboard',
+    resultGreat: 'Legendary streak!', resultGood: 'Solid run!', resultPractice: 'One more round?', resultGreatFlags: 'You have crafted some serious flag knowledge.', resultGoodFlags: 'You are getting close to the top of the world map.', resultPracticeFlags: 'Rare flags can be tough. The next run is yours.', resultGreatCapitals: 'You dominated the map of world capitals.', resultGoodCapitals: 'Capital mastery is within reach.', resultPracticeCapitals: 'One more run and those cities will click.',
+    yourAnswer: 'Your answer', correctAnswer: 'Correct answer', timedOutLabel: 'Time ran out',
+    welcome: 'WELCOME TO FLAGCRAFT', chooseUsername: 'Choose your username.', usernameInfo: 'Your score will appear under this name on the leaderboard.', username: 'Username', usernameRules: '2–16 characters; letters, numbers, spaces, _ and - are allowed.', continue: 'Continue', invalidUsername: 'Enter a valid username between 2 and 16 characters.',
+    worldRanking: 'WORLD RANKING', localLeaderboard: 'Scores from this device are currently shown.', globalLeaderboard: 'Global scores are shown.', loading: 'Loading scores…', noScores: 'No scores yet. You can take first place.', questions: 'questions', seconds: 'sec',
+    preferences: 'PREFERENCES', settings: 'Settings', sound: 'Sound effects', soundDesc: 'Subtle interface clicks and a level-up sound', motion: 'Animations', motionDesc: 'Light transitions and feedback', themes: 'Themes', themesDesc: 'Level up to unlock new color palettes.', unlockAt: 'Unlocks at Level {level}', unlocked: 'Unlocked', selected: 'Selected', resetScores: 'Reset local scores', resetProgress: 'Reset XP and progress', fanDisclaimer: 'FlagCraft is an independent fan project and is not affiliated with Mojang or Microsoft.',
+    progress: 'PROGRESS', achievementUnlocked: 'ACHIEVEMENT UNLOCKED', locked: 'Locked',
+    flagAlt: 'Country flag to identify', levelShort: 'Lv.', scoreSaved: 'Your score was saved to the global ranking.', scoreLocal: 'Your score was saved on this device.', newHighScore: 'New personal best!', levelUp: 'You reached Level {level}!', themeUnlocked: 'New theme unlocked: {theme}', scoresResetConfirm: 'Delete all FlagCraft scores on this device?', scoresResetDone: 'Local scores deleted.', progressResetConfirm: 'Reset XP, levels, achievements, and themes?', progressResetDone: 'Your progress was reset.', quitConfirm: 'Are you sure you want to leave the current game?',
+    themeGolden: 'Golden Apple', themeDark: 'Dark', themeSakura: 'Sakura', themeJapan: 'Japan', themeSpace: 'Space', themeMinecraft: 'Minecraft',
+    rankBronze: 'Bronze', rankSilver: 'Silver', rankGold: 'Gold', rankPlatinum: 'Platinum', rankDiamond: 'Diamond', rankMaster: 'Master', rankGrandmaster: 'Grandmaster', rankChampion: 'Champion', rankLegend: 'Legend',
+    achievementFirstName: 'First Block', achievementFirstDesc: 'Answer your first question correctly.', achievementCombo5Name: 'Mass Production', achievementCombo5Desc: 'Reach a 5× combo.', achievementCombo10Name: 'Nether Streak', achievementCombo10Desc: 'Reach a 10× combo.', achievementPerfectFlagsName: 'Flag Master', achievementPerfectFlagsDesc: 'Finish a Classic flag run with 20/20.', achievementPerfectCapitalsName: 'Capital Master', achievementPerfectCapitalsDesc: 'Finish a Classic capital run with 20/20.', achievementFlag100Name: 'Atlas Miner', achievementFlag100Desc: 'Answer 100 flag questions correctly.', achievementCapital100Name: 'City Architect', achievementCapital100Desc: 'Answer 100 capital questions correctly.', achievementSurvivalName: 'Last Heart', achievementSurvivalDesc: 'Reach 15 correct answers in Survival.',
+  },
+};
+
+const ACHIEVEMENTS = [
+  { id: 'first_correct', icon: '▣', name: 'achievementFirstName', desc: 'achievementFirstDesc' },
+  { id: 'combo_5', icon: '⑤', name: 'achievementCombo5Name', desc: 'achievementCombo5Desc' },
+  { id: 'combo_10', icon: '⑩', name: 'achievementCombo10Name', desc: 'achievementCombo10Desc' },
+  { id: 'perfect_flags', icon: '⚑', name: 'achievementPerfectFlagsName', desc: 'achievementPerfectFlagsDesc' },
+  { id: 'perfect_capitals', icon: '⌂', name: 'achievementPerfectCapitalsName', desc: 'achievementPerfectCapitalsDesc' },
+  { id: 'flags_100', icon: '◎', name: 'achievementFlag100Name', desc: 'achievementFlag100Desc' },
+  { id: 'capitals_100', icon: '◇', name: 'achievementCapital100Name', desc: 'achievementCapital100Desc' },
+  { id: 'survival_15', icon: '✦', name: 'achievementSurvivalName', desc: 'achievementSurvivalDesc' },
+];
+
+const THEME_SWATCHES = {
+  golden: 'linear-gradient(135deg,#ffd84d,#f29e23,#79c84a)',
+  dark: 'linear-gradient(135deg,#69dcff,#6d8dff,#111722)',
+  sakura: 'linear-gradient(135deg,#ff8fbc,#ff5b86,#30101d)',
+  japan: 'linear-gradient(135deg,#f1e4c8,#e14940,#271c18)',
+  space: 'linear-gradient(135deg,#b28cff,#5ed7ff,#15103a)',
+  minecraft: 'linear-gradient(135deg,#78be4a,#98704c,#304128)',
+};
+
+const SOUND_URLS = {
+  click: 'https://www.myinstants.com/media/sounds/minecraft_click.mp3',
+  levelUp: 'https://www.myinstants.com/media/sounds/levelup.mp3',
+};
+
+const modeConfig = {
+  classic: { total: 20 },
+  survival: { total: Infinity, lives: 3 },
+  blitz: { total: Infinity, overallSeconds: 60 },
+};
+const difficultyMultiplier = { easy: 1, hard: 1.42 };
+const preferences = {
+  lang: storageGet('flagcraft_lang') === 'en' ? 'en' : 'tr',
+  sound: storageGet('flagcraft_sound') !== 'false',
+  motion: storageGet('flagcraft_motion') !== 'false',
+};
+
+let username = storageGet('flagcraft_username') || '';
+let playerId = storageGet('flagcraft_player_id') || '';
+if (!playerId) {
+  playerId = crypto.randomUUID?.() || `player-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  storageSet('flagcraft_player_id', playerId);
+}
+
+let profile = loadProfile();
+let selectedQuiz = storageGet('flagcraft_quiz') === 'capitals' ? 'capitals' : 'flags';
+let selectedMode = modeConfig[storageGet('flagcraft_mode')] ? storageGet('flagcraft_mode') : 'classic';
+let selectedDifficulty = storageGet('flagcraft_difficulty') === 'hard' ? 'hard' : 'easy';
+let leaderboardFilters = { quizType: selectedQuiz, mode: selectedMode, difficulty: selectedDifficulty };
+let state = null;
+let previousRun = null;
+let lastResult = null;
+let timerId = null;
+let nextQuestionTimeout = null;
+let nextQuestionDueAt = null;
+let pendingAdvance = null;
+let toastTimeout = null;
+let achievementToastTimeout = null;
+let audioContext = null;
+let soundGestureUnlocked = false;
+const audioPools = new Map();
+
+function t(key, variables = {}) {
+  let output = i18n[preferences.lang]?.[key] ?? i18n.en[key] ?? key;
+  Object.entries(variables).forEach(([name, value]) => { output = output.replaceAll(`{${name}}`, String(value)); });
+  return output;
+}
+
+function locale() { return preferences.lang === 'tr' ? 'tr-TR' : 'en-US'; }
+function countryName(country) { return country?.[preferences.lang] || country?.en || '—'; }
+function capitalName(country) { return country?.capital?.[preferences.lang] || country?.capital?.en || '—'; }
+function optionLabel(country, quizType = state?.quizType || selectedQuiz) { return quizType === 'capitals' ? capitalName(country) : countryName(country); }
+function rankName(rankId) { return t(`rank${rankId.charAt(0).toUpperCase()}${rankId.slice(1)}`); }
+function themeName(themeId) { return t(`theme${themeId.charAt(0).toUpperCase()}${themeId.slice(1)}`); }
+
+function randomFloat() {
+  if (crypto.getRandomValues) {
+    const buffer = new Uint32Array(1); crypto.getRandomValues(buffer); return buffer[0] / 4294967296;
+  }
+  return Math.random();
+}
+
+function shuffle(array) {
+  const result = [...array];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(randomFloat() * (index + 1));
+    [result[index], result[swapIndex]] = [result[swapIndex], result[index]];
+  }
+  return result;
+}
+
+function switchView(view) {
+  [els.homeView, els.gameView, els.resultsView].forEach((item) => item.classList.remove('active'));
+  view.classList.add('active');
+  window.scrollTo({ top: 0, behavior: preferences.motion ? 'smooth' : 'auto' });
+}
+
+function setLanguage(lang) {
+  // Hide transient text from the previous language before repainting the UI.
+  els.toast.classList.remove('show');
+  els.achievementToast.classList.remove('show');
+  if (toastTimeout) clearTimeout(toastTimeout);
+  if (achievementToastTimeout) clearTimeout(achievementToastTimeout);
+  preferences.lang = lang === 'en' ? 'en' : 'tr';
+  storageSet('flagcraft_lang', preferences.lang);
+  document.documentElement.lang = preferences.lang;
+  els.languageLabel.textContent = preferences.lang === 'tr' ? 'Türkçe' : 'English';
+  $$('[data-i18n]').forEach((node) => {
+    const value = i18n[preferences.lang]?.[node.dataset.i18n];
+    if (value !== undefined) node.textContent = value;
+  });
+  $$('[data-i18n-html]').forEach((node) => {
+    const value = i18n[preferences.lang]?.[node.dataset.i18nHtml];
+    if (value !== undefined) node.innerHTML = value;
+  });
+  $$('[data-i18n-aria]').forEach((node) => {
+    const value = i18n[preferences.lang]?.[node.dataset.i18nAria];
+    if (value !== undefined) node.setAttribute('aria-label', value);
+  });
+  $$('[data-i18n-content]').forEach((node) => {
+    const value = i18n[preferences.lang]?.[node.dataset.i18nContent];
+    if (value !== undefined) node.setAttribute('content', value);
+  });
+  updateDifficultyDescription();
+  renderProfile();
+  renderThemes();
+  renderAchievements();
+  updateQuestionCopy();
+  if (state?.options) renderAnswers();
+  if (lastResult) renderResults(lastResult);
+  if (els.leaderboardModal.open) renderLeaderboard();
+}
+
+function normalizeUsername(value) { return String(value || '').trim().replace(/\s+/g, ' '); }
+function validateUsername(value) {
+  const cleaned = normalizeUsername(value);
+  return cleaned.length >= 2 && cleaned.length <= 16 && /^[\p{L}\p{N}_ -]+$/u.test(cleaned);
+}
+
+function setUser(value) {
+  username = normalizeUsername(value);
+  storageSet('flagcraft_username', username);
+  els.headerUsername.textContent = username;
+  els.profileUsername.textContent = username;
+  els.avatarInitial.textContent = [...username][0]?.toUpperCase() || 'P';
+  updatePersonalBest();
+}
+
+function openUsernameModal() {
+  els.usernameInput.value = username;
+  els.usernameNote.textContent = t('usernameRules');
+  els.usernameNote.classList.remove('error');
+  if (!els.usernameModal.open) els.usernameModal.showModal();
+  setTimeout(() => els.usernameInput.focus(), 40);
+}
+
+function selectQuiz(quizType) {
+  if (!['flags', 'capitals'].includes(quizType)) return;
+  selectedQuiz = quizType;
+  storageSet('flagcraft_quiz', selectedQuiz);
+  $$('.quiz-type-button').forEach((button) => {
+    const selected = button.dataset.quiz === selectedQuiz;
+    button.classList.toggle('selected', selected);
+    button.setAttribute('aria-pressed', String(selected));
+  });
+  updateDifficultyDescription();
+  updatePersonalBest();
+}
+
+function selectMode(mode) {
+  if (!modeConfig[mode]) return;
+  selectedMode = mode;
+  storageSet('flagcraft_mode', selectedMode);
+  $$('.mode-card').forEach((card) => {
+    const selected = card.dataset.mode === selectedMode;
+    card.classList.toggle('selected', selected);
+    card.setAttribute('aria-pressed', String(selected));
+  });
+  updatePersonalBest();
+}
+
+function selectDifficulty(difficulty) {
+  if (!difficultyMultiplier[difficulty]) return;
+  selectedDifficulty = difficulty;
+  storageSet('flagcraft_difficulty', selectedDifficulty);
+  $$('.difficulty-button').forEach((button) => {
+    const selected = button.dataset.difficulty === selectedDifficulty;
+    button.classList.toggle('selected', selected);
+    button.setAttribute('aria-pressed', String(selected));
+  });
+  updateDifficultyDescription();
+  updatePersonalBest();
+}
+
+function updateDifficultyDescription() {
+  const prefix = selectedQuiz === 'flags' ? 'flags' : 'capitals';
+  const difficulty = selectedDifficulty.charAt(0).toUpperCase() + selectedDifficulty.slice(1);
+  els.difficultyDescription.textContent = t(`${prefix}${difficulty}Desc`);
+}
+
+function applyTheme(themeId) {
+  const safe = THEMES.some((theme) => theme.id === themeId) ? themeId : 'golden';
+  els.body.dataset.theme = safe;
+  const themeColor = getComputedStyle(document.body).getPropertyValue('--bg').trim();
+  $('meta[name="theme-color"]')?.setAttribute('content', themeColor || '#171006');
+}
+
+function renderProfile() {
+  const rank = getRank(profile.totalXp);
+  const requirement = xpRequired(profile.level);
+  const percentage = Math.max(0, Math.min(100, (profile.levelXp / requirement) * 100));
+  els.headerLevel.textContent = `${t('levelShort')} ${profile.level}`;
+  els.levelValue.textContent = profile.level.toLocaleString(locale());
+  els.totalXpValue.textContent = profile.totalXp.toLocaleString(locale());
+  els.xpFill.style.width = `${percentage}%`;
+  els.xpProgressText.textContent = `${profile.levelXp.toLocaleString(locale())} / ${requirement.toLocaleString(locale())} XP`;
+  els.rankChip.textContent = rankName(rank.id);
+  els.achievementSummary.textContent = `${profile.achievements.length} / ${ACHIEVEMENTS.length}`;
+  applyTheme(profile.theme);
+}
+
+function renderThemes() {
+  els.themeGrid.replaceChildren();
+  THEMES.forEach((theme) => {
+    const unlocked = profile.level >= 10 || profile.level >= theme.unlockLevel;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `theme-button sound-click${profile.theme === theme.id ? ' selected' : ''}${unlocked ? '' : ' locked'}`;
+    button.dataset.theme = theme.id;
+    button.disabled = !unlocked;
+    const swatch = document.createElement('div'); swatch.className = 'theme-swatch'; swatch.style.setProperty('--swatch', THEME_SWATCHES[theme.id]);
+    const title = document.createElement('strong'); title.textContent = themeName(theme.id);
+    const detail = document.createElement('small'); detail.textContent = profile.theme === theme.id ? t('selected') : unlocked ? t('unlocked') : t('unlockAt', { level: theme.unlockLevel });
+    button.append(swatch, title, detail);
+    if (!unlocked) { const lock = document.createElement('span'); lock.className = 'theme-lock'; lock.textContent = '▣'; button.append(lock); }
+    els.themeGrid.append(button);
+  });
+}
+
+function renderAchievements() {
+  els.achievementList.replaceChildren();
+  ACHIEVEMENTS.forEach((achievement) => {
+    const unlocked = profile.achievements.includes(achievement.id);
+    const item = document.createElement('div'); item.className = `achievement-item${unlocked ? '' : ' locked'}`;
+    const icon = document.createElement('span'); icon.className = 'achievement-icon'; icon.textContent = unlocked ? achievement.icon : '▣';
+    const copy = document.createElement('div');
+    const name = document.createElement('strong'); name.textContent = t(achievement.name);
+    const desc = document.createElement('small'); desc.textContent = t(achievement.desc);
+    copy.append(name, desc); item.append(icon, copy); els.achievementList.append(item);
+  });
+}
+
+function updatePersonalBest() {
+  const best = getPersonalBest({ quizType: selectedQuiz, mode: selectedMode, difficulty: selectedDifficulty });
+  els.personalBest.textContent = best.toLocaleString(locale());
+}
+
+function countryPoolForDifficulty(difficulty) {
+  if (difficulty === 'easy') return GAME_COUNTRIES.filter((country) => !country.obscure);
+  return GAME_COUNTRIES;
+}
+
+function countryWeight(country, difficulty) {
+  if (difficulty === 'hard') return country.obscure ? 3.4 : .72;
+  return 1;
+}
+
+function weightedDeck(difficulty) {
+  const remaining = countryPoolForDifficulty(difficulty).map((country) => ({ country, weight: countryWeight(country, difficulty) }));
+  const deck = [];
+  while (remaining.length) {
+    const totalWeight = remaining.reduce((sum, item) => sum + item.weight, 0);
+    let roll = randomFloat() * totalWeight;
+    let chosen = 0;
+    for (let index = 0; index < remaining.length; index += 1) {
+      roll -= remaining[index].weight;
+      if (roll <= 0) { chosen = index; break; }
+    }
+    deck.push(remaining.splice(chosen, 1)[0].country);
+  }
+  return deck;
+}
+
+function buildQuestionDeck(difficulty, previousCodes = []) {
+  let deck = weightedDeck(difficulty);
+  if (previousCodes.length && deck[0]?.code === previousCodes[0]) {
+    const index = deck.findIndex((country, i) => i > 0 && country.code !== previousCodes[0]);
+    if (index > 0) [deck[0], deck[index]] = [deck[index], deck[0]];
+  }
+  const compareLength = Math.min(12, deck.length, previousCodes.length);
+  const same = deck.slice(0, compareLength).filter((country, index) => country.code === previousCodes[index]).length;
+  if (compareLength >= 5 && same > compareLength / 2) deck = [...deck.slice(4), ...deck.slice(0, 4)];
+  return deck;
+}
+
+function getNextCountry() {
+  if (!state.questionDeck.length) {
+    state.questionDeck = buildQuestionDeck(state.difficulty, state.questionHistory.slice(-10));
+    if (state.currentCountry && state.questionDeck[0]?.code === state.currentCountry.code) state.questionDeck.push(state.questionDeck.shift());
+  }
+  return state.questionDeck.shift();
+}
+
+function fillUniqueDistractors(correct, picks) {
+  const labels = new Set([optionLabel(correct, state.quizType)]);
+  const output = [];
+  for (const candidate of picks) {
+    const label = optionLabel(candidate, state.quizType);
+    if (!labels.has(label)) { labels.add(label); output.push(candidate); }
+  }
+  if (output.length < 3) {
+    for (const candidate of shuffle(GAME_COUNTRIES)) {
+      if (candidate.code === correct.code) continue;
+      const label = optionLabel(candidate, state.quizType);
+      if (labels.has(label)) continue;
+      labels.add(label); output.push(candidate);
+      if (output.length === 3) break;
+    }
+  }
+  return output.slice(0, 3);
+}
+
+function buildOptions(correct) {
+  const raw = state.quizType === 'flags'
+    ? chooseSmartDistractors(correct, GAME_COUNTRIES, state.difficulty, randomFloat)
+    : chooseCapitalDistractors(correct, GAME_COUNTRIES, state.difficulty, preferences.lang, randomFloat);
+  const distractors = fillUniqueDistractors(correct, raw);
+  const key = `${state.quizType}:${correct.code}`;
+  const previousPosition = previousRun?.positionsByKey?.[key];
+  if (!state.answerPositionPlan.length) state.answerPositionPlan = createBalancedAnswerPlan(randomFloat);
+  const plannedPosition = takeBalancedAnswerPosition(state.answerPositionPlan, previousPosition);
+  const correctPosition = Number.isInteger(plannedPosition) ? plannedPosition : Math.floor(randomFloat() * 4);
+  const options = new Array(4);
+  options[correctPosition] = correct;
+  const shuffled = shuffle(distractors);
+  let index = 0;
+  for (let position = 0; position < 4; position += 1) if (!options[position]) options[position] = shuffled[index++];
+  state.positionsByKey[key] = correctPosition;
+  return options;
+}
+
+function startGame() {
+  if (!username || !validateUsername(username)) { openUsernameModal(); return; }
+  // Do not let a result toast from the previous run cover the first answers.
+  els.toast.classList.remove('show');
+  els.achievementToast.classList.remove('show');
+  if (toastTimeout) clearTimeout(toastTimeout);
+  if (achievementToastTimeout) clearTimeout(achievementToastTimeout);
+  clearTimers();
+  const config = modeConfig[selectedMode];
+  state = {
+    quizType: selectedQuiz,
+    mode: selectedMode,
+    difficulty: selectedDifficulty,
+    total: config.total,
+    lives: config.lives ?? null,
+    score: 0, correct: 0, answered: 0, streak: 0, bestStreak: 0, xpEarned: 0,
+    questionIndex: 0, questionDeck: buildQuestionDeck(selectedDifficulty, previousRun?.questionCodes || []), questionHistory: [], currentCountry: null, options: [],
+    positionsByKey: {}, answerPositionPlan: createBalancedAnswerPlan(randomFloat), mistakes: [], locked: false, ending: false, pausedForQuit: false, quitPause: null, startedAt: performance.now(), questionEndsAt: 0,
+    overallEndsAt: config.overallSeconds ? performance.now() + config.overallSeconds * 1000 : null,
+    warningPlayed: false,
+  };
+  els.scoreValue.textContent = '0'; els.streakValue.textContent = '0'; els.gameXpValue.textContent = '0';
+  els.livesPill.hidden = selectedMode !== 'survival'; els.overallPill.hidden = selectedMode !== 'blitz';
+  updateLives();
+  switchView(els.gameView);
+  nextQuestion();
+}
+
+function shouldEndBeforeQuestion() {
+  if (!state || state.ending) return true;
+  if (state.mode === 'classic' && state.questionIndex >= state.total) return true;
+  if (state.mode === 'survival' && state.lives <= 0) return true;
+  if (state.mode === 'blitz' && performance.now() >= state.overallEndsAt) return true;
+  return false;
+}
+
+function nextQuestion() {
+  clearQuestionTimer();
+  if (shouldEndBeforeQuestion()) { endGame(); return; }
+  state.locked = false;
+  state.warningPlayed = false;
+  state.currentCountry = getNextCountry();
+  state.options = buildOptions(state.currentCountry);
+  state.questionIndex += 1;
+  state.questionHistory.push(state.currentCountry.code);
+  renderQuestion();
+  state.questionEndsAt = performance.now() + 20_000;
+  updateTimer();
+  timerId = setInterval(updateTimer, 50);
+}
+
+function flagUrl(code, width = 640) { return `https://flagcdn.com/w${width}/${code}.png`; }
+function countryFlagEmoji(code) {
+  if (code === 'xk') return '🇽🇰';
+  return code.toUpperCase().replace(/./g, (character) => String.fromCodePoint(127397 + character.charCodeAt(0)));
+}
+
+function renderQuestion() {
+  const isFlags = state.quizType === 'flags';
+  els.flagImage.hidden = !isFlags; els.flagLoader.hidden = !isFlags; els.capitalPrompt.hidden = isFlags;
+  els.promptStage.classList.remove('correct', 'wrong');
+  if (isFlags) {
+    els.flagLoader.classList.remove('hidden'); els.flagImage.classList.remove('loaded');
+    els.flagImage.alt = t('flagAlt');
+    els.flagImage.src = flagUrl(state.currentCountry.code);
+  } else {
+    els.capitalCountryName.textContent = countryName(state.currentCountry);
+    els.capitalFlag.src = flagUrl(state.currentCountry.code, 640);
+    els.capitalFlag.alt = '';
+  }
+  updateQuestionCopy();
+  renderAnswers();
+  updateGameStats();
+}
+
+function updateQuestionCopy() {
+  if (!state?.currentCountry) return;
+  els.questionNumber.textContent = `${t('question')} ${String(state.questionIndex).padStart(2, '0')}`;
+  els.questionTitle.textContent = state.quizType === 'flags'
+    ? t('whichCountry')
+    : t('capitalQuestion', { country: countryName(state.currentCountry) });
+  if (state.mode === 'classic') {
+    els.progressText.textContent = `${state.questionIndex} / ${state.total}`;
+    els.progressFill.style.width = `${Math.min(100, ((state.questionIndex - 1) / state.total) * 100)}%`;
+  } else {
+    els.progressText.textContent = `${state.correct} ${t('correct').toLocaleLowerCase(locale())}`;
+    els.progressFill.style.width = `${Math.min(100, (state.correct % 20) * 5)}%`;
+  }
+}
+
+function renderAnswers() {
+  if (!state?.options) return;
+  els.answerGrid.replaceChildren();
+  state.options.forEach((country, index) => {
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'answer-button'; button.dataset.code = country.code;
+    const number = document.createElement('span'); number.className = 'answer-index'; number.textContent = String(index + 1);
+    const label = document.createElement('span'); label.className = 'answer-label'; label.textContent = optionLabel(country, state.quizType);
+    const status = document.createElement('span'); status.className = 'answer-similarity'; status.textContent = '';
+    button.append(number, label, status); button.addEventListener('click', () => answer(country.code)); els.answerGrid.append(button);
+  });
+}
+
+function updateGameStats() {
+  if (!state) return;
+  els.scoreValue.textContent = state.score.toLocaleString(locale());
+  els.streakValue.textContent = state.streak.toLocaleString(locale());
+  els.gameXpValue.textContent = state.xpEarned.toLocaleString(locale());
+  updateLives();
+}
+
+function updateLives() {
+  if (!state || state.mode !== 'survival') return;
+  els.livesValue.textContent = `${'♥'.repeat(Math.max(0, state.lives))}${'♡'.repeat(Math.max(0, 3 - state.lives))}`;
+}
+
+function clearQuestionTimer() { if (timerId) clearInterval(timerId); timerId = null; }
+function clearAdvanceTimer({ keepCallback = false } = {}) {
+  if (nextQuestionTimeout) clearTimeout(nextQuestionTimeout);
+  nextQuestionTimeout = null;
+  nextQuestionDueAt = null;
+  if (!keepCallback) pendingAdvance = null;
+}
+function clearTimers() {
+  clearQuestionTimer();
+  clearAdvanceTimer();
+}
+function scheduleAdvance(callback, delay) {
+  clearAdvanceTimer();
+  pendingAdvance = callback;
+  const safeDelay = Math.max(0, Number(delay) || 0);
+  nextQuestionDueAt = performance.now() + safeDelay;
+  nextQuestionTimeout = setTimeout(() => {
+    const run = pendingAdvance;
+    nextQuestionTimeout = null;
+    nextQuestionDueAt = null;
+    pendingAdvance = null;
+    run?.();
+  }, safeDelay);
+}
+
+function updateTimer() {
+  if (!state || state.locked || state.ending) return;
+  const now = performance.now();
+  const questionRemaining = Math.max(0, (state.questionEndsAt - now) / 1000);
+  els.timerValue.textContent = questionRemaining.toFixed(1);
+  els.timerFill.style.width = `${Math.max(0, Math.min(100, questionRemaining / 20 * 100))}%`;
+  els.timerPanel.classList.toggle('danger', questionRemaining <= 5);
+  if (state.mode === 'blitz') {
+    const overall = Math.max(0, (state.overallEndsAt - now) / 1000);
+    els.overallValue.textContent = overall.toFixed(1);
+    if (overall <= 0) { endGame(); return; }
+  }
+  if (questionRemaining <= 0) resolveAnswer({ selectedCode: null, timedOut: true });
+}
+
+function answer(code) {
+  if (!state || state.locked || state.ending) return;
+  resolveAnswer({ selectedCode: code, timedOut: false });
+}
+
+function calculateScore(remaining, streak) {
+  const base = 100;
+  const speedBonus = Math.round(Math.max(0, Math.min(100, remaining * 5)));
+  const comboMultiplier = 1 + Math.min(1.5, Math.floor(Math.max(0, streak - 1) / 2) * .15);
+  return Math.round((base + speedBonus) * comboMultiplier * difficultyMultiplier[state.difficulty]);
+}
+
+function awardXp(amount) {
+  const safeAmount = Math.max(0, Math.round(amount));
+  if (!safeAmount) return;
+  const beforeLevel = profile.level;
+  const result = addXp(profile, safeAmount);
+  profile = result.profile;
+  if (state) state.xpEarned += safeAmount;
+  renderProfile(); renderThemes(); updateGameStats();
+  if (result.levelUps.length) {
+    playSound('levelUp');
+    showToast(t('levelUp', { level: profile.level }));
+    const newlyAvailable = THEMES.filter((theme) => theme.unlockLevel > beforeLevel && theme.unlockLevel <= profile.level);
+    newlyAvailable.forEach((theme, index) => setTimeout(() => showToast(t('themeUnlocked', { theme: themeName(theme.id) })), 900 + index * 900));
+  }
+}
+
+function unlockAchievement(id) {
+  const definition = ACHIEVEMENTS.find((item) => item.id === id);
+  if (!definition) return false;
+  const result = unlockStoredAchievement(profile, id);
+  profile = result.profile;
+  if (!result.unlocked) return false;
+  awardXp(100);
+  renderAchievements();
+  showAchievementToast(t(definition.name));
+  return true;
+}
+
+function resolveAnswer({ selectedCode, timedOut }) {
+  if (!state || state.locked || state.ending) return;
+  state.locked = true; clearQuestionTimer();
+  const remaining = Math.max(0, (state.questionEndsAt - performance.now()) / 1000);
+  const isCorrect = selectedCode === state.currentCountry.code;
+  state.answered += 1;
+  let gained = 0;
+
+  if (isCorrect) {
+    state.correct += 1; state.streak += 1; state.bestStreak = Math.max(state.bestStreak, state.streak);
+    gained = calculateScore(remaining, state.streak); state.score += gained;
+    awardXp(10);
+    unlockAchievement('first_correct');
+    if ([5, 10].includes(state.streak)) showCombo(state.streak);
+    if (state.streak === 5) unlockAchievement('combo_5');
+    if (state.streak === 10) unlockAchievement('combo_10');
+
+  } else {
+    const selectedCountry = GAME_COUNTRIES.find((country) => country.code === selectedCode) || null;
+    state.mistakes.push({ correctCountry: state.currentCountry, selectedCountry, timedOut });
+    state.streak = 0;
+    if (state.mode === 'survival') state.lives -= 1;
+  }
+
+  revealAnswer(selectedCode, timedOut, gained);
+  updateGameStats();
+  const delay = preferences.motion ? 930 : 420;
+  scheduleAdvance(() => {
+    if (!state || state.ending) return;
+    if ((state.mode === 'classic' && state.questionIndex >= state.total) || (state.mode === 'survival' && state.lives <= 0)) endGame();
+    else nextQuestion();
+  }, delay);
+}
+
+function revealAnswer(selectedCode, timedOut, gained) {
+  const correctCode = state.currentCountry.code;
+  $$('.answer-button', els.answerGrid).forEach((button) => {
+    button.disabled = true;
+    if (button.dataset.code === correctCode) button.classList.add('correct');
+    else if (button.dataset.code === selectedCode) button.classList.add('wrong');
+    else button.classList.add('dimmed');
+  });
+  const correct = selectedCode === correctCode;
+  els.promptStage.classList.add(correct ? 'correct' : 'wrong');
+  showToast(correct ? `${t('correctFeedback')} +${gained.toLocaleString(locale())}` : timedOut ? t('timeUp') : t('wrongFeedback'));
+}
+
+function showCombo(count) {
+  els.comboPop.textContent = t('comboLabel', { count });
+  els.comboPop.classList.remove('show');
+  void els.comboPop.offsetWidth;
+  els.comboPop.classList.add('show');
+}
+
+async function endGame() {
+  if (!state || state.ending) return;
+  state.ending = true; clearTimers();
+  const finalState = state;
+  const total = Math.max(1, finalState.answered);
+  const perfect = finalState.mode === 'classic' && finalState.correct === 20 && total === 20;
+  if (perfect) {
+    awardXp(50);
+    unlockAchievement(finalState.quizType === 'flags' ? 'perfect_flags' : 'perfect_capitals');
+  }
+
+  profile = updateStats(profile, {
+    correct: finalState.correct, quizType: finalState.quizType, bestStreak: finalState.bestStreak, perfect,
+  });
+  if (profile.stats.flagsCorrect >= 100) unlockAchievement('flags_100');
+  if (profile.stats.capitalsCorrect >= 100) unlockAchievement('capitals_100');
+  if (finalState.mode === 'survival' && finalState.correct >= 15) unlockAchievement('survival_15');
+  profile = saveProfile(profile);
+
+  const duration = Math.max(1, Math.round((performance.now() - finalState.startedAt) / 1000));
+  const filters = { quizType: finalState.quizType, mode: finalState.mode, difficulty: finalState.difficulty };
+  const oldBest = getPersonalBest(filters);
+  const result = {
+    ...filters,
+    score: finalState.score, correct: finalState.correct, total, duration, bestStreak: finalState.bestStreak, mistakes: finalState.mistakes,
+    xpEarned: finalState.xpEarned, perfect, positionsByKey: finalState.positionsByKey, questionCodes: finalState.questionHistory,
+  };
+  previousRun = { positionsByKey: finalState.positionsByKey, questionCodes: finalState.questionHistory };
+  lastResult = result;
+  renderResults(result);
+  state = null;
+  switchView(els.resultsView);
+
+  const saveResult = await saveScore({ playerId, username, ...result, createdAt: new Date().toISOString() });
+  updatePersonalBest();
+  if (result.score > oldBest && result.score > 0) { showToast(t('newHighScore')); }
+  else showToast(saveResult.remote ? t('scoreSaved') : t('scoreLocal'));
+}
+
+function renderResults(result) {
+  const accuracy = Math.round((result.correct / Math.max(1, result.total)) * 100);
+  const tier = accuracy >= 85 ? 'Great' : accuracy >= 55 ? 'Good' : 'Practice';
+  els.resultHeadline.textContent = t(`result${tier}`);
+  const typeSuffix = result.quizType === 'capitals' ? 'Capitals' : 'Flags';
+  els.resultSubline.textContent = t(`result${tier}${typeSuffix}`);
+  els.finalScore.textContent = result.score.toLocaleString(locale());
+  els.finalXp.textContent = result.xpEarned.toLocaleString(locale());
+  els.correctStat.textContent = result.mode === 'classic' ? `${result.correct}/${result.total}` : result.correct.toLocaleString(locale());
+  els.accuracyStat.textContent = `${accuracy}%`;
+  els.bestStreakStat.textContent = `${result.bestStreak}×`;
+  els.resultRank.textContent = rankName(getRank(profile.totalXp).id);
+  els.resultLevel.textContent = profile.level.toLocaleString(locale());
+  const requirement = xpRequired(profile.level);
+  els.resultXpText.textContent = `${profile.levelXp.toLocaleString(locale())} / ${requirement.toLocaleString(locale())} XP`;
+  els.resultXpFill.style.width = `${Math.max(0, Math.min(100, profile.levelXp / requirement * 100))}%`;
+  renderReview(result.mistakes, result.quizType);
+}
+
+function renderReview(mistakes, quizType) {
+  els.reviewList.replaceChildren();
+  const safe = Array.isArray(mistakes) ? mistakes : [];
+  els.reviewPanel.hidden = safe.length === 0; els.reviewPanel.open = false;
+  safe.slice(0, 30).forEach((mistake) => {
+    const item = document.createElement('div'); item.className = 'review-item';
+    const image = document.createElement('img'); image.src = flagUrl(mistake.correctCountry.code, 80); image.alt = ''; image.loading = 'lazy'; image.referrerPolicy = 'no-referrer';
+    const copy = document.createElement('span');
+    const title = document.createElement('strong'); title.textContent = quizType === 'capitals' ? countryName(mistake.correctCountry) : countryName(mistake.correctCountry);
+    const detail = document.createElement('small');
+    if (mistake.timedOut) detail.textContent = `${t('timedOutLabel')} · ${t('correctAnswer')}: ${optionLabel(mistake.correctCountry, quizType)}`;
+    else detail.textContent = `${t('yourAnswer')}: ${mistake.selectedCountry ? optionLabel(mistake.selectedCountry, quizType) : '—'} · ${t('correctAnswer')}: ${optionLabel(mistake.correctCountry, quizType)}`;
+    copy.append(title, detail); item.append(image, copy); els.reviewList.append(item);
+  });
+}
+
+function openLeaderboard(filters = {}) {
+  leaderboardFilters = {
+    quizType: filters.quizType || selectedQuiz,
+    mode: filters.mode || selectedMode,
+    difficulty: filters.difficulty || selectedDifficulty,
+  };
+  if (!els.leaderboardModal.open) els.leaderboardModal.showModal();
+  renderLeaderboard();
+}
+
+function updateLeaderboardTabs() {
+  $$('button[data-quiz]', els.leaderboardQuizTabs).forEach((button) => button.classList.toggle('active', button.dataset.quiz === leaderboardFilters.quizType));
+  $$('button[data-mode]', els.leaderboardModeTabs).forEach((button) => button.classList.toggle('active', button.dataset.mode === leaderboardFilters.mode));
+  $$('button[data-difficulty]', els.leaderboardDifficultyTabs).forEach((button) => button.classList.toggle('active', button.dataset.difficulty === leaderboardFilters.difficulty));
+}
+
+async function renderLeaderboard() {
+  updateLeaderboardTabs();
+  els.leaderboardStatus.textContent = t('loading'); els.leaderboardList.replaceChildren();
+  const result = await getScores(leaderboardFilters);
+  els.leaderboardStatus.textContent = ''; els.backendNote.textContent = result.remote ? t('globalLeaderboard') : t('localLeaderboard');
+  if (!result.scores.length) { const empty = document.createElement('div'); empty.className = 'empty-state'; empty.textContent = t('noScores'); els.leaderboardList.append(empty); return; }
+  result.scores.forEach((entry, index) => {
+    const row = document.createElement('div'); row.className = `leader-row${entry.username === username ? ' me' : ''}`;
+    const rank = document.createElement('span'); rank.className = 'rank-badge'; rank.textContent = String(index + 1);
+    const nameBlock = document.createElement('span'); nameBlock.className = 'leader-name';
+    const name = document.createElement('strong'); name.textContent = entry.username;
+    const detail = document.createElement('small'); detail.textContent = `${entry.correct}/${entry.total || entry.correct} · ${entry.duration} ${t('seconds')} · ${t(entry.difficulty)}`;
+    nameBlock.append(name, detail);
+    const scoreBlock = document.createElement('span'); scoreBlock.className = 'leader-score';
+    const score = document.createElement('strong'); score.textContent = entry.score.toLocaleString(locale());
+    const label = document.createElement('small'); label.textContent = t('score'); scoreBlock.append(score, label);
+    row.append(rank, nameBlock, scoreBlock); els.leaderboardList.append(row);
+  });
+}
+
+function closeDialogOnBackdrop(dialog, event) { if (event.target === dialog) dialog.close(); }
+
+function showToast(message) {
+  els.toast.textContent = message; els.toast.classList.add('show');
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => els.toast.classList.remove('show'), 2200);
+}
+
+function showAchievementToast(title) {
+  els.achievementToastTitle.textContent = title; els.achievementToast.classList.add('show');
+  if (achievementToastTimeout) clearTimeout(achievementToastTimeout);
+  achievementToastTimeout = setTimeout(() => els.achievementToast.classList.remove('show'), 3200);
+}
+
+function prepareAudio() {
+  Object.entries(SOUND_URLS).forEach(([type, url]) => {
+    const count = type === 'click' ? 4 : 1;
+    const pool = Array.from({ length: count }, () => {
+      const audio = new Audio(url);
+      audio.preload = 'auto';
+      audio.volume = type === 'click' ? .2 : .38;
+      try { audio.load(); } catch { /* optional audio */ }
+      return audio;
+    });
+    audioPools.set(type, pool);
+  });
+}
+
+function unlockSoundGesture() {
+  soundGestureUnlocked = true;
+  try {
+    audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+    if (audioContext.state === 'suspended') audioContext.resume();
+  } catch { /* optional */ }
+}
+
+function synthSound(type) {
+  if (!preferences.sound || !soundGestureUnlocked) return;
+  try {
+    audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+    const now = audioContext.currentTime;
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    oscillator.connect(gain); gain.connect(audioContext.destination);
+    const map = { click: [245, 320, .045], levelUp: [420, 980, .34] };
+    const [start, end, duration] = map[type] || map.click;
+    oscillator.type = type === 'click' ? 'square' : 'sine';
+    oscillator.frequency.setValueAtTime(start, now);
+    oscillator.frequency.exponentialRampToValueAtTime(Math.max(40, end), now + duration);
+    gain.gain.setValueAtTime(type === 'click' ? .018 : .05, now);
+    gain.gain.exponentialRampToValueAtTime(.001, now + duration);
+    oscillator.start(now); oscillator.stop(now + duration + .01);
+  } catch { /* no audio support */ }
+}
+
+function playSound(type) {
+  if (!preferences.sound || !soundGestureUnlocked) return;
+  const pool = audioPools.get(type) || [];
+  const ready = pool.find((audio) => audio.paused && audio.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA);
+  if (!ready) { synthSound(type); return; }
+  try {
+    ready.currentTime = 0;
+    const result = ready.play();
+    if (result?.catch) result.catch(() => synthSound(type));
+  } catch { synthSound(type); }
+}
+
+function pauseForQuit() {
+  if (!state || state.ending || els.quitModal.open) return;
+  const now = performance.now();
+  state.quitPause = {
+    questionRemainingMs: Math.max(0, state.questionEndsAt - now),
+    overallRemainingMs: state.overallEndsAt ? Math.max(0, state.overallEndsAt - now) : null,
+    advanceRemainingMs: nextQuestionDueAt ? Math.max(0, nextQuestionDueAt - now) : null,
+  };
+  state.pausedForQuit = true;
+  clearQuestionTimer();
+  if (nextQuestionTimeout) clearAdvanceTimer({ keepCallback: true });
+  els.quitModal.showModal();
+  setTimeout(() => els.cancelQuitButton.focus(), 30);
+}
+
+function resumeAfterQuitCancel() {
+  if (!state) { if (els.quitModal.open) els.quitModal.close(); return; }
+  const pause = state.quitPause || {};
+  const now = performance.now();
+  state.pausedForQuit = false;
+  state.quitPause = null;
+  if (els.quitModal.open) els.quitModal.close();
+  if (state.ending) return;
+  if (state.locked && pendingAdvance) {
+    scheduleAdvance(pendingAdvance, pause.advanceRemainingMs ?? 0);
+    return;
+  }
+  state.questionEndsAt = now + Math.max(0, pause.questionRemainingMs ?? 20_000);
+  if (state.mode === 'blitz' && pause.overallRemainingMs !== null) state.overallEndsAt = now + Math.max(0, pause.overallRemainingMs);
+  updateTimer();
+  timerId = setInterval(updateTimer, 50);
+}
+
+function goHome() {
+  if (els.quitModal.open) els.quitModal.close();
+  clearTimers();
+  state = null;
+  switchView(els.homeView);
+  updatePersonalBest();
+}
+
+function requestQuit() {
+  if (!state) { goHome(); return; }
+  pauseForQuit();
+}
+
+els.flagImage.addEventListener('load', () => { els.flagLoader.classList.add('hidden'); els.flagImage.classList.add('loaded'); });
+els.flagImage.addEventListener('error', () => {
+  els.flagLoader.classList.add('hidden');
+  const emoji = countryFlagEmoji(state?.currentCountry?.code || '');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420"><rect width="100%" height="100%" rx="20" fill="#211606"/><text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-size="180">${emoji || '🏳️'}</text></svg>`;
+  els.flagImage.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+});
+els.capitalFlag.addEventListener('error', () => { els.capitalFlag.hidden = true; });
+els.capitalFlag.addEventListener('load', () => { els.capitalFlag.hidden = false; });
+
+document.addEventListener('pointerdown', (event) => {
+  unlockSoundGesture();
+  if (event.target.closest('.sound-click')) playSound('click');
+}, { passive: true });
+els.languageButton.addEventListener('click', () => setLanguage(preferences.lang === 'tr' ? 'en' : 'tr'));
+els.homeButton.addEventListener('click', () => state ? requestQuit() : goHome());
+els.userButton.addEventListener('click', openUsernameModal); els.editUsernameButton.addEventListener('click', openUsernameModal);
+els.quizTypeControl.addEventListener('click', (event) => { const button = event.target.closest('[data-quiz]'); if (button) selectQuiz(button.dataset.quiz); });
+els.difficultyControl.addEventListener('click', (event) => { const button = event.target.closest('[data-difficulty]'); if (button) selectDifficulty(button.dataset.difficulty); });
+els.modeGrid.addEventListener('click', (event) => { const button = event.target.closest('[data-mode]'); if (button) selectMode(button.dataset.mode); });
+els.startButton.addEventListener('click', startGame); els.playAgainButton.addEventListener('click', startGame); els.homeResultButton.addEventListener('click', goHome); els.quitButton.addEventListener('click', requestQuit);
+els.leaderboardButton.addEventListener('click', () => openLeaderboard()); els.resultLeaderboardButton.addEventListener('click', () => openLeaderboard(lastResult || {}));
+els.achievementsButton.addEventListener('click', () => { renderAchievements(); if (!els.achievementsModal.open) els.achievementsModal.showModal(); });
+els.settingsButton.addEventListener('click', () => { renderThemes(); if (!els.settingsModal.open) els.settingsModal.showModal(); });
+
+els.usernameForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!validateUsername(els.usernameInput.value)) { els.usernameNote.textContent = t('invalidUsername'); els.usernameNote.classList.add('error'); return; }
+  setUser(els.usernameInput.value); els.usernameModal.close();
+});
+els.usernameModal.addEventListener('cancel', (event) => { if (!username) event.preventDefault(); });
+els.usernameModal.addEventListener('click', (event) => { if (event.target === els.usernameModal && username) els.usernameModal.close(); });
+
+[
+  [els.leaderboardModal, els.closeLeaderboardButton], [els.settingsModal, els.closeSettingsButton], [els.achievementsModal, els.closeAchievementsButton],
+].forEach(([dialog, close]) => { close.addEventListener('click', () => dialog.close()); dialog.addEventListener('click', (event) => closeDialogOnBackdrop(dialog, event)); });
+
+els.cancelQuitButton.addEventListener('click', resumeAfterQuitCancel);
+els.confirmQuitButton.addEventListener('click', goHome);
+els.quitModal.addEventListener('cancel', (event) => { event.preventDefault(); resumeAfterQuitCancel(); });
+els.quitModal.addEventListener('click', (event) => { if (event.target === els.quitModal) resumeAfterQuitCancel(); });
+
+els.leaderboardQuizTabs.addEventListener('click', (event) => { const button = event.target.closest('[data-quiz]'); if (button) { leaderboardFilters.quizType = button.dataset.quiz; renderLeaderboard(); } });
+els.leaderboardModeTabs.addEventListener('click', (event) => { const button = event.target.closest('[data-mode]'); if (button) { leaderboardFilters.mode = button.dataset.mode; renderLeaderboard(); } });
+els.leaderboardDifficultyTabs.addEventListener('click', (event) => { const button = event.target.closest('[data-difficulty]'); if (button) { leaderboardFilters.difficulty = button.dataset.difficulty; renderLeaderboard(); } });
+
+els.soundToggle.addEventListener('change', () => { preferences.sound = els.soundToggle.checked; storageSet('flagcraft_sound', String(preferences.sound)); if (preferences.sound) { unlockSoundGesture(); playSound('click'); } });
+els.motionToggle.addEventListener('change', () => { preferences.motion = els.motionToggle.checked; storageSet('flagcraft_motion', String(preferences.motion)); els.body.classList.toggle('no-motion', !preferences.motion); });
+els.themeGrid.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-theme]'); if (!button || button.disabled) return;
+  const result = setTheme(profile, button.dataset.theme); profile = result.profile; if (result.changed) { renderProfile(); renderThemes(); }
+});
+els.resetScoresButton.addEventListener('click', () => { if (!window.confirm(t('scoresResetConfirm'))) return; clearLocalScores(); updatePersonalBest(); showToast(t('scoresResetDone')); els.settingsModal.close(); });
+els.resetProgressButton.addEventListener('click', () => { if (!window.confirm(t('progressResetConfirm'))) return; profile = resetProfile(); renderProfile(); renderThemes(); renderAchievements(); showToast(t('progressResetDone')); els.settingsModal.close(); });
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && state && !state.ending && els.gameView.classList.contains('active') && !els.quitModal.open) {
+    event.preventDefault();
+    requestQuit();
+    return;
+  }
+  if (!state || state.locked || state.ending || state.pausedForQuit || !els.gameView.classList.contains('active')) return;
+  const index = Number(event.key) - 1;
+  if (index >= 0 && index < state.options.length) answer(state.options[index].code);
+});
+
+function initialize() {
+  prepareAudio();
+  $$('.asset-golden-apple, .asset-diamond').forEach((image) => image.addEventListener('error', () => { image.src = image.dataset.fallback || './favicon.svg'; }, { once: true }));
+  els.soundToggle.checked = preferences.sound; els.motionToggle.checked = preferences.motion; els.body.classList.toggle('no-motion', !preferences.motion);
+  selectQuiz(selectedQuiz); selectMode(selectedMode); selectDifficulty(selectedDifficulty); setLanguage(preferences.lang);
+  renderProfile(); renderThemes(); renderAchievements();
+  if (username && validateUsername(username)) setUser(username); else { username = ''; setTimeout(openUsernameModal, 180); }
+}
+
+initialize();
+
+
+</script>
+</body>
+</html>

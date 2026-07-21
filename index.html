@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#171006" />
+  <meta name="description" content="FlagCraft — bayrak ve başkent bilme oyunu." data-i18n-content="appDescription" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://flagcdn.com https://minecraft.wiki; media-src 'self' https://www.myinstants.com; connect-src 'self' https://*.supabase.co; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <title>FlagCraft</title>
+  <link rel="icon" href="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" type="image/png" />
+  <link rel="apple-touch-icon" href="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-theme="golden">
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="pixel-grid"></div>
+
+  <header class="topbar">
+    <button class="brand sound-click" id="homeButton" type="button" data-i18n-aria="homeAria" aria-label="Ana sayfa">
+      <span class="brand-mark" aria-hidden="true"><img class="golden-apple asset-golden-apple" src="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" data-fallback="./favicon.svg" alt="" referrerpolicy="no-referrer" /></span>
+      <span class="brand-name">Flag<span>Craft</span></span>
+    </button>
+
+    <div class="top-actions">
+      <button class="user-chip sound-click" id="userButton" type="button">
+        <span class="user-dot"></span>
+        <span id="headerUsername">Player</span>
+        <small id="headerLevel">Lv. 1</small>
+      </button>
+      <button class="text-toggle sound-click" id="languageButton" type="button" data-i18n-aria="languageAria" aria-label="Dili değiştir">
+        <span id="languageLabel">Türkçe</span>
+      </button>
+      <button class="icon-button sound-click" id="settingsButton" type="button" data-i18n-aria="settingsAria" aria-label="Ayarlar">⚙</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="view active" id="homeView">
+      <div class="hero-copy">
+        <div class="eyebrow" data-i18n="eyebrow">BİLGİNİ İŞLE · SERİNİ BÜYÜT</div>
+        <h1 data-i18n-html="heroTitle">Dünyayı tanı.<br><span>Efsaneni inşa et.</span></h1>
+        <p data-i18n="heroSubtitle">Bayrakları ve başkentleri çöz, XP kazan, temaları aç ve FlagCraft sıralamasında yüksel.</p>
+      </div>
+
+      <div class="home-grid">
+        <section class="play-panel glass-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="section-kicker" data-i18n="buildGame">OYUNUNU KUR</span>
+              <h2 data-i18n="chooseChallenge">Meydan okumanı seç.</h2>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label" data-i18n="quizType">Oyun türü</span>
+            <div class="quiz-type-grid" id="quizTypeControl" role="group" data-i18n-aria="quizTypeAria" aria-label="Oyun türü">
+              <button class="quiz-type-button selected sound-click" data-quiz="flags" type="button">
+                <span class="quiz-symbol">⚑</span>
+                <span><strong data-i18n="flags">Bayraklar</strong><small data-i18n="flagsDesc">Bayrağı gör, ülkeyi bul</small></span>
+                <b>✓</b>
+              </button>
+              <button class="quiz-type-button sound-click" data-quiz="capitals" type="button">
+                <span class="quiz-symbol">⌂</span>
+                <span><strong data-i18n="capitals">Başkentler</strong><small data-i18n="capitalsDesc">Ülkeyi gör, başkenti bul</small></span>
+                <b>✓</b>
+              </button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label" data-i18n="difficulty">Zorluk</span>
+            <div class="segmented-control" id="difficultyControl" role="group" data-i18n-aria="difficultyAria" aria-label="Zorluk">
+              <button class="difficulty-button selected sound-click" data-difficulty="easy" type="button" data-i18n="easy">Kolay</button>
+              <button class="difficulty-button sound-click" data-difficulty="hard" type="button" data-i18n="hard">Zor</button>
+            </div>
+            <p class="difficulty-description" id="difficultyDescription"></p>
+          </div>
+
+          <div class="control-block">
+            <span class="control-label" data-i18n="gameMode">Oyun modu</span>
+            <div class="mode-grid" id="modeGrid">
+              <button class="mode-card selected sound-click" data-mode="classic" type="button">
+                <span class="mode-icon">20</span>
+                <span class="mode-copy"><strong data-i18n="classic">Klasik</strong><small data-i18n="classicDesc">20 soru · soru başına 20 saniye</small></span>
+                <span class="mode-check">✓</span>
+              </button>
+              <button class="mode-card sound-click" data-mode="survival" type="button">
+                <span class="mode-icon">♥</span>
+                <span class="mode-copy"><strong data-i18n="survival">Hayatta Kalma</strong><small data-i18n="survivalDesc">3 can · dayanabildiğin kadar</small></span>
+                <span class="mode-check">✓</span>
+              </button>
+              <button class="mode-card sound-click" data-mode="blitz" type="button">
+                <span class="mode-icon">60</span>
+                <span class="mode-copy"><strong data-i18n="blitz">Zamana Karşı</strong><small data-i18n="blitzDesc">60 saniyede en yüksek skor</small></span>
+                <span class="mode-check">✓</span>
+              </button>
+            </div>
+          </div>
+
+          <button class="primary-button sound-click" id="startButton" type="button">
+            <span data-i18n="startGame">Oyuna Başla</span><span aria-hidden="true">→</span>
+          </button>
+          <p class="inline-credit">Made and developed by <strong>“whoisyuripa”</strong></p>
+        </section>
+
+        <aside class="side-column">
+          <section class="mini-card glass-panel profile-card">
+            <div class="avatar" id="avatarInitial">P</div>
+            <div class="profile-copy">
+              <small data-i18n="playingAs">Oyuncu</small>
+              <strong id="profileUsername">Player</strong>
+              <span class="rank-chip" id="rankChip">Bronze</span>
+            </div>
+            <button class="small-link sound-click" id="editUsernameButton" type="button" data-i18n="edit">Düzenle</button>
+          </section>
+
+          <section class="mini-card glass-panel xp-card">
+            <div class="xp-heading">
+              <span><small data-i18n="level">Seviye</small><strong id="levelValue">1</strong></span>
+              <span><small data-i18n="totalXp">Toplam XP</small><strong id="totalXpValue">0</strong></span>
+            </div>
+            <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+            <p id="xpProgressText">0 / 1125 XP</p>
+          </section>
+
+          <section class="mini-card glass-panel best-card">
+            <div><small data-i18n="personalBest">Kişisel Rekor</small><strong id="personalBest">0</strong></div>
+            <span class="trophy">◆</span>
+          </section>
+
+          <button class="leaderboard-card glass-panel sound-click" id="leaderboardButton" type="button">
+            <div><span class="section-kicker" data-i18n="leaderboardLabel">LİDERLİK TABLOSU</span><strong data-i18n="seeTopPlayers">En iyi oyuncuları gör</strong></div>
+            <span class="arrow-circle">↗</span>
+          </button>
+
+          <button class="smart-card glass-panel sound-click" id="achievementsButton" type="button">
+            <span class="smart-icon smart-icon-diamond" aria-hidden="true"><img class="asset-diamond" src="https://minecraft.wiki/images/Diamond_JE3_BE3.png?99d00&amp;format=original" data-fallback="./diamond-fallback.svg" alt="" referrerpolicy="no-referrer" /></span>
+            <div><strong data-i18n="achievements">Başarımlar</strong><small id="achievementSummary">0 / 8</small></div>
+            <span class="arrow-circle">→</span>
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view game-view" id="gameView" aria-live="polite">
+      <div class="game-topline">
+        <button class="back-button sound-click" id="quitButton" type="button">← <span data-i18n="quit">Çık</span></button>
+        <div class="game-stats">
+          <div class="stat-pill"><small data-i18n="score">Puan</small><strong id="scoreValue">0</strong></div>
+          <div class="stat-pill streak-pill"><small data-i18n="combo">Kombo</small><strong><span id="streakValue">0</span>×</strong></div>
+          <div class="stat-pill xp-pill"><small data-i18n="earnedXp">XP</small><strong>+<span id="gameXpValue">0</span></strong></div>
+          <div class="stat-pill" id="livesPill"><small data-i18n="lives">Can</small><strong id="livesValue">♥♥♥</strong></div>
+          <div class="stat-pill" id="overallPill"><small data-i18n="overallTime">Toplam</small><strong id="overallValue">60</strong></div>
+        </div>
+      </div>
+
+      <div class="question-progress">
+        <span id="progressText">1 / 20</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <section class="timer-panel" id="timerPanel">
+        <div class="timer-copy">
+          <span data-i18n="timeLeft">KALAN SÜRE</span>
+          <strong><span id="timerValue">20.0</span><small data-i18n="secondsShort">sn</small></strong>
+        </div>
+        <div class="timer-track" aria-hidden="true"><div class="timer-fill" id="timerFill"></div></div>
+      </section>
+
+      <section class="question-card glass-panel">
+        <div class="prompt-stage flag-prompt" id="promptStage">
+          <div class="flag-loader" id="flagLoader"></div>
+          <img id="flagImage" alt="" draggable="false" referrerpolicy="no-referrer" />
+          <div class="capital-prompt" id="capitalPrompt" hidden>
+            <img id="capitalFlag" alt="" draggable="false" referrerpolicy="no-referrer" />
+            <small data-i18n="findCapital">BAŞKENTİ BUL</small>
+            <strong id="capitalCountryName">Türkiye</strong>
+          </div>
+          <div class="answer-flash" id="answerFlash"></div>
+          <div class="combo-pop" id="comboPop" aria-live="assertive"></div>
+        </div>
+
+        <div class="question-copy">
+          <span class="question-number" id="questionNumber">SORU 01</span>
+          <h2 id="questionTitle">Bu bayrak hangi ülkeye ait?</h2>
+        </div>
+
+        <div class="answer-grid" id="answerGrid"></div>
+        <div class="keyboard-hint" data-i18n="keyboardHint">1–4 tuşlarıyla da cevaplayabilirsin.</div>
+      </section>
+    </section>
+
+    <section class="view results-view" id="resultsView">
+      <section class="results-card glass-panel">
+        <div class="result-orbit"><img class="golden-apple asset-golden-apple" src="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" data-fallback="./favicon.svg" alt="" referrerpolicy="no-referrer" /></div>
+        <span class="section-kicker" data-i18n="gameComplete">OYUN TAMAMLANDI</span>
+        <h1 id="resultHeadline">Efsane seri!</h1>
+        <p id="resultSubline"></p>
+
+        <div class="final-score-block"><small data-i18n="totalScore">TOPLAM PUAN</small><strong id="finalScore">0</strong></div>
+        <div class="xp-earned-result"><span data-i18n="xpEarnedResult">Bu tur kazanılan XP</span><strong>+<span id="finalXp">0</span> XP</strong></div>
+
+        <div class="result-stats">
+          <div><small data-i18n="correct">Doğru</small><strong id="correctStat">0/20</strong></div>
+          <div><small data-i18n="accuracy">Başarı</small><strong id="accuracyStat">0%</strong></div>
+          <div><small data-i18n="bestCombo">En İyi Kombo</small><strong id="bestStreakStat">0×</strong></div>
+          <div><small data-i18n="rank">Rank</small><strong id="resultRank">Bronze</strong></div>
+        </div>
+
+        <div class="result-level-card">
+          <div><span><small data-i18n="level">Seviye</small><strong id="resultLevel">1</strong></span><span id="resultXpText">0 / 1125 XP</span></div>
+          <div class="xp-track"><div class="xp-fill" id="resultXpFill"></div></div>
+        </div>
+
+        <details class="review-panel" id="reviewPanel">
+          <summary data-i18n="reviewMistakes">Kaçırdıklarını incele</summary>
+          <div class="review-list" id="reviewList"></div>
+        </details>
+
+        <div class="result-actions">
+          <button class="primary-button sound-click" id="playAgainButton" type="button"><span data-i18n="playAgain">Tekrar Oyna</span><span>↻</span></button>
+          <button class="secondary-button sound-click" id="homeResultButton" type="button" data-i18n="mainMenu">Ana Menü</button>
+          <button class="secondary-button sound-click" id="resultLeaderboardButton" type="button" data-i18n="leaderboard">Liderlik Tablosu</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="modal username-modal" id="usernameModal">
+    <form method="dialog" class="modal-card glass-panel" id="usernameForm">
+      <div class="modal-logo"><img src="./favicon.svg" alt="" /></div>
+      <span class="section-kicker" data-i18n="welcome">FLAGCRAFT'A HOŞ GELDİN</span>
+      <h2 data-i18n="chooseUsername">Oyuncu adını seç.</h2>
+      <p data-i18n="usernameInfo">Skorun bu isimle liderlik tablosuna kaydedilecek.</p>
+      <label class="input-label" for="usernameInput" data-i18n="username">Kullanıcı adı</label>
+      <input id="usernameInput" name="username" maxlength="16" minlength="2" autocomplete="nickname" placeholder="whoisyuripa" required />
+      <div class="input-note" id="usernameNote" data-i18n="usernameRules">2–16 karakter; harf, rakam, boşluk, _ ve - kullanabilirsin.</div>
+      <button class="primary-button sound-click" value="default" type="submit"><span data-i18n="continue">Devam Et</span><span>→</span></button>
+      <p class="modal-credit">Made and developed by <strong>“whoisyuripa”</strong></p>
+    </form>
+  </dialog>
+
+  <dialog class="modal leaderboard-modal" id="leaderboardModal">
+    <section class="modal-card leaderboard-panel glass-panel">
+      <div class="modal-header">
+        <div><span class="section-kicker" data-i18n="worldRanking">DÜNYA SIRALAMASI</span><h2 data-i18n="leaderboard">Liderlik Tablosu</h2></div>
+        <button class="close-button sound-click" id="closeLeaderboardButton" type="button" data-i18n-aria="closeAria" aria-label="Kapat">×</button>
+      </div>
+      <div class="filter-stack">
+        <div class="leaderboard-tabs" id="leaderboardQuizTabs">
+          <button class="active sound-click" data-quiz="flags" type="button" data-i18n="flags">Bayraklar</button>
+          <button class="sound-click" data-quiz="capitals" type="button" data-i18n="capitals">Başkentler</button>
+        </div>
+        <div class="leaderboard-tabs compact" id="leaderboardModeTabs">
+          <button class="active sound-click" data-mode="classic" type="button" data-i18n="classic">Klasik</button>
+          <button class="sound-click" data-mode="survival" type="button" data-i18n="survival">Hayatta Kalma</button>
+          <button class="sound-click" data-mode="blitz" type="button" data-i18n="blitz">Zamana Karşı</button>
+        </div>
+        <div class="leaderboard-tabs difficulty-tabs" id="leaderboardDifficultyTabs">
+          <button class="active sound-click" data-difficulty="easy" type="button" data-i18n="easy">Kolay</button>
+          <button class="sound-click" data-difficulty="hard" type="button" data-i18n="hard">Zor</button>
+        </div>
+      </div>
+      <div class="leaderboard-status" id="leaderboardStatus"></div>
+      <div class="leaderboard-list" id="leaderboardList"></div>
+      <p class="backend-note" id="backendNote" data-i18n="localLeaderboard">Şu anda bu cihazdaki skorlar gösteriliyor.</p>
+    </section>
+  </dialog>
+
+  <dialog class="modal settings-modal" id="settingsModal">
+    <section class="modal-card settings-panel glass-panel">
+      <div class="modal-header">
+        <div><span class="section-kicker" data-i18n="preferences">TERCİHLER</span><h2 data-i18n="settings">Ayarlar</h2></div>
+        <button class="close-button sound-click" id="closeSettingsButton" type="button" data-i18n-aria="closeAria" aria-label="Kapat">×</button>
+      </div>
+      <label class="setting-row">
+        <span><strong data-i18n="sound">Ses efektleri</strong><small data-i18n="soundDesc">Sade arayüz tıklamaları ve seviye atlama sesi</small></span>
+        <input class="switch-input" id="soundToggle" type="checkbox" checked /><span class="switch-ui"></span>
+      </label>
+      <label class="setting-row">
+        <span><strong data-i18n="motion">Animasyonlar</strong><small data-i18n="motionDesc">Hafif geçişler ve geri bildirimler</small></span>
+        <input class="switch-input" id="motionToggle" type="checkbox" checked /><span class="switch-ui"></span>
+      </label>
+
+      <div class="theme-section">
+        <div class="theme-heading"><strong data-i18n="themes">Temalar</strong><small data-i18n="themesDesc">Seviye atlayarak yeni renk paletlerini aç.</small></div>
+        <div class="theme-grid" id="themeGrid"></div>
+      </div>
+
+      <div class="settings-danger-zone">
+        <button class="danger-link sound-click" id="resetScoresButton" type="button" data-i18n="resetScores">Yerel skorları sıfırla</button>
+        <button class="danger-link sound-click" id="resetProgressButton" type="button" data-i18n="resetProgress">XP ve ilerlemeyi sıfırla</button>
+      </div>
+      <p class="legal-note" data-i18n="fanDisclaimer">FlagCraft bağımsız bir hayran projesidir; Mojang veya Microsoft ile bağlantılı değildir.</p>
+    </section>
+  </dialog>
+
+
+  <dialog class="modal quit-modal" id="quitModal">
+    <section class="modal-card quit-panel glass-panel">
+      <div class="quit-symbol" aria-hidden="true">↩</div>
+      <span class="section-kicker" data-i18n="leaveGameLabel">OYUNDAN ÇIK</span>
+      <h2 data-i18n="quitGameTitle">Ana menüye dönmek istiyor musun?</h2>
+      <p data-i18n="quitGameBody">Bu turdaki puanın ve ilerlemen kaydedilmeyecek.</p>
+      <div class="quit-actions">
+        <button class="secondary-button sound-click" id="cancelQuitButton" type="button" data-i18n="stayInGame">Oyuna Devam Et</button>
+        <button class="danger-button sound-click" id="confirmQuitButton" type="button" data-i18n="leaveGame">Oyundan Çık</button>
+      </div>
+    </section>
+  </dialog>
+
+  <dialog class="modal achievements-modal" id="achievementsModal">
+    <section class="modal-card achievements-panel glass-panel">
+      <div class="modal-header">
+        <div><span class="section-kicker" data-i18n="progress">İLERLEME</span><h2 data-i18n="achievements">Başarımlar</h2></div>
+        <button class="close-button sound-click" id="closeAchievementsButton" type="button" data-i18n-aria="closeAria" aria-label="Kapat">×</button>
+      </div>
+      <div class="achievement-list" id="achievementList"></div>
+    </section>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <div class="achievement-toast" id="achievementToast" role="status">
+    <span>✦</span><div><small data-i18n="achievementUnlocked">BAŞARIM AÇILDI</small><strong id="achievementToastTitle"></strong></div><b>+100 XP</b>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
