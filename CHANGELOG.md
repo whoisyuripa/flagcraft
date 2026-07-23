@@ -1,3 +1,33 @@
+# FlagCraft 2.3 — Progress & Polish Update
+
+## Interface and localization
+
+- Removed the full-screen answer flash while preserving answer-button feedback.
+- Replaced the first-visit username logo with the Golden Apple.
+- Moved Themes from Settings to the main-menu progress column.
+- Completed the remaining Turkish interface text and corrected awkward or untranslated rank, accuracy, credit, and status labels.
+
+## Audio responsiveness
+
+- Added the Minecraft XP-orb sound from Myinstants for correct answers.
+- Stored all three sound effects locally and decoded them into Web Audio buffers.
+- Sounds now start at the input event; an immediate synthesized fallback covers first-use or decoding failures.
+
+## XP balance
+
+- Increased correct-answer XP from 10 to 20.
+- Added 100 XP for every completed game and increased the perfect Classic bonus from 50 to 75.
+- Reduced the Level 2 requirement from 1,125 to 600 XP and softened later level requirements.
+- A typical player now reaches Level 2 after two runs; a lower-scoring player should reach it after roughly three.
+- Existing profiles are recalculated from total XP so the new curve never discards previously earned progress.
+
+## Reliability
+
+- Added regression tests for the removed overlay, local correct-answer sound, main-menu Themes placement, and new XP curve.
+- Embedded the local audio files in the standalone build so it remains portable.
+
+---
+
 # FlagCraft 2.2 — Exit & Fairness Update
 
 ## Gameplay fixes

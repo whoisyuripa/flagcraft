@@ -49,26 +49,26 @@ const els = {
 const i18n = {
   tr: {
     appDescription: 'FlagCraft — bayrak ve başkent bilme oyunu.', homeAria: 'Ana sayfa', languageAria: 'Dili değiştir', settingsAria: 'Ayarlar', closeAria: 'Kapat', quizTypeAria: 'Oyun türü', difficultyAria: 'Zorluk',
-    eyebrow: 'BİLGİNİ İŞLE · SERİNİ BÜYÜT', heroTitle: 'Dünyayı tanı.<br><span>Efsaneni inşa et.</span>', heroSubtitle: 'Bayrakları ve başkentleri çöz, XP kazan, temaları aç ve FlagCraft sıralamasında yüksel.',
-    buildGame: 'OYUNUNU KUR', chooseChallenge: 'Meydan okumanı seç.', quizType: 'Oyun türü', flags: 'Bayraklar', flagsDesc: 'Bayrağı gör, ülkeyi bul', capitals: 'Başkentler', capitalsDesc: 'Ülkeyi gör, başkenti bul',
+    eyebrow: 'BİLGİNİ GÖSTER · SERİNİ BÜYÜT', heroTitle: 'Dünyayı tanı.<br><span>Efsaneni inşa et.</span>', heroSubtitle: 'Bayrakları ve başkentleri bil, XP kazan, temaları aç ve FlagCraft sıralamasında yüksel.',
+    buildGame: 'OYUNUNU KUR', chooseChallenge: 'Mücadele biçimini seç.', quizType: 'Oyun türü', flags: 'Bayraklar', flagsDesc: 'Bayrağı gör, ülkeyi bul', capitals: 'Başkentler', capitalsDesc: 'Ülkeyi gör, başkenti bul',
     difficulty: 'Zorluk', easy: 'Kolay', hard: 'Zor',
     flagsEasyDesc: 'Daha bilinen ülkeler ve rahat ayırt edilen seçenekler.', flagsHardDesc: 'Nadir ülkeler ve birbirine çok benzeyen bayraklar.',
     capitalsEasyDesc: 'Bilinen ülkeler ve birbirinden uzak başkent seçenekleri.', capitalsHardDesc: 'Nadir ülkeler ve adı ya da bölgesi yakın güçlü çeldiriciler.',
     gameMode: 'Oyun modu', classic: 'Klasik', classicDesc: '20 soru · soru başına 20 saniye', survival: 'Hayatta Kalma', survivalDesc: '3 can · dayanabildiğin kadar', blitz: 'Zamana Karşı', blitzDesc: '60 saniyede en yüksek skor',
-    startGame: 'Oyuna Başla', playingAs: 'Oyuncu', edit: 'Düzenle', level: 'Seviye', totalXp: 'Toplam XP', personalBest: 'Kişisel Rekor', leaderboardLabel: 'LİDERLİK TABLOSU', seeTopPlayers: 'En iyi oyuncuları gör', achievements: 'Başarımlar',
+    startGame: 'Oyuna Başla', playingAs: 'Oyuncu adı', edit: 'Düzenle', level: 'Seviye', totalXp: 'Toplam XP', personalBest: 'Kişisel Rekor', leaderboardLabel: 'LİDERLİK TABLOSU', seeTopPlayers: 'En iyi oyuncuları gör', achievements: 'Başarımlar',
     quit: 'Çık', leaveGameLabel: 'OYUNDAN ÇIK', quitGameTitle: 'Ana menüye dönmek istiyor musun?', quitGameBody: 'Bu turdaki puanın ve ilerlemen kaydedilmeyecek.', stayInGame: 'Oyuna Devam Et', leaveGame: 'Oyundan Çık', score: 'Puan', combo: 'Kombo', earnedXp: 'XP', lives: 'Can', overallTime: 'Toplam', timeLeft: 'KALAN SÜRE', secondsShort: 'sn', findCapital: 'BAŞKENTİ BUL', keyboardHint: '1–4 tuşlarıyla da cevaplayabilirsin.',
     whichCountry: 'Bu bayrak hangi ülkeye ait?', capitalQuestion: '{country} ülkesinin başkenti hangisi?', question: 'SORU',
     correctFeedback: 'Doğru!', wrongFeedback: 'Yanlış!', timeUp: 'Süre doldu!', comboLabel: '{count}× KOMBO',
-    gameComplete: 'OYUN TAMAMLANDI', totalScore: 'TOPLAM PUAN', xpEarnedResult: 'Bu tur kazanılan XP', correct: 'Doğru', accuracy: 'Başarı', bestCombo: 'En İyi Kombo', rank: 'Rütbe', reviewMistakes: 'Kaçırdıklarını incele', playAgain: 'Tekrar Oyna', mainMenu: 'Ana Menü', leaderboard: 'Liderlik Tablosu',
+    gameComplete: 'OYUN TAMAMLANDI', totalScore: 'TOPLAM PUAN', xpEarnedResult: 'Bu tur kazanılan XP', correct: 'Doğru', accuracy: 'Doğruluk', bestCombo: 'En İyi Kombo', rank: 'Rütbe', reviewMistakes: 'Yanlışlarını incele', playAgain: 'Tekrar Oyna', mainMenu: 'Ana Menü', leaderboard: 'Liderlik Tablosu',
     resultGreat: 'Efsane seri!', resultGood: 'Sağlam tur!', resultPractice: 'Bir tur daha?', resultGreatFlags: 'Bayrak bilgisini gerçekten iyi işlemişsin.', resultGoodFlags: 'Dünya haritasında zirveye yaklaşıyorsun.', resultPracticeFlags: 'Nadir bayraklar zorlayabilir; sonraki tur senin.', resultGreatCapitals: 'Başkent bilgisinde haritayı domine ettin.', resultGoodCapitals: 'Başkent ustalığına çok az kaldı.', resultPracticeCapitals: 'Bir tur daha ve şehirler yerine oturacak.',
     yourAnswer: 'Senin cevabın', correctAnswer: 'Doğru cevap', timedOutLabel: 'Süre doldu',
     welcome: "FLAGCRAFT'A HOŞ GELDİN", chooseUsername: 'Oyuncu adını seç.', usernameInfo: 'Skorun bu isimle liderlik tablosuna kaydedilecek.', username: 'Kullanıcı adı', usernameRules: '2–16 karakter; harf, rakam, boşluk, _ ve - kullanabilirsin.', continue: 'Devam Et', invalidUsername: '2–16 karakterlik geçerli bir kullanıcı adı gir.',
-    worldRanking: 'DÜNYA SIRALAMASI', localLeaderboard: 'Şu anda bu cihazdaki skorlar gösteriliyor.', globalLeaderboard: 'Global skorlar gösteriliyor.', loading: 'Skorlar yükleniyor…', noScores: 'Henüz skor yok. İlk sırayı sen alabilirsin.', questions: 'soru', seconds: 'sn',
-    preferences: 'TERCİHLER', settings: 'Ayarlar', sound: 'Ses efektleri', soundDesc: 'Sade arayüz tıklamaları ve seviye atlama sesi', motion: 'Animasyonlar', motionDesc: 'Hafif geçişler ve geri bildirimler', themes: 'Temalar', themesDesc: 'Seviye atlayarak yeni renk paletlerini aç.', unlockAt: 'Seviye {level} ile açılır', unlocked: 'Açık', selected: 'Seçili', resetScores: 'Yerel skorları sıfırla', resetProgress: 'XP ve ilerlemeyi sıfırla', fanDisclaimer: 'FlagCraft bağımsız bir hayran projesidir; Mojang veya Microsoft ile bağlantılı değildir.',
+    worldRanking: 'DÜNYA SIRALAMASI', localLeaderboard: 'Şu anda bu cihazdaki skorlar gösteriliyor.', globalLeaderboard: 'Genel sıralamadaki skorlar gösteriliyor.', loading: 'Skorlar yükleniyor…', noScores: 'Henüz skor yok. İlk sırayı sen alabilirsin.', questions: 'soru', seconds: 'sn',
+    preferences: 'TERCİHLER', settings: 'Ayarlar', sound: 'Ses efektleri', soundDesc: 'Anında arayüz, doğru cevap ve seviye atlama sesleri', motion: 'Animasyonlar', motionDesc: 'Hafif geçişler ve geri bildirimler', themes: 'Temalar', themesDesc: 'Seviye atlayarak yeni renk paletlerini aç.', unlockAt: 'Seviye {level} ile açılır', unlocked: 'Açık', selected: 'Seçili', resetScores: 'Yerel skorları sıfırla', resetProgress: 'XP ve ilerlemeyi sıfırla', fanDisclaimer: 'FlagCraft bağımsız bir hayran projesidir; Mojang veya Microsoft ile bağlantılı değildir.', credit: '<strong>“whoisyuripa”</strong> tarafından tasarlandı ve geliştirildi',
     progress: 'İLERLEME', achievementUnlocked: 'BAŞARIM AÇILDI', locked: 'Kilitli',
     flagAlt: 'Tahmin edilecek ülke bayrağı', levelShort: 'Sv.', scoreSaved: 'Skorun global sıralamaya kaydedildi.', scoreLocal: 'Skorun bu cihaza kaydedildi.', newHighScore: 'Yeni kişisel rekor!', levelUp: 'Seviye {level} oldun!', themeUnlocked: 'Yeni tema açıldı: {theme}', scoresResetConfirm: 'Bu cihazdaki tüm FlagCraft skorları silinsin mi?', scoresResetDone: 'Yerel skorlar silindi.', progressResetConfirm: 'XP, seviye, başarımlar ve temalar sıfırlansın mı?', progressResetDone: 'İlerlemen sıfırlandı.', quitConfirm: 'Mevcut oyundan çıkmak istediğine emin misin?',
     themeGolden: 'Golden Apple', themeDark: 'Karanlık', themeSakura: 'Sakura', themeJapan: 'Japonya', themeSpace: 'Uzay', themeMinecraft: 'Minecraft',
-    rankBronze: 'Bronze', rankSilver: 'Silver', rankGold: 'Gold', rankPlatinum: 'Platinum', rankDiamond: 'Diamond', rankMaster: 'Master', rankGrandmaster: 'Grandmaster', rankChampion: 'Champion', rankLegend: 'Legend',
+    rankBronze: 'Bronz', rankSilver: 'Gümüş', rankGold: 'Altın', rankPlatinum: 'Platin', rankDiamond: 'Elmas', rankMaster: 'Usta', rankGrandmaster: 'Büyük Usta', rankChampion: 'Şampiyon', rankLegend: 'Efsane',
     achievementFirstName: 'İlk Blok', achievementFirstDesc: 'İlk doğru cevabını ver.', achievementCombo5Name: 'Seri Üretim', achievementCombo5Desc: '5× kombo yap.', achievementCombo10Name: 'Nether Serisi', achievementCombo10Desc: '10× kombo yap.', achievementPerfectFlagsName: 'Bayrak Ustası', achievementPerfectFlagsDesc: 'Klasik bayrak turunu 20/20 bitir.', achievementPerfectCapitalsName: 'Başkent Ustası', achievementPerfectCapitalsDesc: 'Klasik başkent turunu 20/20 bitir.', achievementFlag100Name: 'Atlas Madencisi', achievementFlag100Desc: 'Toplam 100 bayrak bil.', achievementCapital100Name: 'Şehir Mimarı', achievementCapital100Desc: 'Toplam 100 başkent bil.', achievementSurvivalName: 'Son Kalp', achievementSurvivalDesc: 'Hayatta Kalma modunda 15 doğruya ulaş.',
   },
   en: {
@@ -88,7 +88,7 @@ const i18n = {
     yourAnswer: 'Your answer', correctAnswer: 'Correct answer', timedOutLabel: 'Time ran out',
     welcome: 'WELCOME TO FLAGCRAFT', chooseUsername: 'Choose your username.', usernameInfo: 'Your score will appear under this name on the leaderboard.', username: 'Username', usernameRules: '2–16 characters; letters, numbers, spaces, _ and - are allowed.', continue: 'Continue', invalidUsername: 'Enter a valid username between 2 and 16 characters.',
     worldRanking: 'WORLD RANKING', localLeaderboard: 'Scores from this device are currently shown.', globalLeaderboard: 'Global scores are shown.', loading: 'Loading scores…', noScores: 'No scores yet. You can take first place.', questions: 'questions', seconds: 'sec',
-    preferences: 'PREFERENCES', settings: 'Settings', sound: 'Sound effects', soundDesc: 'Subtle interface clicks and a level-up sound', motion: 'Animations', motionDesc: 'Light transitions and feedback', themes: 'Themes', themesDesc: 'Level up to unlock new color palettes.', unlockAt: 'Unlocks at Level {level}', unlocked: 'Unlocked', selected: 'Selected', resetScores: 'Reset local scores', resetProgress: 'Reset XP and progress', fanDisclaimer: 'FlagCraft is an independent fan project and is not affiliated with Mojang or Microsoft.',
+    preferences: 'PREFERENCES', settings: 'Settings', sound: 'Sound effects', soundDesc: 'Instant interface, correct-answer, and level-up sounds', motion: 'Animations', motionDesc: 'Light transitions and feedback', themes: 'Themes', themesDesc: 'Level up to unlock new color palettes.', unlockAt: 'Unlocks at Level {level}', unlocked: 'Unlocked', selected: 'Selected', resetScores: 'Reset local scores', resetProgress: 'Reset XP and progress', fanDisclaimer: 'FlagCraft is an independent fan project and is not affiliated with Mojang or Microsoft.', credit: 'Made and developed by <strong>“whoisyuripa”</strong>',
     progress: 'PROGRESS', achievementUnlocked: 'ACHIEVEMENT UNLOCKED', locked: 'Locked',
     flagAlt: 'Country flag to identify', levelShort: 'Lv.', scoreSaved: 'Your score was saved to the global ranking.', scoreLocal: 'Your score was saved on this device.', newHighScore: 'New personal best!', levelUp: 'You reached Level {level}!', themeUnlocked: 'New theme unlocked: {theme}', scoresResetConfirm: 'Delete all FlagCraft scores on this device?', scoresResetDone: 'Local scores deleted.', progressResetConfirm: 'Reset XP, levels, achievements, and themes?', progressResetDone: 'Your progress was reset.', quitConfirm: 'Are you sure you want to leave the current game?',
     themeGolden: 'Golden Apple', themeDark: 'Dark', themeSakura: 'Sakura', themeJapan: 'Japan', themeSpace: 'Space', themeMinecraft: 'Minecraft',
@@ -118,8 +118,9 @@ const THEME_SWATCHES = {
 };
 
 const SOUND_URLS = {
-  click: 'https://www.myinstants.com/media/sounds/minecraft_click.mp3',
-  levelUp: 'https://www.myinstants.com/media/sounds/levelup.mp3',
+  click: './assets/sounds/minecraft-click.mp3',
+  correct: './assets/sounds/minecraft-xp-orb.mp3',
+  levelUp: './assets/sounds/minecraft-level-up.mp3',
 };
 
 const modeConfig = {
@@ -128,6 +129,12 @@ const modeConfig = {
   blitz: { total: Infinity, overallSeconds: 60 },
 };
 const difficultyMultiplier = { easy: 1, hard: 1.42 };
+const XP_REWARDS = Object.freeze({
+  correct: 20,
+  completedGame: 100,
+  perfectClassic: 75,
+  achievement: 100,
+});
 const preferences = {
   lang: storageGet('flagcraft_lang') === 'en' ? 'en' : 'tr',
   sound: storageGet('flagcraft_sound') !== 'false',
@@ -157,7 +164,10 @@ let toastTimeout = null;
 let achievementToastTimeout = null;
 let audioContext = null;
 let soundGestureUnlocked = false;
-const audioPools = new Map();
+let audioPreparationPromise = null;
+let audioDecodePromise = null;
+const encodedSounds = new Map();
+const audioBuffers = new Map();
 
 function t(key, variables = {}) {
   let output = i18n[preferences.lang]?.[key] ?? i18n.en[key] ?? key;
@@ -498,7 +508,6 @@ function countryFlagEmoji(code) {
 function renderQuestion() {
   const isFlags = state.quizType === 'flags';
   els.flagImage.hidden = !isFlags; els.flagLoader.hidden = !isFlags; els.capitalPrompt.hidden = isFlags;
-  els.promptStage.classList.remove('correct', 'wrong');
   if (isFlags) {
     els.flagLoader.classList.remove('hidden'); els.flagImage.classList.remove('loaded');
     els.flagImage.alt = t('flagAlt');
@@ -628,7 +637,7 @@ function unlockAchievement(id) {
   const result = unlockStoredAchievement(profile, id);
   profile = result.profile;
   if (!result.unlocked) return false;
-  awardXp(100);
+  awardXp(XP_REWARDS.achievement);
   renderAchievements();
   showAchievementToast(t(definition.name));
   return true;
@@ -643,9 +652,10 @@ function resolveAnswer({ selectedCode, timedOut }) {
   let gained = 0;
 
   if (isCorrect) {
+    playSound('correct');
     state.correct += 1; state.streak += 1; state.bestStreak = Math.max(state.bestStreak, state.streak);
     gained = calculateScore(remaining, state.streak); state.score += gained;
-    awardXp(10);
+    awardXp(XP_REWARDS.correct);
     unlockAchievement('first_correct');
     if ([5, 10].includes(state.streak)) showCombo(state.streak);
     if (state.streak === 5) unlockAchievement('combo_5');
@@ -677,7 +687,6 @@ function revealAnswer(selectedCode, timedOut, gained) {
     else button.classList.add('dimmed');
   });
   const correct = selectedCode === correctCode;
-  els.promptStage.classList.add(correct ? 'correct' : 'wrong');
   showToast(correct ? `${t('correctFeedback')} +${gained.toLocaleString(locale())}` : timedOut ? t('timeUp') : t('wrongFeedback'));
 }
 
@@ -694,8 +703,9 @@ async function endGame() {
   const finalState = state;
   const total = Math.max(1, finalState.answered);
   const perfect = finalState.mode === 'classic' && finalState.correct === 20 && total === 20;
+  awardXp(XP_REWARDS.completedGame);
   if (perfect) {
-    awardXp(50);
+    awardXp(XP_REWARDS.perfectClassic);
     unlockAchievement(finalState.quizType === 'flags' ? 'perfect_flags' : 'perfect_capitals');
   }
 
@@ -813,24 +823,38 @@ function showAchievementToast(title) {
 }
 
 function prepareAudio() {
-  Object.entries(SOUND_URLS).forEach(([type, url]) => {
-    const count = type === 'click' ? 4 : 1;
-    const pool = Array.from({ length: count }, () => {
-      const audio = new Audio(url);
-      audio.preload = 'auto';
-      audio.volume = type === 'click' ? .2 : .38;
-      try { audio.load(); } catch { /* optional audio */ }
-      return audio;
-    });
-    audioPools.set(type, pool);
+  if (audioPreparationPromise) return audioPreparationPromise;
+  audioPreparationPromise = Promise.all(Object.entries(SOUND_URLS).map(async ([type, url]) => {
+    const response = await fetch(url, { cache: 'force-cache' });
+    if (!response.ok) throw new Error(`Sound could not be loaded: ${type}`);
+    encodedSounds.set(type, await response.arrayBuffer());
+  })).catch(() => {
+    // Immediate synthesized sounds remain available if an asset cannot be loaded.
   });
+  return audioPreparationPromise;
+}
+
+function decodePreparedAudio() {
+  if (!audioContext || audioDecodePromise) return audioDecodePromise;
+  audioDecodePromise = prepareAudio().then(async () => {
+    await Promise.all([...encodedSounds.entries()].map(async ([type, data]) => {
+      if (audioBuffers.has(type)) return;
+      try {
+        audioBuffers.set(type, await audioContext.decodeAudioData(data.slice(0)));
+      } catch {
+        // The synthesized fallback will be used for this sound.
+      }
+    }));
+  });
+  return audioDecodePromise;
 }
 
 function unlockSoundGesture() {
   soundGestureUnlocked = true;
   try {
     audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
-    if (audioContext.state === 'suspended') audioContext.resume();
+    if (audioContext.state === 'suspended') void audioContext.resume();
+    void decodePreparedAudio();
   } catch { /* optional */ }
 }
 
@@ -842,7 +866,7 @@ function synthSound(type) {
     const oscillator = audioContext.createOscillator();
     const gain = audioContext.createGain();
     oscillator.connect(gain); gain.connect(audioContext.destination);
-    const map = { click: [245, 320, .045], levelUp: [420, 980, .34] };
+    const map = { click: [245, 320, .045], correct: [660, 880, .09], levelUp: [420, 980, .34] };
     const [start, end, duration] = map[type] || map.click;
     oscillator.type = type === 'click' ? 'square' : 'sine';
     oscillator.frequency.setValueAtTime(start, now);
@@ -855,13 +879,16 @@ function synthSound(type) {
 
 function playSound(type) {
   if (!preferences.sound || !soundGestureUnlocked) return;
-  const pool = audioPools.get(type) || [];
-  const ready = pool.find((audio) => audio.paused && audio.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA);
-  if (!ready) { synthSound(type); return; }
+  const buffer = audioBuffers.get(type);
+  if (!audioContext || !buffer || audioContext.state !== 'running') { synthSound(type); return; }
   try {
-    ready.currentTime = 0;
-    const result = ready.play();
-    if (result?.catch) result.catch(() => synthSound(type));
+    const source = audioContext.createBufferSource();
+    const gain = audioContext.createGain();
+    source.buffer = buffer;
+    gain.gain.value = type === 'click' ? .2 : type === 'correct' ? .34 : .38;
+    source.connect(gain);
+    gain.connect(audioContext.destination);
+    source.start(audioContext.currentTime);
   } catch { synthSound(type); }
 }
 

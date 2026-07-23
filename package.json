@@ -1,6 +1,6 @@
 {
   "name": "flagcraft",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "type": "module",
   "description": "A bilingual flag and capital quiz built for static hosting.",
@@ -8,7 +8,7 @@
     "test:data": "node tests/data.test.mjs",
     "test:ui": "node tests/ui-static.test.mjs",
     "test": "npm run test:data && npm run test:ui",
-    "build:standalone": "python3 build_standalone.py",
-    "test:browser": "python3 tests/browser_test.py"
+    "build:standalone": "python build_standalone.py",
+    "test:browser": "python tests/browser_test.py"
   }
 }

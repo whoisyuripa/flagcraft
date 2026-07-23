@@ -3,7 +3,7 @@ from pathlib import Path
 import json, sys, os, shutil
 
 ROOT = Path(__file__).resolve().parents[1]
-HTML = (ROOT / 'flagcraft-standalone.html').read_text()
+HTML = (ROOT / 'flagcraft-standalone.html').read_text(encoding='utf-8')
 profile_base={
   'level':1,'levelXp':0,'totalXp':0,'theme':'golden','achievements':[],
   'stats':{'games':0,'correct':0,'flagsCorrect':0,'capitalsCorrect':0,'bestCombo':0,'perfectGames':0}
@@ -12,6 +12,8 @@ profile_base={
 def content_for(level=1, theme='golden', lang='tr'):
     profile=dict(profile_base)
     profile['level']=level
+    profile['totalXp']=sum(500 + current_level * 100 for current_level in range(1, level))
+    profile['levelXp']=0
     profile['theme']=theme
     initial={
       'flagcraft_username':'whoisyuripa',
@@ -71,8 +73,9 @@ with sync_playwright() as p:
     assert page.locator('[data-i18n="chooseChallenge"]').inner_text() == 'Choose your challenge.'
     assert page.locator('[data-i18n="flags"]').first.inner_text() == 'Flags'
     assert page.locator('[data-i18n="hard"]').first.inner_text() == 'Hard'
-    assert page.locator('[data-i18n="soundDesc"]').inner_text() == 'Subtle interface clicks and a level-up sound'
+    assert page.locator('[data-i18n="soundDesc"]').inner_text() == 'Instant interface, correct-answer, and level-up sounds'
     assert page.locator('meta[name="description"]').get_attribute('content') == 'FlagCraft — a flag and capital quiz game.'
+    assert page.locator('.inline-credit').inner_text() == 'Made and developed by “whoisyuripa”'
 
     page.locator('#achievementsButton').click()
     assert page.locator('#achievementsModal').get_attribute('open') is not None
@@ -83,9 +86,10 @@ with sync_playwright() as p:
     assert page.locator('[data-i18n="worldRanking"]').inner_text() == 'WORLD RANKING'
     page.locator('#closeLeaderboardButton').click()
 
+    assert page.locator('#themeGrid .theme-button:disabled').count() == 5
+    assert page.locator('#themeGrid').evaluate("e => e.closest('#homeView') !== null")
     page.locator('#settingsButton').click()
     assert page.locator('#settingsModal').get_attribute('open') is not None
-    assert page.locator('#themeGrid .theme-button:disabled').count() == 5
     page.keyboard.press('Escape')
     assert page.locator('#settingsModal').get_attribute('open') is None
 
@@ -131,7 +135,6 @@ with sync_playwright() as p:
     page.route('**/myinstants.com/**', lambda route: route.abort())
     page.set_content(content_for(level=10, theme='golden', lang='en'), wait_until='load')
     page.wait_for_selector('#homeView.active')
-    page.locator('#settingsButton').click()
     assert page.locator('#themeGrid .theme-button:disabled').count() == 0
     expected=['golden','space','minecraft','dark','sakura','japan']
     actual=page.locator('#themeGrid .theme-button').evaluate_all("els => els.map(e => e.dataset.theme)")
@@ -143,9 +146,6 @@ with sync_playwright() as p:
         bgimg=page.locator('.quiz-type-button').first.evaluate("e => getComputedStyle(e).backgroundImage")
         assert color == 'rgb(255, 253, 244)', (theme,color)
         assert 'linear-gradient' in bgimg
-    page.locator('#settingsModal').click(position={'x':5,'y':5})
-    assert page.locator('#settingsModal').get_attribute('open') is None
-
     # Mobile regression: no horizontal overflow and gameplay remains usable.
     page.close(); context.close()
     context = browser.new_context(viewport={'width':390,'height':844})
@@ -172,4 +172,4 @@ bad=[e for e in errors if 'Failed to load resource' not in e and 'ERR_FAILED' no
 if bad:
     print('\n'.join(bad), file=sys.stderr)
     raise SystemExit(1)
-print('Browser tests passed: bilingual UI, 2 difficulties, paused quit flow, timer flow, all 6 themes, diamond fallback, and mobile layout.')
+print('Browser tests passed: bilingual UI, main-menu themes, 2 difficulties, paused quit flow, timer flow, all 6 themes, diamond fallback, and mobile layout.')

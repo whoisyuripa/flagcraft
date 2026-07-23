@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#171006" />
   <meta name="description" content="FlagCraft — bayrak ve başkent bilme oyunu." data-i18n-content="appDescription" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://flagcdn.com https://minecraft.wiki; media-src 'self' https://www.myinstants.com; connect-src 'self' https://*.supabase.co; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://flagcdn.com https://minecraft.wiki; media-src 'self'; connect-src 'self' https://*.supabase.co; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
   <title>FlagCraft</title>
   <link rel="icon" href="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" type="image/png" />
   <link rel="apple-touch-icon" href="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" />
@@ -102,7 +102,7 @@
           <button class="primary-button sound-click" id="startButton" type="button">
             <span data-i18n="startGame">Oyuna Başla</span><span aria-hidden="true">→</span>
           </button>
-          <p class="inline-credit">Made and developed by <strong>“whoisyuripa”</strong></p>
+          <p class="inline-credit" data-i18n-html="credit"><strong>“whoisyuripa”</strong> tarafından tasarlandı ve geliştirildi</p>
         </section>
 
         <aside class="side-column">
@@ -122,7 +122,7 @@
               <span><small data-i18n="totalXp">Toplam XP</small><strong id="totalXpValue">0</strong></span>
             </div>
             <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
-            <p id="xpProgressText">0 / 1125 XP</p>
+            <p id="xpProgressText">0 / 600 XP</p>
           </section>
 
           <section class="mini-card glass-panel best-card">
@@ -140,6 +140,11 @@
             <div><strong data-i18n="achievements">Başarımlar</strong><small id="achievementSummary">0 / 8</small></div>
             <span class="arrow-circle">→</span>
           </button>
+
+          <section class="theme-section home-theme-section glass-panel">
+            <div class="theme-heading"><strong data-i18n="themes">Temalar</strong><small data-i18n="themesDesc">Seviye atlayarak yeni renk paletlerini aç.</small></div>
+            <div class="theme-grid" id="themeGrid"></div>
+          </section>
         </aside>
       </div>
     </section>
@@ -178,7 +183,6 @@
             <small data-i18n="findCapital">BAŞKENTİ BUL</small>
             <strong id="capitalCountryName">Türkiye</strong>
           </div>
-          <div class="answer-flash" id="answerFlash"></div>
           <div class="combo-pop" id="comboPop" aria-live="assertive"></div>
         </div>
 
@@ -210,7 +214,7 @@
         </div>
 
         <div class="result-level-card">
-          <div><span><small data-i18n="level">Seviye</small><strong id="resultLevel">1</strong></span><span id="resultXpText">0 / 1125 XP</span></div>
+          <div><span><small data-i18n="level">Seviye</small><strong id="resultLevel">1</strong></span><span id="resultXpText">0 / 600 XP</span></div>
           <div class="xp-track"><div class="xp-fill" id="resultXpFill"></div></div>
         </div>
 
@@ -230,7 +234,7 @@
 
   <dialog class="modal username-modal" id="usernameModal">
     <form method="dialog" class="modal-card glass-panel" id="usernameForm">
-      <div class="modal-logo"><img src="./favicon.svg" alt="" /></div>
+      <div class="modal-logo"><img class="asset-golden-apple" src="https://minecraft.wiki/images/Golden_Apple_JE1_BE1.png?2b0f1&amp;20191229204603" data-fallback="./favicon.svg" alt="" referrerpolicy="no-referrer" /></div>
       <span class="section-kicker" data-i18n="welcome">FLAGCRAFT'A HOŞ GELDİN</span>
       <h2 data-i18n="chooseUsername">Oyuncu adını seç.</h2>
       <p data-i18n="usernameInfo">Skorun bu isimle liderlik tablosuna kaydedilecek.</p>
@@ -238,7 +242,7 @@
       <input id="usernameInput" name="username" maxlength="16" minlength="2" autocomplete="nickname" placeholder="whoisyuripa" required />
       <div class="input-note" id="usernameNote" data-i18n="usernameRules">2–16 karakter; harf, rakam, boşluk, _ ve - kullanabilirsin.</div>
       <button class="primary-button sound-click" value="default" type="submit"><span data-i18n="continue">Devam Et</span><span>→</span></button>
-      <p class="modal-credit">Made and developed by <strong>“whoisyuripa”</strong></p>
+      <p class="modal-credit" data-i18n-html="credit"><strong>“whoisyuripa”</strong> tarafından tasarlandı ve geliştirildi</p>
     </form>
   </dialog>
 
@@ -276,18 +280,13 @@
         <button class="close-button sound-click" id="closeSettingsButton" type="button" data-i18n-aria="closeAria" aria-label="Kapat">×</button>
       </div>
       <label class="setting-row">
-        <span><strong data-i18n="sound">Ses efektleri</strong><small data-i18n="soundDesc">Sade arayüz tıklamaları ve seviye atlama sesi</small></span>
+        <span><strong data-i18n="sound">Ses efektleri</strong><small data-i18n="soundDesc">Anında arayüz, doğru cevap ve seviye atlama sesleri</small></span>
         <input class="switch-input" id="soundToggle" type="checkbox" checked /><span class="switch-ui"></span>
       </label>
       <label class="setting-row">
         <span><strong data-i18n="motion">Animasyonlar</strong><small data-i18n="motionDesc">Hafif geçişler ve geri bildirimler</small></span>
         <input class="switch-input" id="motionToggle" type="checkbox" checked /><span class="switch-ui"></span>
       </label>
-
-      <div class="theme-section">
-        <div class="theme-heading"><strong data-i18n="themes">Temalar</strong><small data-i18n="themesDesc">Seviye atlayarak yeni renk paletlerini aç.</small></div>
-        <div class="theme-grid" id="themeGrid"></div>
-      </div>
 
       <div class="settings-danger-zone">
         <button class="danger-link sound-click" id="resetScoresButton" type="button" data-i18n="resetScores">Yerel skorları sıfırla</button>
