@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { COUNTRIES } from '../countries.js';
 import { CAPITALS } from '../capitals.js';
 import { chooseSmartDistractors, chooseCapitalDistractors } from '../flag-similarity.js';
-import { RANKS, THEMES, xpRequired, getRank } from '../profile-service.js';
+import { RANKS, THEMES, xpRequired, getRank, loadProfile } from '../profile-service.js';
 import { createBalancedAnswerPlan, takeBalancedAnswerPosition } from '../answer-balance.js';
 
 assert.equal(COUNTRIES.length, 197, 'Expected 197 countries');
@@ -32,13 +32,34 @@ for (const difficulty of ['easy', 'hard']) {
   }
 }
 
-assert.equal(xpRequired(12), 2500, 'Level 12 XP target should match design');
+assert.equal(xpRequired(1), 600, 'Level 2 should be reachable after roughly two or three normal runs');
+assert.equal(xpRequired(12), 1700, 'Later levels should remain progressive without becoming grindy');
 assert.deepEqual(THEMES.map(({ id, unlockLevel }) => [id, unlockLevel]), [['golden',1],['space',2],['minecraft',4],['dark',6],['sakura',8],['japan',10]], 'Theme unlock schedule');
 assert(THEMES.every((theme) => theme.unlockLevel <= 10), 'All themes must unlock by Level 10');
 for (let i = 1; i < RANKS.length; i++) assert(RANKS[i].minXp > RANKS[i-1].minXp, 'Rank thresholds must increase');
 for (let i = 1; i < THEMES.length; i++) assert(THEMES[i].unlockLevel >= THEMES[i-1].unlockLevel, 'Theme levels must not decrease');
 assert.equal(getRank(0).id, 'bronze');
 assert.equal(getRank(50_000).id, 'legend');
+
+globalThis.window = {
+  localStorage: {
+    getItem: () => JSON.stringify({
+      level: 1,
+      levelXp: 1_000,
+      totalXp: 1_000,
+      theme: 'space',
+      achievements: [],
+      stats: {},
+    }),
+    setItem: () => {},
+    removeItem: () => {},
+  },
+};
+const migratedProfile = loadProfile();
+assert.equal(migratedProfile.level, 2, 'Stored profiles should migrate to the new XP curve from total XP');
+assert.equal(migratedProfile.levelXp, 400, 'Migrated profiles should preserve XP beyond the new level threshold');
+assert.equal(migratedProfile.theme, 'space', 'A theme unlocked by the migrated level should remain selected');
+delete globalThis.window;
 
 
 for (let seed = 1; seed <= 100; seed++) {

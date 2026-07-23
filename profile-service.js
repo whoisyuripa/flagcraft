@@ -46,7 +46,14 @@ function int(value, min, max, fallback = min) {
 
 function normalize(raw) {
   const source = raw && typeof raw === 'object' ? raw : {};
-  const level = int(source.level, 1, 999, 1);
+  const totalXp = int(source.totalXp, 0, 100_000_000, 0);
+  let level = 1;
+  let levelXp = totalXp;
+  while (level < 999 && levelXp >= xpRequired(level)) {
+    levelXp -= xpRequired(level);
+    level += 1;
+  }
+  levelXp = int(levelXp, 0, xpRequired(level) - 1, 0);
   const availableThemes = THEMES.filter((theme) => level >= theme.unlockLevel).map((theme) => theme.id);
   const theme = availableThemes.includes(source.theme) ? source.theme : 'golden';
   const stats = source.stats && typeof source.stats === 'object' ? source.stats : {};
@@ -56,8 +63,8 @@ function normalize(raw) {
 
   return {
     level,
-    levelXp: int(source.levelXp, 0, xpRequired(level) - 1, 0),
-    totalXp: int(source.totalXp, 0, 100_000_000, 0),
+    levelXp,
+    totalXp,
     theme,
     achievements,
     stats: {
@@ -72,7 +79,7 @@ function normalize(raw) {
 }
 
 export function xpRequired(level) {
-  return Math.min(25_000, 1_000 + (Math.max(1, Number(level)) * 125));
+  return Math.min(12_000, 500 + (Math.max(1, Number(level)) * 100));
 }
 
 export function loadProfile() {
