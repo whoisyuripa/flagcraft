@@ -57,6 +57,9 @@ with sync_playwright() as p:
     page.wait_for_selector('#homeView.active')
 
     assert page.locator('#usernameModal').get_attribute('open') is None
+    assert page.locator('#appVersion').inner_text() == '2.4.0'
+    version_label = page.locator('.version-badge [data-i18n="versionLabel"]').inner_text()
+    assert version_label == 'SÜRÜM', repr(version_label)
     assert page.locator('#difficultyControl [data-difficulty]').count() == 2
     assert 'selected' in page.locator('#difficultyControl [data-difficulty="easy"]').get_attribute('class')
     assert page.locator('#difficultyControl [data-difficulty="medium"]').count() == 0
@@ -70,6 +73,8 @@ with sync_playwright() as p:
 
     page.locator('#languageButton').click()
     assert page.locator('#languageLabel').inner_text() == 'English'
+    version_label = page.locator('.version-badge [data-i18n="versionLabel"]').inner_text()
+    assert version_label == 'VERSION', repr(version_label)
     assert page.locator('[data-i18n="chooseChallenge"]').inner_text() == 'Choose your challenge.'
     assert page.locator('[data-i18n="flags"]').first.inner_text() == 'Flags'
     assert page.locator('[data-i18n="hard"]').first.inner_text() == 'Hard'

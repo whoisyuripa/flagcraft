@@ -109,6 +109,8 @@ img { display: block; max-width: 100%; }
 .hero-copy h1 { margin: 18px 0 22px; font-size: clamp(3rem, 8vw, 6.7rem); line-height: .91; letter-spacing: -.075em; font-weight: 950; }
 .hero-copy h1 span { display: inline-block; color: var(--accent); text-shadow: 0 0 42px var(--glow); margin-top: .08em; }
 .hero-copy p { max-width: 680px; margin: 0 auto; color: var(--muted); line-height: 1.75; font-size: 1.02rem; }
+.version-badge { width: fit-content; margin: 18px auto 0; display: inline-flex; align-items: center; gap: 7px; padding: 7px 11px; border: 1px solid var(--border); border-radius: 999px; background: color-mix(in srgb, var(--panel) 78%, transparent); color: var(--muted); font-size: .7rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+.version-badge strong { color: var(--accent); font-size: inherit; }
 .home-grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 22px; align-items: start; }
 .play-panel { border-radius: var(--radius-xl); padding: clamp(24px, 4vw, 42px); }
 .panel-heading h2 { margin: 10px 0 0; font-size: clamp(1.65rem, 3vw, 2.2rem); letter-spacing: -.04em; }

@@ -1,4 +1,4 @@
-# FlagCraft 2.3 Test Report
+# FlagCraft 2.4 Test Report
 
 Validated before publishing:
 
@@ -7,11 +7,12 @@ Validated before publishing:
 - Easy and Hard distractors for both quiz types
 - 100 deterministic 20-question answer-position plans
 - Every answer slot appears 4–6 times per Classic run
-- Turkish and English dictionaries contain the same 160 keys
+- Turkish and English dictionaries contain matching keys
 - All translated HTML bindings resolve in both languages
-- Turkish rank, accuracy, status, credit, game, result, and settings copy
+- Turkish rank, accuracy, status, credit, game, result, settings, version, username, and ranking copy
+- Main-menu version badge matches the runtime and package version
 - Correct-answer feedback marks only the answer button; no flag-area flash overlay remains
-- Local Minecraft click, XP-orb, and level-up MP3 files are present and wired to immediate Web Audio playback with a synthesized fallback
+- Local Minecraft click, XP-orb, and level-up MP3 files are present; startup decoding, silent-lead trimming, pointerdown scheduling, keyboard activation, and synthesized fallback are wired
 - XP rewards, 600 XP Level 2 target, completed-game bonus, and old-profile migration from total XP
 - Themes render in the main-menu progress column and remain selectable at their unlock levels
 - First-visit Golden Apple logo and fallback handling
