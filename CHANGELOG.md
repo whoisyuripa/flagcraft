@@ -1,3 +1,25 @@
+# FlagCraft 2.4 — Final Sync & Quality Update
+
+## Main-menu version
+
+- Added a visible, bilingual version badge to the main menu.
+- Kept the displayed version synchronized with the runtime and package version.
+
+## Immediate interface audio
+
+- Prepared and decoded local sounds during startup whenever the browser permits it.
+- Trimmed silent MP3 lead-in frames so the Minecraft click begins at the press moment.
+- Scheduled prepared audio directly during the browser resume gesture instead of waiting for a later click.
+- Added an immediate keyboard-activation sound and prevented disabled controls from playing a click.
+
+## Language and reliability
+
+- Corrected the Turkish global-ranking wording and clarified how usernames are used.
+- Improved the English Survival and Time Attack descriptions.
+- Added regression coverage for version synchronization and the zero-delay audio path.
+
+---
+
 # FlagCraft 2.3 — Progress & Polish Update
 
 ## Interface and localization

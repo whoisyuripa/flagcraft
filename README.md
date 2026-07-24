@@ -2,6 +2,8 @@
 
 FlagCraft is a Turkish/English browser quiz for learning world flags and capitals. It is designed for static hosting and works without an installer.
 
+Current version: **2.4.0**
+
 ## Included gameplay
 
 - Flag quiz and capital quiz with separate leaderboards
@@ -18,7 +20,7 @@ FlagCraft is a Turkish/English browser quiz for learning world flags and capital
 - Reliable in-game exit dialog that pauses and resumes active timers
 - Local leaderboard by default; optional shared Supabase leaderboard
 - Responsive desktop and mobile layouts
-- Responsive local audio: UI click, correct-answer XP orb, and level-up
+- Responsive local audio: predecoded and silence-trimmed UI click, correct-answer XP orb, and level-up
 
 ## Run locally
 
@@ -48,7 +50,7 @@ Read `DEPLOY_GITHUB.md`. GitHub Pages can publish the root folder directly, with
 - Usernames and remote/local score records are validated and rendered as text rather than HTML.
 - Local storage is treated as untrusted input and normalized before use.
 - The Content Security Policy limits scripts, images, media, and network connections.
-- Local UI, correct-answer, and level-up audio are decoded into Web Audio buffers, with an immediate synthesized fallback.
+- Local UI, correct-answer, and level-up audio are decoded early, trimmed to remove silent lead-in, and retain an immediate synthesized fallback.
 - Flag images have a no-crash emoji fallback.
 - Supabase Row Level Security and database constraints reject malformed records.
 - A fully cheat-proof global ranking requires server-authoritative score verification; browser-only games cannot guarantee that.
